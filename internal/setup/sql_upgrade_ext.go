@@ -155,7 +155,8 @@ func upgradeV0_5_6(db *dbs.DB) error {
 			if len(dnsString) > 0 && dnsString != "null" {
 				var dnsData = []byte(dnsString)
 				var dnsConfig = &dnsconfigs.ClusterDNSConfig{
-					CNAMEAsDomain:    true,
+					CNAMEAsDomain:    false,
+					SharedCNAME:      false,
 					IncludingLnNodes: true,
 				}
 				err = json.Unmarshal(dnsData, dnsConfig)

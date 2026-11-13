@@ -607,28 +607,30 @@ func (this *DNSDomainService) findClusterDNSChanges(cluster *models.NodeCluster,
 
 	// 新增的域名
 	var serverDNSNames = []string{}
-	for _, server := range servers {
-		var dnsName = server.DnsName
-		if len(dnsName) == 0 {
-			return nil, nil, nil, 0, 0, false, false, errors.New("server '" + numberutils.FormatInt64(int64(server.Id)) + "' 'dnsName' should not empty")
-		}
-		serverDNSNames = append(serverDNSNames, dnsName)
-		record, ok := serverRecordsMap[dnsName]
-		if !ok {
-			serversChanged = true
-			result = append(result, maps.Map{
-				"action": "create",
-				"record": &dnstypes.Record{
-					Id:    "",
-					Name:  dnsName,
-					Type:  dnstypes.RecordTypeCNAME,
-					Value: clusterDomain + ".",
-					Route: "", // 注意这里为空，需要在执行过程中获取默认值
-					TTL:   ttl,
-				},
-			})
-		} else {
-			doneServerRecords = append(doneServerRecords, record)
+	if !dnsConfig.SharedCNAME {
+		for _, server := range servers {
+			var dnsName = server.DnsName
+			if len(dnsName) == 0 {
+				return nil, nil, nil, 0, 0, false, false, errors.New("server '" + numberutils.FormatInt64(int64(server.Id)) + "' 'dnsName' should not empty")
+			}
+			serverDNSNames = append(serverDNSNames, dnsName)
+			record, ok := serverRecordsMap[dnsName]
+			if !ok {
+				serversChanged = true
+				result = append(result, maps.Map{
+					"action": "create",
+					"record": &dnstypes.Record{
+						Id:    "",
+						Name:  dnsName,
+						Type:  dnstypes.RecordTypeCNAME,
+						Value: clusterDomain + ".",
+						Route: "", // 注意这里为空，需要在执行过程中获取默认值
+						TTL:   ttl,
+					},
+				})
+			} else {
+				doneServerRecords = append(doneServerRecords, record)
+			}
 		}
 	}
 

@@ -252,7 +252,8 @@ func (this *SQLExecutor) checkCluster(db *dbs.DB) error {
 		NodesAutoSync:    true,
 		ServersAutoSync:  true,
 		CNAMERecords:     []string{},
-		CNAMEAsDomain:    true,
+		CNAMEAsDomain:    false,
+		SharedCNAME:      false,
 		TTL:              0,
 		IncludingLnNodes: true,
 	}

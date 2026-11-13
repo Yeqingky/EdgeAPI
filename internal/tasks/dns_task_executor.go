@@ -491,25 +491,27 @@ func (this *DNSTaskExecutor) doCluster(taskId int64, taskVersion int64, clusterI
 
 		// 新增的域名
 		var serverDNSNames = []string{}
-		for _, server := range servers {
-			var dnsName = server.DnsName
-			if len(dnsName) == 0 {
-				continue
-			}
-			serverDNSNames = append(serverDNSNames, dnsName)
-			_, ok := serverRecordsMap[dnsName]
-			if !ok {
-				isChanged = true
-				err = manager.AddRecord(domain, &dnstypes.Record{
-					Id:    "",
-					Name:  dnsName,
-					Type:  dnstypes.RecordTypeCNAME,
-					Value: clusterDomain + ".",
-					Route: "", // 注意这里为空，需要在执行过程中获取默认值
-					TTL:   ttl,
-				})
-				if err != nil {
-					return err
+		if dnsConfig == nil || !dnsConfig.SharedCNAME {
+			for _, server := range servers {
+				var dnsName = server.DnsName
+				if len(dnsName) == 0 {
+					continue
+				}
+				serverDNSNames = append(serverDNSNames, dnsName)
+				_, ok := serverRecordsMap[dnsName]
+				if !ok {
+					isChanged = true
+					err = manager.AddRecord(domain, &dnstypes.Record{
+						Id:    "",
+						Name:  dnsName,
+						Type:  dnstypes.RecordTypeCNAME,
+						Value: clusterDomain + ".",
+						Route: "", // 注意这里为空，需要在执行过程中获取默认值
+						TTL:   ttl,
+					})
+					if err != nil {
+						return err
+					}
 				}
 			}
 		}

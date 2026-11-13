@@ -569,7 +569,7 @@ func (this *NodeClusterDAO) ExistClusterDNSName(tx *dbs.Tx, dnsName string, excl
 }
 
 // UpdateClusterDNS 修改集群DNS相关信息
-func (this *NodeClusterDAO) UpdateClusterDNS(tx *dbs.Tx, clusterId int64, dnsName string, dnsDomainId int64, nodesAutoSync bool, serversAutoSync bool, cnameRecords []string, ttl int32, cnameAsDomain bool, includingLnNodes bool) error {
+func (this *NodeClusterDAO) UpdateClusterDNS(tx *dbs.Tx, clusterId int64, dnsName string, dnsDomainId int64, nodesAutoSync bool, serversAutoSync bool, cnameRecords []string, ttl int32, cnameAsDomain bool, sharedCNAME bool, includingLnNodes bool) error {
 	if clusterId <= 0 {
 		return errors.New("invalid clusterId")
 	}
@@ -610,12 +610,17 @@ func (this *NodeClusterDAO) UpdateClusterDNS(tx *dbs.Tx, clusterId int64, dnsNam
 		cnameRecords = []string{}
 	}
 
+	if sharedCNAME {
+		cnameAsDomain = false
+	}
+
 	var dnsConfig = &dnsconfigs.ClusterDNSConfig{
 		NodesAutoSync:    nodesAutoSync,
 		ServersAutoSync:  serversAutoSync,
 		CNAMERecords:     cnameRecords,
 		TTL:              ttl,
 		CNAMEAsDomain:    cnameAsDomain,
+		SharedCNAME:      sharedCNAME,
 		IncludingLnNodes: includingLnNodes,
 	}
 	dnsJSON, err := json.Marshal(dnsConfig)

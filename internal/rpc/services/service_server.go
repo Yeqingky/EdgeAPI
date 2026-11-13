@@ -2183,12 +2183,21 @@ func (this *ServerService) FindEnabledServerDNS(ctx context.Context, req *pb.Fin
 		return nil, err
 	}
 	var pbDomain *pb.DNSDomain = nil
+	var sharedCNAME = false
 	if clusterId > 0 {
 		clusterDNS, err := models.SharedNodeClusterDAO.FindClusterDNSInfo(tx, clusterId, nil)
 		if err != nil {
 			return nil, err
 		}
 		if clusterDNS != nil {
+			dnsConfig, err := clusterDNS.DecodeDNSConfig()
+			if err != nil {
+				return nil, err
+			}
+			if dnsConfig != nil {
+				sharedCNAME = dnsConfig.SharedCNAME
+			}
+
 			domainId := int64(clusterDNS.DnsDomainId)
 			if domainId > 0 {
 				domain, err := dns.SharedDNSDomainDAO.FindEnabledDNSDomain(tx, domainId, nil)
@@ -2200,6 +2209,11 @@ func (this *ServerService) FindEnabledServerDNS(ctx context.Context, req *pb.Fin
 						Id:   domainId,
 						Name: domain.Name,
 					}
+					if sharedCNAME && len(clusterDNS.DnsName) > 0 {
+						dnsName = clusterDNS.DnsName
+					} else {
+						sharedCNAME = false
+					}
 				}
 			}
 		}
@@ -2209,6 +2223,7 @@ func (this *ServerService) FindEnabledServerDNS(ctx context.Context, req *pb.Fin
 		DnsName:      dnsName,
 		Domain:       pbDomain,
 		SupportCNAME: supportCNAME,
+		SharedCNAME:  sharedCNAME,
 	}, nil
 }
 

@@ -1164,11 +1164,15 @@ func (this *ServerDAO) ComposeServerConfig(tx *dbs.Tx, server *Server, ignoreCer
 					return nil, err
 				}
 				if domain != nil {
-					var cname = server.DnsName + "." + domain.Name
-					config.CNameDomain = cname
-					if clusterDNSConfig.CNAMEAsDomain {
-						config.CNameAsDomain = true
-						config.AliasServerNames = append(config.AliasServerNames, cname)
+					if clusterDNSConfig.SharedCNAME && len(clusterDNS.DnsName) > 0 {
+						config.CNameDomain = clusterDNS.DnsName + "." + domain.Name
+					} else {
+						var cname = server.DnsName + "." + domain.Name
+						config.CNameDomain = cname
+						if clusterDNSConfig.CNAMEAsDomain {
+							config.CNameAsDomain = true
+							config.AliasServerNames = append(config.AliasServerNames, cname)
+						}
 					}
 				}
 			}
