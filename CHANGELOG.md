@@ -9,3 +9,4 @@
 - golang.org/x/crypto v0.23.0 -> v0.59.0, golang.org/x/net v0.25.0 -> v0.62.0, golang.org/x/text v0.15.0 -> v0.44.0, andybalholm/brotli v1.0.5 -> v1.3.0
 - 新增 internal/dnsclients/dnsla 桩包: 该包在开源版中被裁剪但 provider_dns_la.go 仍有引用, 仅为通过编译, DNS.LA 功能不可用
 - 将模块路径, 源码导入和文档链接中的仓库地址统一迁移到 git.ovh.im/yeqing
+- cmd/edge-api 启动时读取 EDGE_DB_HOST, EDGE_DB_PORT, EDGE_DB_USER, EDGE_DB_PASSWORD, EDGE_DB_NAME, 自动生成 configs/db.yaml 和 configs/.db.yaml

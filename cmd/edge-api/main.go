@@ -25,6 +25,12 @@ func main() {
 	if !Tea.IsTesting() {
 		Tea.Env = "prod"
 	}
+
+	err := configs.GenerateDBConfigFromEnv()
+	if err != nil {
+		log.Fatal("[CONFIG] generate database config from env failed: " + err.Error())
+	}
+
 	var app = apps.NewAppCmd()
 	app.Version(teaconst.Version)
 	app.Product(teaconst.ProductName)
