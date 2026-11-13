@@ -13,7 +13,7 @@ type DBNode struct {
 	Username    string `field:"username"`    // 用户名
 	Password    string `field:"password"`    // 密码
 	Charset     string `field:"charset"`     // 通讯字符集
-	ConnTimeout uint32 `field:"connTimeout"` // 连接超时时间（秒）
+	ConnTimeout uint32 `field:"connTimeout"` // 连接超时时间(秒)
 	State       uint8  `field:"state"`       // 状态
 	CreatedAt   uint64 `field:"createdAt"`   // 创建时间
 	Weight      uint32 `field:"weight"`      // 权重
@@ -33,7 +33,7 @@ type DBNodeOperator struct {
 	Username    interface{} // 用户名
 	Password    interface{} // 密码
 	Charset     interface{} // 通讯字符集
-	ConnTimeout interface{} // 连接超时时间（秒）
+	ConnTimeout interface{} // 连接超时时间(秒)
 	State       interface{} // 状态
 	CreatedAt   interface{} // 创建时间
 	Weight      interface{} // 权重

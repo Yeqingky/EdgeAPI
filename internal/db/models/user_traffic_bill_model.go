@@ -14,7 +14,7 @@ type UserTrafficBill struct {
 	TrafficPackageGB      float64  `field:"trafficPackageGB"`      // 使用的流量包GB
 	UserTrafficPackageIds dbs.JSON `field:"userTrafficPackageIds"` // 使用的流量包ID
 	PricePerUnit          float64  `field:"pricePerUnit"`          // 单位价格
-	PriceType             string   `field:"priceType"`             // 计费方式：traffic|bandwidth
+	PriceType             string   `field:"priceType"`             // 计费方式:traffic|bandwidth
 	State                 uint8    `field:"state"`                 // 状态
 }
 
@@ -29,7 +29,7 @@ type UserTrafficBillOperator struct {
 	TrafficPackageGB      any // 使用的流量包GB
 	UserTrafficPackageIds any // 使用的流量包ID
 	PricePerUnit          any // 单位价格
-	PriceType             any // 计费方式：traffic|bandwidth
+	PriceType             any // 计费方式:traffic|bandwidth
 	State                 any // 状态
 }
 

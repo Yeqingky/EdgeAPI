@@ -67,7 +67,7 @@ func init() {
 // UpdateUserBandwidth 写入数据
 func (this *UserBandwidthStatDAO) UpdateUserBandwidth(tx *dbs.Tx, userId int64, regionId int64, day string, timeAt string, bytes int64, totalBytes int64, cachedBytes int64, attackBytes int64, countRequests int64, countCachedRequests int64, countAttackRequests int64) error {
 	if userId <= 0 {
-		// 如果用户ID不大于0，则说明服务不属于任何用户，此时不需要处理
+		// 如果用户ID不大于0,则说明服务不属于任何用户,此时不需要处理
 		return nil
 	}
 
@@ -95,7 +95,7 @@ func (this *UserBandwidthStatDAO) UpdateUserBandwidth(tx *dbs.Tx, userId int64, 
 			"countAttackRequests": countAttackRequests,
 		}, maps.Map{
 			"bytes":               dbs.SQL("bytes+:bytes"),
-			"avgBytes":            dbs.SQL("(totalBytes+:totalBytes)/300"), // 因为生成SQL语句时会自动将avgBytes排在totalBytes之前，所以这里不用担心先后顺序的问题
+			"avgBytes":            dbs.SQL("(totalBytes+:totalBytes)/300"), // 因为生成SQL语句时会自动将avgBytes排在totalBytes之前,所以这里不用担心先后顺序的问题
 			"totalBytes":          dbs.SQL("totalBytes+:totalBytes"),
 			"cachedBytes":         dbs.SQL("cachedBytes+:cachedBytes"),
 			"attackBytes":         dbs.SQL("attackBytes+:attackBytes"),
@@ -124,7 +124,7 @@ func (this *UserBandwidthStatDAO) FindUserPeekBandwidthInMonth(tx *dbs.Tx, userI
 }
 
 // FindPercentileBetweenDays 获取日期段内内百分位
-// regionId 如果为 -1 表示没有区域的带宽；如果为 0 表示所有区域的带宽
+// regionId 如果为 -1 表示没有区域的带宽;如果为 0 表示所有区域的带宽
 func (this *UserBandwidthStatDAO) FindPercentileBetweenDays(tx *dbs.Tx, userId int64, regionId int64, dayFrom string, dayTo string, percentile int32, useAvg bool) (result *UserBandwidthStat, err error) {
 	if dayFrom > dayTo {
 		dayFrom, dayTo = dayTo, dayFrom
@@ -134,7 +134,7 @@ func (this *UserBandwidthStatDAO) FindPercentileBetweenDays(tx *dbs.Tx, userId i
 		percentile = 95
 	}
 
-	// 如果是100%以上，则快速返回
+	// 如果是100%以上,则快速返回
 	if percentile >= 100 {
 		var query = this.Query(tx).
 			Table(this.partialTable(userId))
@@ -523,7 +523,7 @@ func (this *UserBandwidthStatDAO) sumBytesField(useAvg bool) string {
 }
 
 // HasFullData 检查一个月是否完整数据
-// 是为了兼容以前数据，以前的表中没有缓存流量、请求数等字段
+// 是为了兼容以前数据,以前的表中没有缓存流量,请求数等字段
 func (this *UserBandwidthStatDAO) HasFullData(tx *dbs.Tx, userId int64, month string) (bool, error) {
 	if !regexputils.YYYYMM.MatchString(month) {
 		return false, errors.New("invalid month '" + month + "'")

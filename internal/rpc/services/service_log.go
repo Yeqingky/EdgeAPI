@@ -10,7 +10,7 @@ import (
 	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 )
 
-// LogService 管理员、用户或者其他系统用户日志
+// LogService 管理员,用户或者其他系统用户日志
 type LogService struct {
 	BaseService
 }

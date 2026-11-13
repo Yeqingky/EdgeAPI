@@ -30,7 +30,7 @@ type MessageType = string
 const (
 	MessageTypeAll MessageType = "*"
 
-	// 这里的命名问题（首字母大写）为历史遗留问题，暂不修改
+	// 这里的命名问题(首字母大写)为历史遗留问题,暂不修改
 
 	MessageTypeHealthCheckFailed          MessageType = "HealthCheckFailed"          // 节点健康检查失败
 	MessageTypeHealthCheckNodeUp          MessageType = "HealthCheckNodeUp"          // 因健康检查节点上线
@@ -42,9 +42,9 @@ const (
 	MessageTypeSSLCertACMETaskFailed      MessageType = "SSLCertACMETaskFailed"      // SSL证书任务执行失败
 	MessageTypeSSLCertACMETaskSuccess     MessageType = "SSLCertACMETaskSuccess"     // SSL证书任务执行成功
 	MessageTypeLogCapacityOverflow        MessageType = "LogCapacityOverflow"        // 日志超出最大限制
-	MessageTypeServerNamesAuditingSuccess MessageType = "ServerNamesAuditingSuccess" // 服务域名审核成功（用户）
-	MessageTypeServerNamesAuditingFailed  MessageType = "ServerNamesAuditingFailed"  // 服务域名审核失败（用户）
-	MessageTypeServerNamesRequireAuditing MessageType = "serverNamesRequireAuditing" // 服务域名需要审核（管理员）
+	MessageTypeServerNamesAuditingSuccess MessageType = "ServerNamesAuditingSuccess" // 服务域名审核成功(用户)
+	MessageTypeServerNamesAuditingFailed  MessageType = "ServerNamesAuditingFailed"  // 服务域名审核失败(用户)
+	MessageTypeServerNamesRequireAuditing MessageType = "serverNamesRequireAuditing" // 服务域名需要审核(管理员)
 	MessageTypeThresholdSatisfied         MessageType = "ThresholdSatisfied"         // 满足阈值
 	MessageTypeFirewallEvent              MessageType = "FirewallEvent"              // 防火墙事件
 	MessageTypeIPAddrUp                   MessageType = "IPAddrUp"                   // IP地址上线
@@ -245,7 +245,7 @@ func (this *MessageDAO) UpdateMessageRead(tx *dbs.Tx, messageId int64, b bool) e
 
 // UpdateMessagesRead 设置一组消息为已读状态
 func (this *MessageDAO) UpdateMessagesRead(tx *dbs.Tx, messageIds []int64, b bool) error {
-	// 这里我们一个一个更改，因为In语句不容易Prepare，且效率不高
+	// 这里我们一个一个更改,因为In语句不容易Prepare,且效率不高
 	for _, messageId := range messageIds {
 		err := this.UpdateMessageRead(tx, messageId, b)
 		if err != nil {

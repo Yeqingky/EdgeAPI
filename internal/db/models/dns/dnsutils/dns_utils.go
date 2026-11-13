@@ -32,7 +32,7 @@ func CheckClusterDNS(tx *dbs.Tx, cluster *models.NodeCluster, checkNodeIssues bo
 			Target:      cluster.Name,
 			TargetId:    clusterId,
 			Type:        "cluster",
-			Description: "域名选择错误，需要重新选择",
+			Description: "域名选择错误,需要重新选择",
 			Params:      nil,
 			MustFix:     true,
 		})
@@ -49,7 +49,7 @@ func CheckClusterDNS(tx *dbs.Tx, cluster *models.NodeCluster, checkNodeIssues bo
 			Target:      cluster.Name,
 			TargetId:    clusterId,
 			Type:        "cluster",
-			Description: "域名服务商不可用，需要重新选择",
+			Description: "域名服务商不可用,需要重新选择",
 			Params:      nil,
 			MustFix:     true,
 		})
@@ -61,7 +61,7 @@ func CheckClusterDNS(tx *dbs.Tx, cluster *models.NodeCluster, checkNodeIssues bo
 			Target:      cluster.Name,
 			TargetId:    clusterId,
 			Type:        "cluster",
-			Description: "域名服务商参数配置错误，需要重新配置",
+			Description: "域名服务商参数配置错误,需要重新配置",
 			Params:      nil,
 			MustFix:     true,
 		})
@@ -73,7 +73,7 @@ func CheckClusterDNS(tx *dbs.Tx, cluster *models.NodeCluster, checkNodeIssues bo
 			Target:      cluster.Name,
 			TargetId:    clusterId,
 			Type:        "cluster",
-			Description: "目前不支持\"" + provider.Type + "\"服务商，需要重新配置",
+			Description: "目前不支持\"" + provider.Type + "\"服务商,需要重新配置",
 			Params:      nil,
 			MustFix:     true,
 		})
@@ -145,7 +145,7 @@ func CheckClusterDNS(tx *dbs.Tx, cluster *models.NodeCluster, checkNodeIssues bo
 						Target:      node.Name,
 						TargetId:    nodeId,
 						Type:        "node",
-						Description: "线路已经失效，请重新选择",
+						Description: "线路已经失效,请重新选择",
 						Params: map[string]string{
 							"clusterName": cluster.Name,
 							"clusterId":   numberutils.FormatInt64(clusterId),

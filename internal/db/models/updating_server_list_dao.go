@@ -71,7 +71,7 @@ func (this *UpdatingServerListDAO) CreateList(tx *dbs.Tx, clusterId int64, serve
 		Set("serverIds", serverIdsJSON).
 		Set("clusterId", clusterId).
 		Set("day", timeutil.Format("Ymd")).
-		Replace() // 使用Replace，让ID可以自增
+		Replace() // 使用Replace,让ID可以自增
 	return err
 }
 
@@ -81,7 +81,7 @@ func (this *UpdatingServerListDAO) FindLists(tx *dbs.Tx, clusterIds []int64, las
 		return
 	}
 	_, err = this.Query(tx).
-		Attr("clusterId", clusterIds). // 即使clusterIds数量是变化的，这里也不需要使用Reuse(false)，因为clusterIds通常数量有限
+		Attr("clusterId", clusterIds). // 即使clusterIds数量是变化的,这里也不需要使用Reuse(false),因为clusterIds通常数量有限
 		Gt("id", lastId).
 		AscPk(). // 非常重要
 		Slice(&result).

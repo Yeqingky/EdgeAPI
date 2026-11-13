@@ -591,7 +591,7 @@ func (this *NodeClusterDAO) UpdateClusterDNS(tx *dbs.Tx, clusterId int64, dnsNam
 	var shouldRemoveOld = false
 	if (oldDNSDomainId > 0 && oldDNSDomainId != dnsDomainId) || (oldCluster.DnsName != dnsName) {
 		if oldDNSDomainId == dnsDomainId {
-			// 如果只是换子域名，需要在新的域名添加之前，先删除老的子域名，防止无法添加CNAME
+			// 如果只是换子域名,需要在新的域名添加之前,先删除老的子域名,防止无法添加CNAME
 			err = dns.SharedDNSTaskDAO.CreateClusterRemoveTask(tx, clusterId, oldDNSDomainId, oldCluster.DnsName)
 			if err != nil {
 				return err
@@ -1554,7 +1554,7 @@ func (this *NodeClusterDAO) NotifyWebPPolicyUpdate(tx *dbs.Tx, clusterId int64) 
 }
 
 // NotifyDNSUpdate 通知DNS更新
-// TODO 更新新的DNS解析记录的同时，需要删除老的DNS解析记录
+// TODO 更新新的DNS解析记录的同时,需要删除老的DNS解析记录
 func (this *NodeClusterDAO) NotifyDNSUpdate(tx *dbs.Tx, clusterId int64) error {
 	return dns.SharedDNSTaskDAO.CreateClusterTask(tx, clusterId, dns.DNSTaskTypeClusterChange)
 }

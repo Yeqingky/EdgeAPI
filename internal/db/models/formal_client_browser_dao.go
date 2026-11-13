@@ -87,7 +87,7 @@ func (this *FormalClientBrowserDAO) FindBrowserIdWithNameCacheable(tx *dbs.Tx, b
 		return types.Int64(cacheItem.Value), nil
 	}
 
-	// 先使用 name 查找，因为有索引，所以会快一些
+	// 先使用 name 查找,因为有索引,所以会快一些
 	browserId, err := this.Query(tx).
 		Attr("name", browserName).
 		ResultPk().
@@ -99,7 +99,7 @@ func (this *FormalClientBrowserDAO) FindBrowserIdWithNameCacheable(tx *dbs.Tx, b
 	if browserId == 0 {
 		browserId, err = this.Query(tx).
 			Where("JSON_CONTAINS(codes, :browserName)").
-			Param("browserName", strconv.Quote(browserName)). // 查询的需要是个JSON字符串，所以这里加双引号
+			Param("browserName", strconv.Quote(browserName)). // 查询的需要是个JSON字符串,所以这里加双引号
 			ResultPk().
 			FindInt64Col(0)
 		if err != nil {

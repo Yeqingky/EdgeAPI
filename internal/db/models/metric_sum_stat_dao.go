@@ -237,7 +237,7 @@ func (this *MetricSumStatDAO) Clean(tx *dbs.Tx) error {
 						Attr("itemId", item.Id).
 						Where("(createdDay IS NULL OR createdDay<:day)").
 						Param("day", expiresDay).
-						Limit(10_000). // 一次性不要删除太多，防止阻塞其他操作
+						Limit(10_000). // 一次性不要删除太多,防止阻塞其他操作
 						Delete()
 					return err
 				})

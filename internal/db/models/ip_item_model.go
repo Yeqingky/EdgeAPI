@@ -9,8 +9,8 @@ const (
 	IPItemField_Type                          dbs.FieldName = "type"                          // 类型
 	IPItemField_IpFrom                        dbs.FieldName = "ipFrom"                        // 开始IP
 	IPItemField_IpTo                          dbs.FieldName = "ipTo"                          // 结束IP
-	IPItemField_IpFromLong                    dbs.FieldName = "ipFromLong"                    // 开始IP整型（弃用）
-	IPItemField_IpToLong                      dbs.FieldName = "ipToLong"                      // 结束IP整型（弃用）
+	IPItemField_IpFromLong                    dbs.FieldName = "ipFromLong"                    // 开始IP整型(弃用)
+	IPItemField_IpToLong                      dbs.FieldName = "ipToLong"                      // 结束IP整型(弃用)
 	IPItemField_Version                       dbs.FieldName = "version"                       // 版本
 	IPItemField_CreatedAt                     dbs.FieldName = "createdAt"                     // 创建时间
 	IPItemField_UpdatedAt                     dbs.FieldName = "updatedAt"                     // 修改时间
@@ -37,8 +37,8 @@ type IPItem struct {
 	Type                          string `field:"type"`                          // 类型
 	IpFrom                        string `field:"ipFrom"`                        // 开始IP
 	IpTo                          string `field:"ipTo"`                          // 结束IP
-	IpFromLong                    uint64 `field:"ipFromLong"`                    // 开始IP整型（弃用）
-	IpToLong                      uint64 `field:"ipToLong"`                      // 结束IP整型（弃用）
+	IpFromLong                    uint64 `field:"ipFromLong"`                    // 开始IP整型(弃用)
+	IpToLong                      uint64 `field:"ipToLong"`                      // 结束IP整型(弃用)
 	Version                       uint64 `field:"version"`                       // 版本
 	CreatedAt                     uint64 `field:"createdAt"`                     // 创建时间
 	UpdatedAt                     uint64 `field:"updatedAt"`                     // 修改时间
@@ -64,8 +64,8 @@ type IPItemOperator struct {
 	Type                          any // 类型
 	IpFrom                        any // 开始IP
 	IpTo                          any // 结束IP
-	IpFromLong                    any // 开始IP整型（弃用）
-	IpToLong                      any // 结束IP整型（弃用）
+	IpFromLong                    any // 开始IP整型(弃用)
+	IpToLong                      any // 结束IP整型(弃用)
 	Version                       any // 版本
 	CreatedAt                     any // 创建时间
 	UpdatedAt                     any // 修改时间

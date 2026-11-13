@@ -353,7 +353,7 @@ func (this *NodeIPAddressDAO) FindNodeAccessAndUpIPAddresses(tx *dbs.Tx, nodeId 
 	return
 }
 
-// FindNodeAccessIPAddresses 查找节点所有的可访问的IP地址，包括在线和离线
+// FindNodeAccessIPAddresses 查找节点所有的可访问的IP地址,包括在线和离线
 func (this *NodeIPAddressDAO) FindNodeAccessIPAddresses(tx *dbs.Tx, nodeId int64, role nodeconfigs.NodeRole) (result []*NodeIPAddress, err error) {
 	if len(role) == 0 {
 		role = nodeconfigs.NodeRoleNode
@@ -372,7 +372,7 @@ func (this *NodeIPAddressDAO) FindNodeAccessIPAddresses(tx *dbs.Tx, nodeId int64
 }
 
 // CountAllEnabledIPAddresses 计算IP地址数量
-// TODO 目前支持边缘节点，将来支持NS节点
+// TODO 目前支持边缘节点,将来支持NS节点
 func (this *NodeIPAddressDAO) CountAllEnabledIPAddresses(tx *dbs.Tx, role string, nodeClusterId int64, upState configutils.BoolState, keyword string) (int64, error) {
 	var query = this.Query(tx).
 		State(NodeIPAddressStateEnabled).
@@ -563,9 +563,9 @@ func (this *NodeIPAddressDAO) UpdateAddressHealthCount(tx *dbs.Tx, addrId int64,
 	var oldIsHealthy = one.(*NodeIPAddress).IsHealthy
 	var oldIsUp = one.(*NodeIPAddress).IsUp
 
-	// 如果新老状态一致，则不做任何事情
+	// 如果新老状态一致,则不做任何事情
 	if oldIsHealthy == newIsUp {
-		// 如果自动上下线，则健康状况和是否在线保持一致
+		// 如果自动上下线,则健康状况和是否在线保持一致
 		if autoUpDown {
 			if oldIsUp != oldIsHealthy {
 				err = this.Query(tx).

@@ -447,7 +447,7 @@ func (this *APINodeDAO) CheckAPINodeIsPrimary(tx *dbs.Tx) (bool, error) {
 	return false, nil
 }
 
-// CheckAPINodeIsPrimaryWithoutErr 检查当前节点是否为Primary节点，并忽略错误
+// CheckAPINodeIsPrimaryWithoutErr 检查当前节点是否为Primary节点,并忽略错误
 func (this *APINodeDAO) CheckAPINodeIsPrimaryWithoutErr() bool {
 	b, err := this.CheckAPINodeIsPrimary(nil)
 	return b && err == nil

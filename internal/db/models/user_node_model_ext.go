@@ -84,7 +84,7 @@ func (this *UserNode) DecodeAccessAddrs() ([]*serverconfigs.NetworkAddressConfig
 	return addrConfigs, nil
 }
 
-// DecodeAccessAddrStrings 解析访问地址，并返回字符串形式
+// DecodeAccessAddrStrings 解析访问地址,并返回字符串形式
 func (this *UserNode) DecodeAccessAddrStrings() ([]string, error) {
 	addrs, err := this.DecodeAccessAddrs()
 	if err != nil {

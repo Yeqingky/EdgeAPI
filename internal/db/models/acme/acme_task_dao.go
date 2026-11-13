@@ -310,7 +310,7 @@ func (this *ACMETaskDAO) RunTask(tx *dbs.Tx, taskId int64) (isOk bool, errMsg st
 func (this *ACMETaskDAO) runTaskWithoutLog(tx *dbs.Tx, taskId int64, randomAcmeAccount bool) (isOk bool, errMsg string, resultCertId int64) {
 	task, err := this.FindEnabledACMETask(tx, taskId)
 	if err != nil {
-		errMsg = "查询任务信息时出错：" + err.Error()
+		errMsg = "查询任务信息时出错:" + err.Error()
 		return
 	}
 	if task == nil {
@@ -336,7 +336,7 @@ func (this *ACMETaskDAO) runTaskWithoutLog(tx *dbs.Tx, taskId int64, randomAcmeA
 	// ACME用户
 	user, err := SharedACMEUserDAO.FindEnabledACMEUser(tx, int64(task.AcmeUserId))
 	if err != nil {
-		errMsg = "查询ACME用户时出错：" + err.Error()
+		errMsg = "查询ACME用户时出错:" + err.Error()
 		return
 	}
 	if user == nil {
@@ -368,7 +368,7 @@ func (this *ACMETaskDAO) runTaskWithoutLog(tx *dbs.Tx, taskId int64, randomAcmeA
 	if user.AccountId > 0 {
 		account, err := SharedACMEProviderAccountDAO.FindEnabledACMEProviderAccount(tx, int64(user.AccountId))
 		if err != nil {
-			errMsg = "查询ACME账号时出错：" + err.Error()
+			errMsg = "查询ACME账号时出错:" + err.Error()
 			return
 		}
 		if account != nil {
@@ -381,7 +381,7 @@ func (this *ACMETaskDAO) runTaskWithoutLog(tx *dbs.Tx, taskId int64, randomAcmeA
 
 	privateKey, err := acmeutils.ParsePrivateKeyFromBase64(user.PrivateKey)
 	if err != nil {
-		errMsg = "解析私钥时出错：" + err.Error()
+		errMsg = "解析私钥时出错:" + err.Error()
 		return
 	}
 
@@ -398,7 +398,7 @@ func (this *ACMETaskDAO) runTaskWithoutLog(tx *dbs.Tx, taskId int64, randomAcmeA
 	if len(user.Registration) > 0 {
 		err = remoteUser.SetRegistration(user.Registration)
 		if err != nil {
-			errMsg = "设置注册信息时出错：" + err.Error()
+			errMsg = "设置注册信息时出错:" + err.Error()
 			return
 		}
 	}
@@ -408,7 +408,7 @@ func (this *ACMETaskDAO) runTaskWithoutLog(tx *dbs.Tx, taskId int64, randomAcmeA
 		// DNS服务商
 		dnsProvider, err := dns.SharedDNSProviderDAO.FindEnabledDNSProvider(tx, int64(task.DnsProviderId))
 		if err != nil {
-			errMsg = "查找DNS服务商账号信息时出错：" + err.Error()
+			errMsg = "查找DNS服务商账号信息时出错:" + err.Error()
 			return
 		}
 		if dnsProvider == nil {
@@ -423,12 +423,12 @@ func (this *ACMETaskDAO) runTaskWithoutLog(tx *dbs.Tx, taskId int64, randomAcmeA
 		providerInterface.SetMinTTL(int32(dnsProvider.MinTTL))
 		apiParams, err := dnsProvider.DecodeAPIParams()
 		if err != nil {
-			errMsg = "解析DNS服务商API参数时出错：" + err.Error()
+			errMsg = "解析DNS服务商API参数时出错:" + err.Error()
 			return
 		}
 		err = providerInterface.Auth(apiParams)
 		if err != nil {
-			errMsg = "校验DNS服务商API参数时出错：" + err.Error()
+			errMsg = "校验DNS服务商API参数时出错:" + err.Error()
 			return
 		}
 
@@ -485,7 +485,7 @@ func (this *ACMETaskDAO) runTaskWithoutLog(tx *dbs.Tx, taskId int64, randomAcmeA
 	})
 	certData, keyData, err := acmeRequest.Run()
 	if err != nil {
-		errMsg = "证书生成失败：" + err.Error()
+		errMsg = "证书生成失败:" + err.Error()
 		return
 	}
 
@@ -496,7 +496,7 @@ func (this *ACMETaskDAO) runTaskWithoutLog(tx *dbs.Tx, taskId int64, randomAcmeA
 	}
 	err = sslConfig.Init(context.Background())
 	if err != nil {
-		errMsg = "证书生成成功，但是分析证书信息时发生错误：" + err.Error()
+		errMsg = "证书生成成功,但是分析证书信息时发生错误:" + err.Error()
 		return
 	}
 
@@ -505,7 +505,7 @@ func (this *ACMETaskDAO) runTaskWithoutLog(tx *dbs.Tx, taskId int64, randomAcmeA
 	if resultCertId > 0 {
 		cert, err := models.SharedSSLCertDAO.FindEnabledSSLCert(tx, resultCertId)
 		if err != nil {
-			errMsg = "证书生成成功，但查询已绑定的证书时出错：" + err.Error()
+			errMsg = "证书生成成功,但查询已绑定的证书时出错:" + err.Error()
 			return
 		}
 		if cert == nil {
@@ -514,7 +514,7 @@ func (this *ACMETaskDAO) runTaskWithoutLog(tx *dbs.Tx, taskId int64, randomAcmeA
 			// 禁用
 			err = SharedACMETaskDAO.DisableACMETask(tx, taskId)
 			if err != nil {
-				errMsg = "禁用失效的ACME任务出错：" + err.Error()
+				errMsg = "禁用失效的ACME任务出错:" + err.Error()
 			}
 
 			return
@@ -522,26 +522,26 @@ func (this *ACMETaskDAO) runTaskWithoutLog(tx *dbs.Tx, taskId int64, randomAcmeA
 
 		err = models.SharedSSLCertDAO.UpdateCert(tx, resultCertId, cert.IsOn, cert.Name, cert.Description, cert.ServerName, cert.IsCA, certData, keyData, sslConfig.TimeBeginAt, sslConfig.TimeEndAt, sslConfig.DNSNames, sslConfig.CommonNames)
 		if err != nil {
-			errMsg = "证书生成成功，但是修改数据库中的证书信息时出错：" + err.Error()
+			errMsg = "证书生成成功,但是修改数据库中的证书信息时出错:" + err.Error()
 			return
 		}
 	} else {
 		resultCertId, err = models.SharedSSLCertDAO.CreateCert(tx, int64(task.AdminId), int64(task.UserId), true, task.DnsDomain+"免费证书", "免费申请的证书", "", false, certData, keyData, sslConfig.TimeBeginAt, sslConfig.TimeEndAt, sslConfig.DNSNames, sslConfig.CommonNames)
 		if err != nil {
-			errMsg = "证书生成成功，但是保存到数据库失败：" + err.Error()
+			errMsg = "证书生成成功,但是保存到数据库失败:" + err.Error()
 			return
 		}
 
 		err = models.SharedSSLCertDAO.UpdateCertACME(tx, resultCertId, int64(task.Id))
 		if err != nil {
-			errMsg = "证书生成成功，修改证书ACME信息时出错：" + err.Error()
+			errMsg = "证书生成成功,修改证书ACME信息时出错:" + err.Error()
 			return
 		}
 
 		// 设置成功
 		err = SharedACMETaskDAO.UpdateACMETaskCert(tx, taskId, resultCertId)
 		if err != nil {
-			errMsg = "证书生成成功，设置任务关联的证书时出错：" + err.Error()
+			errMsg = "证书生成成功,设置任务关联的证书时出错:" + err.Error()
 			return
 		}
 	}
@@ -582,11 +582,11 @@ func (this *ACMETaskDAO) UpdateStatus(tx *dbs.Tx, id int64, status int64) error 
 	return err
 }
 
-// RunTaskAndAutoBindServer 证书签发并绑定Server，记录日志
+// RunTaskAndAutoBindServer 证书签发并绑定Server,记录日志
 func (this *ACMETaskDAO) RunTaskAndAutoBindServer(tx *dbs.Tx, taskId int64, domains []string) (isOk bool, errMsg string) {
 	_, ok := runningTaskMap.Load(taskId)
 	if ok {
-		return true, "" // 返回ok，异步任务无需继续执行
+		return true, "" // 返回ok,异步任务无需继续执行
 	}
 
 	isOk, errMsg, resultCertId := this.runTaskWithoutLog(tx, taskId, true)
@@ -626,7 +626,7 @@ func (this *ACMETaskDAO) RunTaskAndAutoBindServer(tx *dbs.Tx, taskId int64, doma
 	serverMap := map[int64]ServerInfo{}
 	domainChecked := map[string]bool{}
 
-	// 以下绑定cert到Server的逻辑加互斥锁，避免大量证书绑定到同一个Server时sslCertIds数据覆盖；以下绑定流程耗时不长
+	// 以下绑定cert到Server的逻辑加互斥锁,避免大量证书绑定到同一个Server时sslCertIds数据覆盖;以下绑定流程耗时不长
 	serverBindMutex.Lock()
 	defer serverBindMutex.Unlock()
 
@@ -650,7 +650,7 @@ func (this *ACMETaskDAO) RunTaskAndAutoBindServer(tx *dbs.Tx, taskId int64, doma
 			}
 			tlsConfig := server.DecodeHTTPS()
 			if tlsConfig == nil {
-				continue // 跳过，其他有HTTPS的正常执行
+				continue // 跳过,其他有HTTPS的正常执行
 			}
 			if tlsConfig.SSLPolicyRef != nil {
 				sslPolicyConfig, err := models.SharedSSLPolicyDAO.ComposePolicyConfig(tx, tlsConfig.SSLPolicyRef.SSLPolicyId, false, nil, nil)
@@ -660,7 +660,7 @@ func (this *ACMETaskDAO) RunTaskAndAutoBindServer(tx *dbs.Tx, taskId int64, doma
 				if sslPolicyConfig != nil {
 					var certIds []int64
 					for _, cert := range sslPolicyConfig.Certs {
-						// 新签发的证书如果包含所有旧证书的域名则不再绑定旧证书，并禁用旧证书避免触发续签
+						// 新签发的证书如果包含所有旧证书的域名则不再绑定旧证书,并禁用旧证书避免触发续签
 						if utils.ListIsGreaterEqualThanOther(domains, cert.DNSNames) && cert.TimeEndAt < int64(newCert.TimeEndAt) {
 							err = models.SharedSSLCertDAO.DisableSSLCert(tx, cert.Id)
 							if err != nil {
@@ -698,7 +698,7 @@ func (this *ACMETaskDAO) RunTaskAndAutoBindServer(tx *dbs.Tx, taskId int64, doma
 
 		certRefsJSON, err := json.Marshal(certRefs)
 		if err != nil {
-			logs.Errorf("解析证书错误：%s", err.Error())
+			logs.Errorf("解析证书错误:%s", err.Error())
 			continue
 		}
 		if serverInfo.SSLPolicyId == 0 {
@@ -708,7 +708,7 @@ func (this *ACMETaskDAO) RunTaskAndAutoBindServer(tx *dbs.Tx, taskId int64, doma
 				nil, false, 0,
 				nil, false, nil)
 			if err != nil {
-				logs.Errorf("创建SSL策略错误：%s", err.Error())
+				logs.Errorf("创建SSL策略错误:%s", err.Error())
 				continue
 			}
 			httpsConfig := serverInfo.TlsConfig
@@ -718,20 +718,20 @@ func (this *ACMETaskDAO) RunTaskAndAutoBindServer(tx *dbs.Tx, taskId int64, doma
 			}
 			httpsJSON, err := json.Marshal(httpsConfig)
 			if err != nil {
-				logs.Errorf("获取https信息错误：%s", err.Error())
+				logs.Errorf("获取https信息错误:%s", err.Error())
 				continue
 			}
 			err = models.SharedServerDAO.UpdateServerHTTPS(tx, serverId, httpsJSON)
 		} else {
 			policy, err := models.SharedSSLPolicyDAO.FindEnabledSSLPolicy(tx, serverInfo.SSLPolicyId)
 			if err != nil {
-				logs.Errorf("获取SSL策略错误：%s", err.Error())
+				logs.Errorf("获取SSL策略错误:%s", err.Error())
 				continue
 			}
 			err = models.SharedSSLPolicyDAO.UpdatePolicy(tx, serverInfo.SSLPolicyId, policy.Http2Enabled, policy.Http3Enabled,
 				policy.MinVersion, certRefsJSON, policy.Hsts, policy.OcspIsOn == 1, int32(policy.ClientAuthType), policy.ClientCACerts, policy.CipherSuitesIsOn == 1, nil)
 			if err != nil {
-				logs.Errorf("更新SSL策略错误：%s", err.Error())
+				logs.Errorf("更新SSL策略错误:%s", err.Error())
 				continue
 			}
 

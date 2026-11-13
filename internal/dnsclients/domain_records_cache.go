@@ -204,7 +204,7 @@ func (this *DomainRecordsCache) AddDomainRecord(providerId int64, domain string,
 		list.records = append(list.records, record.Clone())
 	}
 
-	// 如果完全没有记录，则不保存
+	// 如果完全没有记录,则不保存
 }
 
 // UpdateDomainRecord 修改域名记录缓存

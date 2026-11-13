@@ -87,7 +87,7 @@ func (this *ClientAgentDAO) FindAllAgents(tx *dbs.Tx) (result []*ClientAgent, er
 
 // FindAllNSAgents 查找所有DNS可以使用的Agents
 func (this *ClientAgentDAO) FindAllNSAgents(tx *dbs.Tx) (result []*ClientAgent, err error) {
-	// 注意：允许NS使用所有的Agent，不管有没有IP数据
+	// 注意:允许NS使用所有的Agent,不管有没有IP数据
 	_, err = this.Query(tx).
 		Result("id", "name", "code").
 		Desc("order").

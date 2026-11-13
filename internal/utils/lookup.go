@@ -33,7 +33,7 @@ func init() {
 	sharedDNSConfig = config
 	sharedDNSClient = &dns.Client{}
 
-	// 监视文件变化，以便及时更新配置
+	// 监视文件变化,以便及时更新配置
 	go func() {
 		watcher, watcherErr := fsnotify.NewWatcher()
 		if watcherErr == nil {
@@ -184,7 +184,7 @@ func composeDNSResolverAddrs(extraResolvers []*dnsconfigs.DNSResolver) []string 
 	sharedDNSLocker.RLock()
 	defer sharedDNSLocker.RUnlock()
 
-	// 这里不处理重复，方便我们可以多次重试
+	// 这里不处理重复,方便我们可以多次重试
 	var servers = sharedDNSConfig.Servers
 	var port = sharedDNSConfig.Port
 

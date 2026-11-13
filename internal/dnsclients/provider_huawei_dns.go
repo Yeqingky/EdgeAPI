@@ -24,7 +24,7 @@ import (
 )
 
 // HuaweiDNSDefaultEndpoint 默认Endpoint
-// 所有Endpoints：https://developer.huaweicloud.com/endpoint?DNS
+// 所有Endpoints:https://developer.huaweicloud.com/endpoint?DNS
 const HuaweiDNSDefaultEndpoint = "https://dns.cn-north-4.myhuaweicloud.com/"
 
 var huaweiDNSHTTPClient = &http.Client{
@@ -37,7 +37,7 @@ var huaweiDNSHTTPClient = &http.Client{
 }
 
 // HuaweiDNSProvider 华为云DNS
-// 相关文档链接：https://support.huaweicloud.com/api-dns/dns_api_62001.html
+// 相关文档链接:https://support.huaweicloud.com/api-dns/dns_api_62001.html
 type HuaweiDNSProvider struct {
 	BaseProvider
 
@@ -148,7 +148,7 @@ func (this *HuaweiDNSProvider) GetRoutes(domain string) (routes []*dnstypes.Rout
 	}
 
 	// 官方线路列表
-	// 参考：https://support.huaweicloud.com/api-dns/zh-cn_topic_0085546214.html
+	// 参考:https://support.huaweicloud.com/api-dns/zh-cn_topic_0085546214.html
 
 	// 运营商线路
 	routes = append(routes, []*dnstypes.Route{
@@ -1136,7 +1136,7 @@ func (this *HuaweiDNSProvider) GetRoutes(domain string) (routes []*dnstypes.Rout
 		},
 	}...)
 
-	// 地域线路细分（全球）
+	// 地域线路细分(全球)
 	routes = append(routes, []*dnstypes.Route{
 		{
 			Code: "AP",
@@ -2386,7 +2386,7 @@ func (this *HuaweiDNSProvider) UpdateRecord(domain string, record *dnstypes.Reco
 		"description": "CDN系统自动创建",
 		"type":        newRecord.Type,
 		"records":     []string{newRecord.Value},
-		"line":        newRecord.Route, // TODO 华为云此API无法修改线路，API地址：https://support.huaweicloud.com/api-dns/dns_api_65006.html
+		"line":        newRecord.Route, // TODO 华为云此API无法修改线路,API地址:https://support.huaweicloud.com/api-dns/dns_api_65006.html
 		"ttl":         ttl,
 	}, resp)
 	if err != nil {

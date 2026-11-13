@@ -12,7 +12,7 @@ import (
 var SharedDeployManager = NewDeployManager()
 
 // DeployManager 节点部署文件管理器
-// 如果节点部署文件有变化，需要重启API节点以便于生效
+// 如果节点部署文件有变化,需要重启API节点以便于生效
 type DeployManager struct {
 	dir string
 

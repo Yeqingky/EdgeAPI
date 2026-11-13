@@ -12,7 +12,7 @@ import (
 // DecodeDNSConfig 解析DNS配置
 func (this *NodeCluster) DecodeDNSConfig() (*dnsconfigs.ClusterDNSConfig, error) {
 	if len(this.Dns) == 0 {
-		// 一定要返回一个默认的值，防止产生nil
+		// 一定要返回一个默认的值,防止产生nil
 		return dnsconfigs.DefaultClusterDNSConfig(), nil
 	}
 	var dnsConfig = dnsconfigs.DefaultClusterDNSConfig()

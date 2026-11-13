@@ -98,7 +98,7 @@ func (this *NodeMonitorTask) MonitorCluster(cluster *models.NodeCluster) error {
 				}
 				this.recoverMap[nodeId] = tryInfo
 			} else {
-				if tryInfo.count >= 3 /** 3次 **/ { // N 秒内超过 M 次就暂时不再重新尝试，防止阻塞当前任务
+				if tryInfo.count >= 3 /** 3次 **/ { // N 秒内超过 M 次就暂时不再重新尝试,防止阻塞当前任务
 					if tryInfo.timestamp+10*60 /** 10 分钟 **/ > time.Now().Unix() {
 						continue
 					}
@@ -108,7 +108,7 @@ func (this *NodeMonitorTask) MonitorCluster(cluster *models.NodeCluster) error {
 				tryInfo.count++
 			}
 
-			// TODO 如果用户手工安装的位置不在标准位置，需要节点自身记住最近启动的位置
+			// TODO 如果用户手工安装的位置不在标准位置,需要节点自身记住最近启动的位置
 			err = nodeQueue.StartNode(nodeId)
 			if err != nil {
 				if !installers.IsGrantError(err) {
@@ -145,7 +145,7 @@ func (this *NodeMonitorTask) MonitorCluster(cluster *models.NodeCluster) error {
 				this.notifiedMap[nodeId] = time.Now().Unix()
 
 				var subject = "节点\"" + node.Name + "\"已处于离线状态"
-				var msg = "集群 \"" + cluster.Name + "\" 节点 \"" + node.Name + "\" 已处于离线状态，请检查节点是否异常"
+				var msg = "集群 \"" + cluster.Name + "\" 节点 \"" + node.Name + "\" 已处于离线状态,请检查节点是否异常"
 				err = models.SharedMessageDAO.CreateNodeMessage(nil, nodeconfigs.NodeRoleNode, clusterId, int64(node.Id), models.MessageTypeNodeInactive, models.LevelError, subject, msg, nil, false)
 				if err != nil {
 					return err
@@ -162,7 +162,7 @@ func (this *NodeMonitorTask) MonitorCluster(cluster *models.NodeCluster) error {
 		}
 	}
 
-	// 检查CPU、内存、硬盘不足节点
+	// 检查CPU,内存,硬盘不足节点
 	// TODO 需要实现
 
 	return nil

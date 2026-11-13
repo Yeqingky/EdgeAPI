@@ -41,7 +41,7 @@ func (this *HealthCheckExecutor) Run() ([]*HealthCheckResult, error) {
 		return nil, err
 	}
 	if cluster == nil || !cluster.IsOn {
-		// 如果节点已经被删除，则不提示错误
+		// 如果节点已经被删除,则不提示错误
 		return nil, nil
 	}
 	if !cluster.HealthCheck.IsNotNull() {
@@ -180,11 +180,11 @@ func (this *HealthCheckExecutor) runNode(healthCheckConfig *serverconfigs.Health
 			var messageType string
 			var messageLevel string
 			if result.IsOk {
-				message = "健康检查成功，节点\"" + result.Node.Name + "\"，IP\"" + result.NodeAddr + "\"已恢复上线"
+				message = "健康检查成功,节点\"" + result.Node.Name + "\",IP\"" + result.NodeAddr + "\"已恢复上线"
 				messageType = models.MessageTypeHealthCheckNodeUp
 				messageLevel = models.MessageLevelSuccess
 			} else {
-				message = "健康检查失败，节点\"" + result.Node.Name + "\"，IP\"" + result.NodeAddr + "\"已自动下线"
+				message = "健康检查失败,节点\"" + result.Node.Name + "\",IP\"" + result.NodeAddr + "\"已自动下线"
 				messageType = models.MessageTypeHealthCheckNodeDown
 				messageLevel = models.MessageLevelError
 			}
@@ -213,7 +213,7 @@ func (this *HealthCheckExecutor) runNode(healthCheckConfig *serverconfigs.Health
 		}
 	}
 
-	// 结束处理 ，因为我们只处理IP的上下线，不修改节点的状态
+	// 结束处理 ,因为我们只处理IP的上下线,不修改节点的状态
 	if healthCheckConfig.AutoDown {
 		return
 	}
@@ -226,10 +226,10 @@ func (this *HealthCheckExecutor) runNode(healthCheckConfig *serverconfigs.Health
 		} else if isChanged {
 			// 通知恢复或下线
 			if result.IsOk {
-				var message = "健康检查成功，节点\"" + result.Node.Name + "\"已恢复上线"
+				var message = "健康检查成功,节点\"" + result.Node.Name + "\"已恢复上线"
 				err = models.NewMessageDAO().CreateNodeMessage(nil, nodeconfigs.NodeRoleNode, this.clusterId, int64(result.Node.Id), models.MessageTypeHealthCheckNodeUp, models.MessageLevelSuccess, message, message, nil, false)
 			} else {
-				var message = "健康检查失败，节点\"" + result.Node.Name + "\"已自动下线"
+				var message = "健康检查失败,节点\"" + result.Node.Name + "\"已自动下线"
 				err = models.NewMessageDAO().CreateNodeMessage(nil, nodeconfigs.NodeRoleNode, this.clusterId, int64(result.Node.Id), models.MessageTypeHealthCheckNodeDown, models.MessageLevelError, message, message, nil, false)
 			}
 			if err != nil {

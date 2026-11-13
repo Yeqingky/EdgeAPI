@@ -29,7 +29,7 @@ func init() {
 		var ticker = time.NewTicker(time.Duration(rands.Int(24, 48)) * time.Hour)
 		goman.New(func() {
 			for range ticker.C {
-				err := SharedServerDailyStatDAO.CleanDefaultDays(nil, 60) // 只保留 N 天，时间需要长一些，因为需要用来生成账单
+				err := SharedServerDailyStatDAO.CleanDefaultDays(nil, 60) // 只保留 N 天,时间需要长一些,因为需要用来生成账单
 				if err != nil {
 					logs.Println("ServerDailyStatDAO", "clean expired data failed: "+err.Error())
 				}
@@ -266,7 +266,7 @@ func (this *ServerDailyStatDAO) SumUserDailyPeek(tx *dbs.Tx, userId int64, regio
 }
 
 // SumMinutelyStat 获取某个分钟内的流量
-// minute 格式为YYYYMMDDHHMM，并且已经格式化成每5分钟一个值
+// minute 格式为YYYYMMDDHHMM,并且已经格式化成每5分钟一个值
 func (this *ServerDailyStatDAO) SumMinutelyStat(tx *dbs.Tx, serverId int64, minute string) (stat *pb.ServerDailyStat, err error) {
 	stat = &pb.ServerDailyStat{}
 

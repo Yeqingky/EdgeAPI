@@ -306,12 +306,12 @@ func (this *FirewallService) NotifyHTTPFirewallEvent(ctx context.Context, req *p
 		return nil, err
 	}
 
-	msg := "集群：" + clusterName + "（ID：" + strconv.FormatInt(clusterId, 10) + "）" +
-		"\n节点：" + nodeName + "（ID：" + strconv.FormatInt(nodeId, 10) + "）" +
-		"\n服务：" + serverName + "（ID：" + strconv.FormatInt(req.ServerId, 10) + "）" +
-		"\n规则分组：" + ruleGroupName +
-		"\n规则集：" + ruleSetName +
-		"\n时间：" + timeutil.FormatTime("Y-m-d H:i:s", req.CreatedAt)
+	msg := "集群:" + clusterName + "(ID:" + strconv.FormatInt(clusterId, 10) + ")" +
+		"\n节点:" + nodeName + "(ID:" + strconv.FormatInt(nodeId, 10) + ")" +
+		"\n服务:" + serverName + "(ID:" + strconv.FormatInt(req.ServerId, 10) + ")" +
+		"\n规则分组:" + ruleGroupName +
+		"\n规则集:" + ruleSetName +
+		"\n时间:" + timeutil.FormatTime("Y-m-d H:i:s", req.CreatedAt)
 	err = models.SharedMessageTaskDAO.CreateMessageTasks(tx, nodeconfigs.NodeRoleNode, clusterId, nodeId, req.ServerId, models.MessageTypeFirewallEvent, "触发防火墙事件", msg)
 	if err != nil {
 		return nil, err

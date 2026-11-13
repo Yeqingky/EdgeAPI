@@ -165,7 +165,7 @@ func (this *HTTPCacheTaskService) CreateHTTPCacheTask(ctx context.Context, req *
 	}
 
 	if countKeys == 0 {
-		// 如果没有有效的Key，则直接完成
+		// 如果没有有效的Key,则直接完成
 		err = models.SharedHTTPCacheTaskDAO.UpdateTaskStatus(tx, taskId, true, true)
 	} else {
 		err = models.SharedHTTPCacheTaskDAO.UpdateTaskReady(tx, taskId)
@@ -255,7 +255,7 @@ func (this *HTTPCacheTaskService) ListHTTPCacheTasks(ctx context.Context, req *p
 			}
 		}
 
-		// 对用户而言，超过Ns自动认为已完成
+		// 对用户而言,超过Ns自动认为已完成
 		const timeoutSeconds = 300
 		if isFromUser && !task.IsDone && time.Now().Unix()-int64(task.CreatedAt) > timeoutSeconds {
 			task.IsOk = true
@@ -306,7 +306,7 @@ func (this *HTTPCacheTaskService) FindEnabledHTTPCacheTask(ctx context.Context, 
 		return &pb.FindEnabledHTTPCacheTaskResponse{HttpCacheTask: nil}, nil
 	}
 
-	// 对用户而言，超过Ns自动认为已完成
+	// 对用户而言,超过Ns自动认为已完成
 	const timeoutSeconds = 300
 	if isFromUser && !task.IsDone && time.Now().Unix()-int64(task.CreatedAt) > timeoutSeconds {
 		task.IsOk = true
@@ -346,7 +346,7 @@ func (this *HTTPCacheTaskService) FindEnabledHTTPCacheTask(ctx context.Context, 
 	}
 	var pbKeys = []*pb.HTTPCacheTaskKey{}
 	for _, key := range keys {
-		// 对用户而言，超过Ns自动认为已完成
+		// 对用户而言,超过Ns自动认为已完成
 		if isFromUser && task.IsDone {
 			key.IsDone = true
 			key.Errors = nil
@@ -417,7 +417,7 @@ func (this *HTTPCacheTaskService) DeleteHTTPCacheTask(ctx context.Context, req *
 }
 
 // ResetHTTPCacheTask 重置任务状态
-// 只允许管理员重置，用于调试
+// 只允许管理员重置,用于调试
 func (this *HTTPCacheTaskService) ResetHTTPCacheTask(ctx context.Context, req *pb.ResetHTTPCacheTaskRequest) (*pb.RPCSuccess, error) {
 	_, err := this.ValidateAdmin(ctx)
 	if err != nil {

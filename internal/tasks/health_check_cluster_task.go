@@ -131,7 +131,7 @@ func (this *HealthCheckClusterTask) Loop() error {
 				return err
 			}
 			var subject = "有" + numberutils.FormatInt(len(failedResults)) + "个节点IP在健康检查中出现问题"
-			var message = "有" + numberutils.FormatInt(len(failedResults)) + "个节点IP在健康检查中出现问题："
+			var message = "有" + numberutils.FormatInt(len(failedResults)) + "个节点IP在健康检查中出现问题:"
 			var failedDescriptions = []string{}
 			var failedIndex int
 			for _, result := range results {
@@ -139,7 +139,7 @@ func (this *HealthCheckClusterTask) Loop() error {
 					continue
 				}
 				failedIndex++
-				failedDescriptions = append(failedDescriptions, "节点"+types.String(failedIndex)+"："+result.Node.Name+"，IP："+result.NodeAddr)
+				failedDescriptions = append(failedDescriptions, "节点"+types.String(failedIndex)+":"+result.Node.Name+",IP:"+result.NodeAddr)
 			}
 
 			const maxNodeDescriptions = 10
@@ -148,11 +148,11 @@ func (this *HealthCheckClusterTask) Loop() error {
 				failedDescriptions = failedDescriptions[:maxNodeDescriptions]
 				isOverMax = true
 			}
-			message += strings.Join(failedDescriptions, "；")
+			message += strings.Join(failedDescriptions, ";")
 			if isOverMax {
 				message += " ..."
 			} else {
-				message += "。"
+				message += "."
 			}
 
 			err = models.NewMessageDAO().CreateClusterMessage(nil, nodeconfigs.NodeRoleNode, this.clusterId, models.MessageTypeHealthCheckFailed, models.MessageLevelError, subject, subject, message, failedResultsJSON)

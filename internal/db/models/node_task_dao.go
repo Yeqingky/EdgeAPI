@@ -76,7 +76,7 @@ func (this *NodeTaskDAO) CreateNodeTask(tx *dbs.Tx, role string, clusterId int64
 	var uniqueId = role + "@" + types.String(nodeId) + "@node@" + types.String(serverId) + "@" + taskType
 
 	// 用户信息
-	// 没有直接加入到 uniqueId 中，是为了兼容以前的字段值
+	// 没有直接加入到 uniqueId 中,是为了兼容以前的字段值
 	if userId > 0 {
 		uniqueId += "@" + types.String(userId)
 	}
@@ -123,7 +123,7 @@ func (this *NodeTaskDAO) CreateClusterTask(tx *dbs.Tx, role string, clusterId in
 	var uniqueId = role + "@" + types.String(clusterId) + "@" + types.String(serverId) + "@cluster@" + taskType
 
 	// 用户信息
-	// 没有直接加入到 uniqueId 中，是为了兼容以前的字段值
+	// 没有直接加入到 uniqueId 中,是为了兼容以前的字段值
 	if userId > 0 {
 		uniqueId += "@" + types.String(userId)
 	}

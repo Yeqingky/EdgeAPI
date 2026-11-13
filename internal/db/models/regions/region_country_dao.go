@@ -99,7 +99,7 @@ func (this *RegionCountryDAO) FindRegionCountryName(tx *dbs.Tx, id int64) (strin
 	return name, nil
 }
 
-// FindRegionCountryRouteCode 查找国家｜地区线路代号
+// FindRegionCountryRouteCode 查找国家|地区线路代号
 func (this *RegionCountryDAO) FindRegionCountryRouteCode(tx *dbs.Tx, countryId int64) (string, error) {
 	return this.Query(tx).
 		Attr("valueId", countryId).
@@ -120,7 +120,7 @@ func (this *RegionCountryDAO) FindCountryIdWithName(tx *dbs.Tx, countryName stri
 	return this.Query(tx).
 		Where("(name=:countryName OR JSON_CONTAINS(codes, :countryNameJSON) OR customName=:countryName OR JSON_CONTAINS(customCodes, :countryNameJSON))").
 		Param("countryName", countryName).
-		Param("countryNameJSON", strconv.Quote(countryName)). // 查询的需要是个JSON字符串，所以这里加双引号
+		Param("countryNameJSON", strconv.Quote(countryName)). // 查询的需要是个JSON字符串,所以这里加双引号
 		Result(RegionCountryField_ValueId).
 		FindInt64Col(0)
 }

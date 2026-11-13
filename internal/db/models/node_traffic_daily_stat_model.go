@@ -1,6 +1,6 @@
 package models
 
-// NodeTrafficDailyStat 总的流量统计（按天）
+// NodeTrafficDailyStat 总的流量统计(按天)
 type NodeTrafficDailyStat struct {
 	Id                  uint64 `field:"id"`                  // ID
 	Role                string `field:"role"`                // 节点角色

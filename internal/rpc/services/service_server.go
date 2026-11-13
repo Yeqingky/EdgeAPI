@@ -1361,7 +1361,7 @@ func (this *ServerService) UpdateServerNamesAuditing(ctx context.Context, req *p
 			}
 		} else {
 			subject := "服务域名审核失败"
-			msg := "服务域名审核失败，原因：" + req.AuditingResult.Reason
+			msg := "服务域名审核失败,原因:" + req.AuditingResult.Reason
 			err = models.SharedMessageDAO.CreateMessage(tx, 0, userId, models.MessageTypeServerNamesAuditingFailed, models.LevelError, subject, msg, maps.Map{
 				"serverId": req.ServerId,
 			}.AsJSON())
@@ -2920,7 +2920,7 @@ func (this *ServerService) PurgeServerCache(ctx context.Context, req *pb.PurgeSe
 		}
 
 		if countKeys == 0 {
-			// 如果没有有效的Key，则直接完成
+			// 如果没有有效的Key,则直接完成
 			err = models.SharedHTTPCacheTaskDAO.UpdateTaskStatus(tx, taskId, true, true)
 		} else {
 			err = models.SharedHTTPCacheTaskDAO.UpdateTaskReady(tx, taskId)
@@ -3169,7 +3169,7 @@ func (this *ServerService) ComposeServerConfig(ctx context.Context, req *pb.Comp
 		return nil, err
 	}
 
-	// 如果不在当前节点的集群中，则返回nil
+	// 如果不在当前节点的集群中,则返回nil
 	if !lists.ContainsInt64(clusterIds, serverClusterId) {
 		return &pb.ComposeServerConfigResponse{ServerConfigJSON: nil}, nil
 	}
@@ -3327,7 +3327,7 @@ func (this *ServerService) CopyServerConfig(ctx context.Context, req *pb.CopySer
 				req.TargetUserId = userId
 			}
 
-			// 此时如果用户为0，则同步到未分配用户的网站
+			// 此时如果用户为0,则同步到未分配用户的网站
 		} else {
 			// 只能同步到自己的网站
 			req.TargetUserId = userId

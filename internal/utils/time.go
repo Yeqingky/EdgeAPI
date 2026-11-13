@@ -25,7 +25,7 @@ type timeDayMinuteRange struct {
 	MinuteTo   string
 }
 
-// RangeDays 计算日期之间的所有日期，格式为YYYYMMDD
+// RangeDays 计算日期之间的所有日期,格式为YYYYMMDD
 func RangeDays(dayFrom string, dayTo string) ([]string, error) {
 	var ok = regexputils.YYYYMMDD.MatchString(dayFrom)
 	if !ok {
@@ -67,7 +67,7 @@ func RangeDays(dayFrom string, dayTo string) ([]string, error) {
 	return result, nil
 }
 
-// RangeMonths 计算日期之间的所有月份，格式为YYYYMM
+// RangeMonths 计算日期之间的所有月份,格式为YYYYMM
 func RangeMonths(dayFrom string, dayTo string) ([]string, error) {
 	var ok = regexputils.YYYYMMDD.MatchString(dayFrom)
 	if !ok {
@@ -110,7 +110,7 @@ func RangeMonths(dayFrom string, dayTo string) ([]string, error) {
 	return result, nil
 }
 
-// RangeHours 计算小时之间的所有小时，格式为YYYYMMDDHH
+// RangeHours 计算小时之间的所有小时,格式为YYYYMMDDHH
 func RangeHours(hourFrom string, hourTo string) ([]string, error) {
 	ok, err := regexp.MatchString(`^\d{10}$`, hourFrom)
 	if err != nil {
@@ -159,7 +159,7 @@ func RangeHours(hourFrom string, hourTo string) ([]string, error) {
 	return result, nil
 }
 
-// RangeMinutes 计算若干个时间点，返回结果为 [ [day1, minute1], [day2, minute2] ... ]
+// RangeMinutes 计算若干个时间点,返回结果为 [ [day1, minute1], [day2, minute2] ... ]
 func RangeMinutes(toTime time.Time, count int, everyMinutes int32) []timeDayMinute {
 	var everySeconds = everyMinutes * 60
 	if everySeconds <= 0 {

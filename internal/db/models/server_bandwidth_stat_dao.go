@@ -64,7 +64,7 @@ func init() {
 }
 
 // UpdateServerBandwidth 写入数据
-// 现在不需要把 userPlanId 加入到数据表unique key中，因为只会影响5分钟统计，影响非常有限
+// 现在不需要把 userPlanId 加入到数据表unique key中,因为只会影响5分钟统计,影响非常有限
 func (this *ServerBandwidthStatDAO) UpdateServerBandwidth(tx *dbs.Tx, userId int64, serverId int64, regionId int64, userPlanId int64, day string, timeAt string, bandwidthBytes int64, totalBytes int64, cachedBytes int64, attackBytes int64, countRequests int64, countCachedRequests int64, countAttackRequests int64, countIPs int64) error {
 	if serverId <= 0 {
 		return errors.New("invalid server id '" + types.String(serverId) + "'")
@@ -98,7 +98,7 @@ func (this *ServerBandwidthStatDAO) UpdateServerBandwidth(tx *dbs.Tx, userId int
 			"countIPs":            countIPs,
 		}, maps.Map{
 			"bytes":               dbs.SQL("bytes+:bytes"),
-			"avgBytes":            dbs.SQL("(totalBytes+:totalBytes)/300"), // 因为生成SQL语句时会自动将avgBytes排在totalBytes之前，所以这里不用担心先后顺序的问题
+			"avgBytes":            dbs.SQL("(totalBytes+:totalBytes)/300"), // 因为生成SQL语句时会自动将avgBytes排在totalBytes之前,所以这里不用担心先后顺序的问题
 			"totalBytes":          dbs.SQL("totalBytes+:totalBytes"),
 			"cachedBytes":         dbs.SQL("cachedBytes+:cachedBytes"),
 			"attackBytes":         dbs.SQL("attackBytes+:attackBytes"),
@@ -331,7 +331,7 @@ func (this *ServerBandwidthStatDAO) FindMonthlyPeekBandwidthBytes(tx *dbs.Tx, se
 }
 
 // FindServerStats 查找某个时间段的带宽统计
-// 参数：
+// 参数:
 //   - day YYYYMMDD
 //   - timeAt HHII
 func (this *ServerBandwidthStatDAO) FindServerStats(tx *dbs.Tx, serverId int64, day string, timeFrom string, timeTo string, useAvg bool) (result []*ServerBandwidthStat, err error) {
@@ -389,7 +389,7 @@ func (this *ServerBandwidthStatDAO) FindMonthlyPercentile(tx *dbs.Tx, serverId i
 		percentile = 95
 	}
 
-	// 如果是100%以上，则快速返回
+	// 如果是100%以上,则快速返回
 	if percentile >= 100 {
 		var query = this.Query(tx)
 		if noPlan {
@@ -457,7 +457,7 @@ func (this *ServerBandwidthStatDAO) FindPercentileBetweenDays(tx *dbs.Tx, server
 		percentile = 95
 	}
 
-	// 如果是100%以上，则快速返回
+	// 如果是100%以上,则快速返回
 	if percentile >= 100 {
 		one, err := this.Query(tx).
 			Table(this.partialTable(serverId)).
@@ -507,8 +507,8 @@ func (this *ServerBandwidthStatDAO) FindPercentileBetweenDays(tx *dbs.Tx, server
 }
 
 // FindPercentileBetweenTimes 获取时间段内内百分位
-// timeFrom 开始时间，格式 YYYYMMDDHHII
-// timeTo 结束时间，格式 YYYYMMDDHHII
+// timeFrom 开始时间,格式 YYYYMMDDHHII
+// timeTo 结束时间,格式 YYYYMMDDHHII
 func (this *ServerBandwidthStatDAO) FindPercentileBetweenTimes(tx *dbs.Tx, serverId int64, timeFrom string, timeTo string, percentile int32, useAvg bool) (result *ServerBandwidthStat, err error) {
 	var reg = regexp.MustCompile(`^\d{12}$`)
 	if !reg.MatchString(timeFrom) {
@@ -526,7 +526,7 @@ func (this *ServerBandwidthStatDAO) FindPercentileBetweenTimes(tx *dbs.Tx, serve
 		percentile = 95
 	}
 
-	// 如果是100%以上，则快速返回
+	// 如果是100%以上,则快速返回
 	if percentile >= 100 {
 		one, err := this.Query(tx).
 			Table(this.partialTable(serverId)).
@@ -928,7 +928,7 @@ func (this *ServerBandwidthStatDAO) fixServerStats(stats []*ServerBandwidthStat,
 }
 
 // HasFullData 检查一个月是否完整数据
-// 是为了兼容以前数据，以前的表中没有缓存流量、请求数等字段
+// 是为了兼容以前数据,以前的表中没有缓存流量,请求数等字段
 func (this *ServerBandwidthStatDAO) HasFullData(tx *dbs.Tx, serverId int64, month string) (bool, error) {
 	// 最迟在2024年完成过渡
 	if time.Now().Year() >= 2024 {

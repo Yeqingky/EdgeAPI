@@ -413,7 +413,7 @@
       "name": "edgeADPackagePeriods",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeADPackagePeriods` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `count` int(11) unsigned DEFAULT '0' COMMENT '数量',\n  `unit` varchar(8) DEFAULT NULL COMMENT '单位：month, year',\n  `months` int(11) unsigned DEFAULT '0' COMMENT '月数',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='高防产品有效期'",
+      "definition": "CREATE TABLE `edgeADPackagePeriods` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `count` int(11) unsigned DEFAULT '0' COMMENT '数量',\n  `unit` varchar(8) DEFAULT NULL COMMENT '单位:month, year',\n  `months` int(11) unsigned DEFAULT '0' COMMENT '月数',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='高防产品有效期'",
       "fields": [
         {
           "name": "id",
@@ -429,7 +429,7 @@
         },
         {
           "name": "unit",
-          "definition": "varchar(8) COMMENT '单位：month, year'"
+          "definition": "varchar(8) COMMENT '单位:month, year'"
         },
         {
           "name": "months",
@@ -109227,7 +109227,7 @@
       "name": "edgeDBNodes",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeDBNodes` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `role` varchar(255) DEFAULT NULL COMMENT '数据库角色',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `description` varchar(1024) DEFAULT NULL COMMENT '描述',\n  `host` varchar(255) DEFAULT NULL COMMENT '主机',\n  `port` int(11) unsigned DEFAULT '0' COMMENT '端口',\n  `database` varchar(255) DEFAULT NULL COMMENT '数据库名称',\n  `username` varchar(255) DEFAULT NULL COMMENT '用户名',\n  `password` varchar(255) DEFAULT NULL COMMENT '密码',\n  `charset` varchar(255) DEFAULT NULL COMMENT '通讯字符集',\n  `connTimeout` int(11) unsigned DEFAULT '0' COMMENT '连接超时时间（秒）',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `weight` int(11) unsigned DEFAULT '0' COMMENT '权重',\n  `order` int(11) unsigned DEFAULT '0' COMMENT '排序',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='数据库节点'",
+      "definition": "CREATE TABLE `edgeDBNodes` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `role` varchar(255) DEFAULT NULL COMMENT '数据库角色',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `description` varchar(1024) DEFAULT NULL COMMENT '描述',\n  `host` varchar(255) DEFAULT NULL COMMENT '主机',\n  `port` int(11) unsigned DEFAULT '0' COMMENT '端口',\n  `database` varchar(255) DEFAULT NULL COMMENT '数据库名称',\n  `username` varchar(255) DEFAULT NULL COMMENT '用户名',\n  `password` varchar(255) DEFAULT NULL COMMENT '密码',\n  `charset` varchar(255) DEFAULT NULL COMMENT '通讯字符集',\n  `connTimeout` int(11) unsigned DEFAULT '0' COMMENT '连接超时时间(秒)',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `weight` int(11) unsigned DEFAULT '0' COMMENT '权重',\n  `order` int(11) unsigned DEFAULT '0' COMMENT '排序',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='数据库节点'",
       "fields": [
         {
           "name": "id",
@@ -109275,7 +109275,7 @@
         },
         {
           "name": "connTimeout",
-          "definition": "int(11) unsigned DEFAULT '0' COMMENT '连接超时时间（秒）'"
+          "definition": "int(11) unsigned DEFAULT '0' COMMENT '连接超时时间(秒)'"
         },
         {
           "name": "state",
@@ -113408,7 +113408,7 @@
       "name": "edgeHTTPCacheTaskKeys",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeHTTPCacheTaskKeys` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `taskId` bigint(20) unsigned DEFAULT '0' COMMENT '任务ID',\n  `key` varchar(1024) DEFAULT NULL COMMENT 'Key',\n  `keyType` varchar(64) DEFAULT NULL COMMENT 'Key类型：key|prefix',\n  `type` varchar(255) DEFAULT NULL COMMENT '操作类型',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `nodes` json DEFAULT NULL COMMENT '节点',\n  `errors` json DEFAULT NULL COMMENT '错误信息',\n  `isDone` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已完成',\n  PRIMARY KEY (`id`),\n  KEY `taskId` (`taskId`),\n  KEY `clusterId` (`clusterId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='缓存任务Key'",
+      "definition": "CREATE TABLE `edgeHTTPCacheTaskKeys` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `taskId` bigint(20) unsigned DEFAULT '0' COMMENT '任务ID',\n  `key` varchar(1024) DEFAULT NULL COMMENT 'Key',\n  `keyType` varchar(64) DEFAULT NULL COMMENT 'Key类型:key|prefix',\n  `type` varchar(255) DEFAULT NULL COMMENT '操作类型',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `nodes` json DEFAULT NULL COMMENT '节点',\n  `errors` json DEFAULT NULL COMMENT '错误信息',\n  `isDone` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已完成',\n  PRIMARY KEY (`id`),\n  KEY `taskId` (`taskId`),\n  KEY `clusterId` (`clusterId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='缓存任务Key'",
       "fields": [
         {
           "name": "id",
@@ -113424,7 +113424,7 @@
         },
         {
           "name": "keyType",
-          "definition": "varchar(64) COMMENT 'Key类型：key|prefix'"
+          "definition": "varchar(64) COMMENT 'Key类型:key|prefix'"
         },
         {
           "name": "type",
@@ -113467,7 +113467,7 @@
       "name": "edgeHTTPCacheTasks",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeHTTPCacheTasks` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `type` varchar(255) DEFAULT NULL COMMENT '任务类型：purge|fetch',\n  `keyType` varchar(255) DEFAULT NULL COMMENT 'Key类型',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `doneAt` bigint(11) unsigned DEFAULT '0' COMMENT '完成时间',\n  `day` varchar(8) DEFAULT NULL COMMENT '创建日期YYYYMMDD',\n  `isDone` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已完成',\n  `isOk` tinyint(1) unsigned DEFAULT '1' COMMENT '是否完全成功',\n  `isReady` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已准备好',\n  `description` varchar(255) DEFAULT NULL COMMENT '描述',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`),\n  KEY `day` (`day`),\n  KEY `isDone` (`isDone`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='缓存相关任务'",
+      "definition": "CREATE TABLE `edgeHTTPCacheTasks` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `type` varchar(255) DEFAULT NULL COMMENT '任务类型:purge|fetch',\n  `keyType` varchar(255) DEFAULT NULL COMMENT 'Key类型',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `doneAt` bigint(11) unsigned DEFAULT '0' COMMENT '完成时间',\n  `day` varchar(8) DEFAULT NULL COMMENT '创建日期YYYYMMDD',\n  `isDone` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已完成',\n  `isOk` tinyint(1) unsigned DEFAULT '1' COMMENT '是否完全成功',\n  `isReady` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已准备好',\n  `description` varchar(255) DEFAULT NULL COMMENT '描述',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`),\n  KEY `day` (`day`),\n  KEY `isDone` (`isDone`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='缓存相关任务'",
       "fields": [
         {
           "name": "id",
@@ -113479,7 +113479,7 @@
         },
         {
           "name": "type",
-          "definition": "varchar(255) COMMENT '任务类型：purge|fetch'"
+          "definition": "varchar(255) COMMENT '任务类型:purge|fetch'"
         },
         {
           "name": "keyType",
@@ -113842,7 +113842,7 @@
       "name": "edgeHTTPFirewallRuleSets",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeHTTPFirewallRuleSets` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `code` varchar(255) DEFAULT NULL COMMENT '代号',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `description` varchar(1024) DEFAULT NULL COMMENT '描述',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `rules` json DEFAULT NULL COMMENT '规则列表',\n  `connector` varchar(64) DEFAULT NULL COMMENT '规则之间的关系',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `action` varchar(255) DEFAULT NULL COMMENT '执行的动作（过期）',\n  `actionOptions` json DEFAULT NULL COMMENT '动作的选项（过期）',\n  `actions` json DEFAULT NULL COMMENT '一组动作',\n  `ignoreLocal` tinyint(1) unsigned DEFAULT '0' COMMENT '忽略局域网请求',\n  `ignoreSearchEngine` tinyint(1) unsigned DEFAULT '0' COMMENT '忽略搜索引擎',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='防火墙规则集'",
+      "definition": "CREATE TABLE `edgeHTTPFirewallRuleSets` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `code` varchar(255) DEFAULT NULL COMMENT '代号',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `description` varchar(1024) DEFAULT NULL COMMENT '描述',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `rules` json DEFAULT NULL COMMENT '规则列表',\n  `connector` varchar(64) DEFAULT NULL COMMENT '规则之间的关系',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `action` varchar(255) DEFAULT NULL COMMENT '执行的动作(过期)',\n  `actionOptions` json DEFAULT NULL COMMENT '动作的选项(过期)',\n  `actions` json DEFAULT NULL COMMENT '一组动作',\n  `ignoreLocal` tinyint(1) unsigned DEFAULT '0' COMMENT '忽略局域网请求',\n  `ignoreSearchEngine` tinyint(1) unsigned DEFAULT '0' COMMENT '忽略搜索引擎',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='防火墙规则集'",
       "fields": [
         {
           "name": "id",
@@ -113890,11 +113890,11 @@
         },
         {
           "name": "action",
-          "definition": "varchar(255) COMMENT '执行的动作（过期）'"
+          "definition": "varchar(255) COMMENT '执行的动作(过期)'"
         },
         {
           "name": "actionOptions",
-          "definition": "json COMMENT '动作的选项（过期）'"
+          "definition": "json COMMENT '动作的选项(过期)'"
         },
         {
           "name": "actions",
@@ -114438,7 +114438,7 @@
       "name": "edgeHTTPWebs",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeHTTPWebs` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `templateId` int(11) unsigned DEFAULT '0' COMMENT '模版ID',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `root` json DEFAULT NULL COMMENT '根目录',\n  `charset` json DEFAULT NULL COMMENT '字符集',\n  `shutdown` json DEFAULT NULL COMMENT '临时关闭页面配置',\n  `pages` json DEFAULT NULL COMMENT '特殊页面',\n  `enableGlobalPages` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用系统配置的自定义页面',\n  `redirectToHttps` json DEFAULT NULL COMMENT '跳转到HTTPS设置',\n  `indexes` json DEFAULT NULL COMMENT '首页文件列表',\n  `maxRequestBodySize` json DEFAULT NULL COMMENT '最大允许的请求内容尺寸',\n  `requestHeader` json DEFAULT NULL COMMENT '请求Header配置',\n  `responseHeader` json DEFAULT NULL COMMENT '响应Header配置',\n  `accessLog` json DEFAULT NULL COMMENT '访问日志配置',\n  `stat` json DEFAULT NULL COMMENT '统计配置',\n  `gzip` json DEFAULT NULL COMMENT 'Gzip配置（v0.3.2弃用）',\n  `compression` json DEFAULT NULL COMMENT '压缩配置',\n  `cache` json DEFAULT NULL COMMENT '缓存配置',\n  `firewall` json DEFAULT NULL COMMENT '防火墙设置',\n  `locations` json DEFAULT NULL COMMENT '路由规则配置',\n  `websocket` json DEFAULT NULL COMMENT 'Websocket设置',\n  `rewriteRules` json DEFAULT NULL COMMENT '重写规则配置',\n  `hostRedirects` json DEFAULT NULL COMMENT '域名跳转',\n  `fastcgi` json DEFAULT NULL COMMENT 'Fastcgi配置',\n  `auth` json DEFAULT NULL COMMENT '认证策略配置',\n  `webp` json DEFAULT NULL COMMENT 'WebP配置',\n  `remoteAddr` json DEFAULT NULL COMMENT '客户端IP配置',\n  `mergeSlashes` tinyint(1) unsigned DEFAULT '0' COMMENT '是否合并路径中的斜杠',\n  `requestLimit` json DEFAULT NULL COMMENT '请求限制',\n  `requestScripts` json DEFAULT NULL COMMENT '请求脚本',\n  `uam` json DEFAULT NULL COMMENT 'UAM设置',\n  `cc` json DEFAULT NULL COMMENT 'CC设置',\n  `referers` json DEFAULT NULL COMMENT '防盗链设置',\n  `userAgent` json DEFAULT NULL COMMENT 'UserAgent设置',\n  `optimization` json DEFAULT NULL COMMENT '页面优化配置',\n  `hls` json DEFAULT NULL COMMENT 'HLS设置',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='HTTP Web'",
+      "definition": "CREATE TABLE `edgeHTTPWebs` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `templateId` int(11) unsigned DEFAULT '0' COMMENT '模版ID',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `root` json DEFAULT NULL COMMENT '根目录',\n  `charset` json DEFAULT NULL COMMENT '字符集',\n  `shutdown` json DEFAULT NULL COMMENT '临时关闭页面配置',\n  `pages` json DEFAULT NULL COMMENT '特殊页面',\n  `enableGlobalPages` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用系统配置的自定义页面',\n  `redirectToHttps` json DEFAULT NULL COMMENT '跳转到HTTPS设置',\n  `indexes` json DEFAULT NULL COMMENT '首页文件列表',\n  `maxRequestBodySize` json DEFAULT NULL COMMENT '最大允许的请求内容尺寸',\n  `requestHeader` json DEFAULT NULL COMMENT '请求Header配置',\n  `responseHeader` json DEFAULT NULL COMMENT '响应Header配置',\n  `accessLog` json DEFAULT NULL COMMENT '访问日志配置',\n  `stat` json DEFAULT NULL COMMENT '统计配置',\n  `gzip` json DEFAULT NULL COMMENT 'Gzip配置(v0.3.2弃用)',\n  `compression` json DEFAULT NULL COMMENT '压缩配置',\n  `cache` json DEFAULT NULL COMMENT '缓存配置',\n  `firewall` json DEFAULT NULL COMMENT '防火墙设置',\n  `locations` json DEFAULT NULL COMMENT '路由规则配置',\n  `websocket` json DEFAULT NULL COMMENT 'Websocket设置',\n  `rewriteRules` json DEFAULT NULL COMMENT '重写规则配置',\n  `hostRedirects` json DEFAULT NULL COMMENT '域名跳转',\n  `fastcgi` json DEFAULT NULL COMMENT 'Fastcgi配置',\n  `auth` json DEFAULT NULL COMMENT '认证策略配置',\n  `webp` json DEFAULT NULL COMMENT 'WebP配置',\n  `remoteAddr` json DEFAULT NULL COMMENT '客户端IP配置',\n  `mergeSlashes` tinyint(1) unsigned DEFAULT '0' COMMENT '是否合并路径中的斜杠',\n  `requestLimit` json DEFAULT NULL COMMENT '请求限制',\n  `requestScripts` json DEFAULT NULL COMMENT '请求脚本',\n  `uam` json DEFAULT NULL COMMENT 'UAM设置',\n  `cc` json DEFAULT NULL COMMENT 'CC设置',\n  `referers` json DEFAULT NULL COMMENT '防盗链设置',\n  `userAgent` json DEFAULT NULL COMMENT 'UserAgent设置',\n  `optimization` json DEFAULT NULL COMMENT '页面优化配置',\n  `hls` json DEFAULT NULL COMMENT 'HLS设置',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='HTTP Web'",
       "fields": [
         {
           "name": "id",
@@ -114518,7 +114518,7 @@
         },
         {
           "name": "gzip",
-          "definition": "json COMMENT 'Gzip配置（v0.3.2弃用）'"
+          "definition": "json COMMENT 'Gzip配置(v0.3.2弃用)'"
         },
         {
           "name": "compression",
@@ -114688,7 +114688,7 @@
       "name": "edgeIPItems",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeIPItems` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `listId` int(11) unsigned DEFAULT '0' COMMENT '所属名单ID',\n  `value` varchar(255) DEFAULT NULL COMMENT '原始值',\n  `type` varchar(64) DEFAULT 'ipv4' COMMENT '类型',\n  `ipFrom` varchar(64) DEFAULT NULL COMMENT '开始IP',\n  `ipTo` varchar(64) DEFAULT NULL COMMENT '结束IP',\n  `ipFromLong` bigint(20) unsigned DEFAULT '0' COMMENT '开始IP整型（弃用）',\n  `ipToLong` bigint(20) unsigned DEFAULT '0' COMMENT '结束IP整型（弃用）',\n  `version` bigint(20) unsigned DEFAULT '0' COMMENT '版本',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `updatedAt` bigint(11) unsigned DEFAULT '0' COMMENT '修改时间',\n  `reason` varchar(255) DEFAULT NULL COMMENT '加入说明',\n  `eventLevel` varchar(64) DEFAULT NULL COMMENT '事件级别',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `expiredAt` bigint(11) unsigned DEFAULT '0' COMMENT '过期时间',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '有效范围服务ID',\n  `nodeId` int(11) unsigned DEFAULT '0' COMMENT '有效范围节点ID',\n  `sourceNodeId` int(11) unsigned DEFAULT '0' COMMENT '来源节点ID',\n  `sourceServerId` int(11) unsigned DEFAULT '0' COMMENT '来源服务ID',\n  `sourceHTTPFirewallPolicyId` int(11) unsigned DEFAULT '0' COMMENT '来源策略ID',\n  `sourceHTTPFirewallRuleGroupId` int(11) unsigned DEFAULT '0' COMMENT '来源规则集分组ID',\n  `sourceHTTPFirewallRuleSetId` int(11) unsigned DEFAULT '0' COMMENT '来源规则集ID',\n  `sourceUserId` bigint(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `isRead` tinyint(1) unsigned DEFAULT '1' COMMENT '是否已读',\n  PRIMARY KEY (`id`),\n  KEY `listId` (`listId`),\n  KEY `ipFrom` (`ipFrom`),\n  KEY `serverId` (`serverId`),\n  KEY `expiredAt_state` (`expiredAt`,`state`) USING BTREE,\n  KEY `isRead` (`expiredAt`,`isRead`) USING BTREE,\n  KEY `createdAt` (`createdAt`),\n  KEY `sourceUserId` (`sourceUserId`),\n  KEY `version` (`version`),\n  KEY `value` (`value`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='IP'",
+      "definition": "CREATE TABLE `edgeIPItems` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `listId` int(11) unsigned DEFAULT '0' COMMENT '所属名单ID',\n  `value` varchar(255) DEFAULT NULL COMMENT '原始值',\n  `type` varchar(64) DEFAULT 'ipv4' COMMENT '类型',\n  `ipFrom` varchar(64) DEFAULT NULL COMMENT '开始IP',\n  `ipTo` varchar(64) DEFAULT NULL COMMENT '结束IP',\n  `ipFromLong` bigint(20) unsigned DEFAULT '0' COMMENT '开始IP整型(弃用)',\n  `ipToLong` bigint(20) unsigned DEFAULT '0' COMMENT '结束IP整型(弃用)',\n  `version` bigint(20) unsigned DEFAULT '0' COMMENT '版本',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `updatedAt` bigint(11) unsigned DEFAULT '0' COMMENT '修改时间',\n  `reason` varchar(255) DEFAULT NULL COMMENT '加入说明',\n  `eventLevel` varchar(64) DEFAULT NULL COMMENT '事件级别',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `expiredAt` bigint(11) unsigned DEFAULT '0' COMMENT '过期时间',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '有效范围服务ID',\n  `nodeId` int(11) unsigned DEFAULT '0' COMMENT '有效范围节点ID',\n  `sourceNodeId` int(11) unsigned DEFAULT '0' COMMENT '来源节点ID',\n  `sourceServerId` int(11) unsigned DEFAULT '0' COMMENT '来源服务ID',\n  `sourceHTTPFirewallPolicyId` int(11) unsigned DEFAULT '0' COMMENT '来源策略ID',\n  `sourceHTTPFirewallRuleGroupId` int(11) unsigned DEFAULT '0' COMMENT '来源规则集分组ID',\n  `sourceHTTPFirewallRuleSetId` int(11) unsigned DEFAULT '0' COMMENT '来源规则集ID',\n  `sourceUserId` bigint(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `isRead` tinyint(1) unsigned DEFAULT '1' COMMENT '是否已读',\n  PRIMARY KEY (`id`),\n  KEY `listId` (`listId`),\n  KEY `ipFrom` (`ipFrom`),\n  KEY `serverId` (`serverId`),\n  KEY `expiredAt_state` (`expiredAt`,`state`) USING BTREE,\n  KEY `isRead` (`expiredAt`,`isRead`) USING BTREE,\n  KEY `createdAt` (`createdAt`),\n  KEY `sourceUserId` (`sourceUserId`),\n  KEY `version` (`version`),\n  KEY `value` (`value`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='IP'",
       "fields": [
         {
           "name": "id",
@@ -114716,11 +114716,11 @@
         },
         {
           "name": "ipFromLong",
-          "definition": "bigint(20) unsigned DEFAULT '0' COMMENT '开始IP整型（弃用）'"
+          "definition": "bigint(20) unsigned DEFAULT '0' COMMENT '开始IP整型(弃用)'"
         },
         {
           "name": "ipToLong",
-          "definition": "bigint(20) unsigned DEFAULT '0' COMMENT '结束IP整型（弃用）'"
+          "definition": "bigint(20) unsigned DEFAULT '0' COMMENT '结束IP整型(弃用)'"
         },
         {
           "name": "version",
@@ -115311,7 +115311,7 @@
       "name": "edgeLogs",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeLogs` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `level` varchar(32) DEFAULT NULL COMMENT '级别',\n  `description` varchar(1024) DEFAULT NULL COMMENT '描述',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `action` varchar(255) DEFAULT NULL COMMENT '动作',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `providerId` int(11) unsigned DEFAULT '0' COMMENT '供应商ID',\n  `ip` varchar(64) DEFAULT NULL COMMENT 'IP地址',\n  `type` varchar(255) DEFAULT 'admin' COMMENT '类型：admin, user',\n  `day` varchar(10) DEFAULT NULL COMMENT '日期',\n  `billId` int(11) unsigned DEFAULT '0' COMMENT '账单ID',\n  `langMessageCode` varchar(255) DEFAULT NULL COMMENT '多语言消息代号',\n  `langMessageArgs` json DEFAULT NULL COMMENT '多语言参数',\n  `params` json DEFAULT NULL COMMENT '关联对象参数',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`),\n  KEY `adminid` (`adminId`),\n  KEY `day` (`day`),\n  KEY `billId` (`billId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='操作日志'",
+      "definition": "CREATE TABLE `edgeLogs` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `level` varchar(32) DEFAULT NULL COMMENT '级别',\n  `description` varchar(1024) DEFAULT NULL COMMENT '描述',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `action` varchar(255) DEFAULT NULL COMMENT '动作',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `providerId` int(11) unsigned DEFAULT '0' COMMENT '供应商ID',\n  `ip` varchar(64) DEFAULT NULL COMMENT 'IP地址',\n  `type` varchar(255) DEFAULT 'admin' COMMENT '类型:admin, user',\n  `day` varchar(10) DEFAULT NULL COMMENT '日期',\n  `billId` int(11) unsigned DEFAULT '0' COMMENT '账单ID',\n  `langMessageCode` varchar(255) DEFAULT NULL COMMENT '多语言消息代号',\n  `langMessageArgs` json DEFAULT NULL COMMENT '多语言参数',\n  `params` json DEFAULT NULL COMMENT '关联对象参数',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`),\n  KEY `adminid` (`adminId`),\n  KEY `day` (`day`),\n  KEY `billId` (`billId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='操作日志'",
       "fields": [
         {
           "name": "id",
@@ -115351,7 +115351,7 @@
         },
         {
           "name": "type",
-          "definition": "varchar(255) DEFAULT 'admin' COMMENT '类型：admin, user'"
+          "definition": "varchar(255) DEFAULT 'admin' COMMENT '类型:admin, user'"
         },
         {
           "name": "day",
@@ -115402,7 +115402,7 @@
       "name": "edgeMessageMediaInstances",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeMessageMediaInstances` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `mediaType` varchar(255) DEFAULT NULL COMMENT '媒介类型',\n  `params` json DEFAULT NULL COMMENT '媒介参数',\n  `description` varchar(512) DEFAULT NULL COMMENT '备注',\n  `rate` json DEFAULT NULL COMMENT '发送频率',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `hashLife` int(11) DEFAULT '0' COMMENT 'HASH有效期（秒）',\n  PRIMARY KEY (`id`),\n  KEY `mediaType` (`mediaType`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='消息媒介接收人'",
+      "definition": "CREATE TABLE `edgeMessageMediaInstances` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `mediaType` varchar(255) DEFAULT NULL COMMENT '媒介类型',\n  `params` json DEFAULT NULL COMMENT '媒介参数',\n  `description` varchar(512) DEFAULT NULL COMMENT '备注',\n  `rate` json DEFAULT NULL COMMENT '发送频率',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `hashLife` int(11) DEFAULT '0' COMMENT 'HASH有效期(秒)',\n  PRIMARY KEY (`id`),\n  KEY `mediaType` (`mediaType`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='消息媒介接收人'",
       "fields": [
         {
           "name": "id",
@@ -115438,7 +115438,7 @@
         },
         {
           "name": "hashLife",
-          "definition": "int(11) DEFAULT '0' COMMENT 'HASH有效期（秒）'"
+          "definition": "int(11) DEFAULT '0' COMMENT 'HASH有效期(秒)'"
         }
       ],
       "indexes": [
@@ -115506,14 +115506,14 @@
         {
           "id": 1,
           "values": {
-            "description": "通过邮件发送通知。",
+            "description": "通过邮件发送通知.",
             "id": "1",
             "isOn": "1",
             "name": "邮件",
             "order": "8",
             "state": "1",
             "type": "email",
-            "userDescription": "接收人邮箱地址。"
+            "userDescription": "接收人邮箱地址."
           },
           "uniqueFields": [
             "type"
@@ -115523,14 +115523,14 @@
         {
           "id": 2,
           "values": {
-            "description": "通过HTTP请求发送通知。",
+            "description": "通过HTTP请求发送通知.",
             "id": "2",
             "isOn": "1",
             "name": "WebHook",
             "order": "7",
             "state": "1",
             "type": "webHook",
-            "userDescription": "通过${MessageUser}参数传递到URL上。"
+            "userDescription": "通过${MessageUser}参数传递到URL上."
           },
           "uniqueFields": [
             "type"
@@ -115540,14 +115540,14 @@
         {
           "id": 3,
           "values": {
-            "description": "通过运行脚本发送通知。",
+            "description": "通过运行脚本发送通知.",
             "id": "3",
             "isOn": "1",
             "name": "脚本",
             "order": "6",
             "state": "1",
             "type": "script",
-            "userDescription": "可以在脚本中使用${MessageUser}来获取这个标识。"
+            "userDescription": "可以在脚本中使用${MessageUser}来获取这个标识."
           },
           "uniqueFields": [
             "type"
@@ -115557,14 +115557,14 @@
         {
           "id": 4,
           "values": {
-            "description": "通过钉钉群机器人发送通知消息。",
+            "description": "通过钉钉群机器人发送通知消息.",
             "id": "4",
             "isOn": "1",
             "name": "钉钉群机器人",
             "order": "5",
             "state": "1",
             "type": "dingTalk",
-            "userDescription": "要At（@）的群成员的手机号，多个手机号用英文逗号隔开，也可以为空。"
+            "userDescription": "要At(@)的群成员的手机号,多个手机号用英文逗号隔开,也可以为空."
           },
           "uniqueFields": [
             "type"
@@ -115574,14 +115574,14 @@
         {
           "id": 5,
           "values": {
-            "description": "通过企业微信应用发送通知消息。",
+            "description": "通过企业微信应用发送通知消息.",
             "id": "5",
             "isOn": "1",
             "name": "企业微信应用",
             "order": "4",
             "state": "1",
             "type": "qyWeixin",
-            "userDescription": "接收消息的成员的用户账号，多个成员用竖线（|）分隔，如果所有成员使用@all。留空表示所有成员。"
+            "userDescription": "接收消息的成员的用户账号,多个成员用竖线(|)分隔,如果所有成员使用@all.留空表示所有成员."
           },
           "uniqueFields": [
             "type"
@@ -115591,14 +115591,14 @@
         {
           "id": 6,
           "values": {
-            "description": "通过微信群机器人发送通知消息。",
+            "description": "通过微信群机器人发送通知消息.",
             "id": "6",
             "isOn": "1",
             "name": "企业微信群机器人",
             "order": "3",
             "state": "1",
             "type": "qyWeixinRobot",
-            "userDescription": "要At（@）的群成员的手机号，多个手机号用英文逗号隔开，也可以为空。"
+            "userDescription": "要At(@)的群成员的手机号,多个手机号用英文逗号隔开,也可以为空."
           },
           "uniqueFields": [
             "type"
@@ -115608,14 +115608,14 @@
         {
           "id": 7,
           "values": {
-            "description": "通过\u003ca href=\"https://www.aliyun.com/product/sms\" target=\"_blank\"\u003e阿里云短信服务\u003c/a\u003e发送短信。",
+            "description": "通过\u003ca href=\"https://www.aliyun.com/product/sms\" target=\"_blank\"\u003e阿里云短信服务\u003c/a\u003e发送短信.",
             "id": "7",
             "isOn": "1",
             "name": "阿里云短信",
             "order": "2",
             "state": "1",
             "type": "aliyunSms",
-            "userDescription": "接收消息的手机号。"
+            "userDescription": "接收消息的手机号."
           },
           "uniqueFields": [
             "type"
@@ -115625,14 +115625,14 @@
         {
           "id": 8,
           "values": {
-            "description": "通过机器人向群或者某个用户发送消息，需要确保所在网络能够访问Telegram API服务。",
+            "description": "通过机器人向群或者某个用户发送消息,需要确保所在网络能够访问Telegram API服务.",
             "id": "8",
             "isOn": "1",
             "name": "Telegram机器人",
             "order": "1",
             "state": "1",
             "type": "telegram",
-            "userDescription": "群或用户的Chat ID，通常是一个数字，可以通过和 @get_id_bot 建立对话并发送任意消息获得。"
+            "userDescription": "群或用户的Chat ID,通常是一个数字,可以通过和 @get_id_bot 建立对话并发送任意消息获得."
           },
           "uniqueFields": [
             "type"
@@ -116130,7 +116130,7 @@
       "name": "edgeMetricItems",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeMetricItems` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `code` varchar(128) DEFAULT NULL COMMENT '代号（用来区分是否内置）',\n  `category` varchar(32) DEFAULT NULL COMMENT '类型，比如http, tcp等',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `name` varchar(255) DEFAULT NULL COMMENT '指标名称',\n  `keys` json DEFAULT NULL COMMENT '统计的Key',\n  `period` int(11) unsigned DEFAULT '0' COMMENT '周期',\n  `periodUnit` varchar(32) DEFAULT NULL COMMENT '周期单位',\n  `expiresPeriod` int(11) unsigned DEFAULT '0' COMMENT '过期周期',\n  `value` varchar(512) DEFAULT NULL COMMENT '值运算',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `version` int(11) unsigned DEFAULT '0' COMMENT '版本号',\n  `isPublic` tinyint(1) unsigned DEFAULT '0' COMMENT '是否为公用',\n  `lastTime` varchar(14) DEFAULT NULL COMMENT '最新时间',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`),\n  KEY `category` (`category`),\n  KEY `code` (`code`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='指标定义'",
+      "definition": "CREATE TABLE `edgeMetricItems` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `code` varchar(128) DEFAULT NULL COMMENT '代号(用来区分是否内置)',\n  `category` varchar(32) DEFAULT NULL COMMENT '类型,比如http, tcp等',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `name` varchar(255) DEFAULT NULL COMMENT '指标名称',\n  `keys` json DEFAULT NULL COMMENT '统计的Key',\n  `period` int(11) unsigned DEFAULT '0' COMMENT '周期',\n  `periodUnit` varchar(32) DEFAULT NULL COMMENT '周期单位',\n  `expiresPeriod` int(11) unsigned DEFAULT '0' COMMENT '过期周期',\n  `value` varchar(512) DEFAULT NULL COMMENT '值运算',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `version` int(11) unsigned DEFAULT '0' COMMENT '版本号',\n  `isPublic` tinyint(1) unsigned DEFAULT '0' COMMENT '是否为公用',\n  `lastTime` varchar(14) DEFAULT NULL COMMENT '最新时间',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`),\n  KEY `category` (`category`),\n  KEY `code` (`code`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='指标定义'",
       "fields": [
         {
           "name": "id",
@@ -116142,11 +116142,11 @@
         },
         {
           "name": "code",
-          "definition": "varchar(128) COMMENT '代号（用来区分是否内置）'"
+          "definition": "varchar(128) COMMENT '代号(用来区分是否内置)'"
         },
         {
           "name": "category",
-          "definition": "varchar(32) COMMENT '类型，比如http, tcp等'"
+          "definition": "varchar(32) COMMENT '类型,比如http, tcp等'"
         },
         {
           "name": "adminId",
@@ -119920,7 +119920,7 @@
       "name": "edgeNSDomains",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeNSDomains` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `name` varchar(255) DEFAULT NULL COMMENT '域名',\n  `groupIds` json DEFAULT NULL COMMENT '分组ID',\n  `tsig` json DEFAULT NULL COMMENT 'TSIG配置',\n  `verifyTXT` varchar(64) DEFAULT NULL COMMENT '验证用的TXT',\n  `verifyExpiresAt` bigint(11) unsigned DEFAULT '0' COMMENT '验证TXT过期时间',\n  `recordsHealthCheck` json DEFAULT NULL COMMENT '记录健康检查设置',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `version` bigint(20) unsigned DEFAULT '0' COMMENT '版本号',\n  `status` varchar(64) DEFAULT 'none' COMMENT '状态：none|verified',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`),\n  KEY `name` (`name`),\n  KEY `version` (`version`) USING BTREE,\n  KEY `status` (`status`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='DNS域名'",
+      "definition": "CREATE TABLE `edgeNSDomains` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `name` varchar(255) DEFAULT NULL COMMENT '域名',\n  `groupIds` json DEFAULT NULL COMMENT '分组ID',\n  `tsig` json DEFAULT NULL COMMENT 'TSIG配置',\n  `verifyTXT` varchar(64) DEFAULT NULL COMMENT '验证用的TXT',\n  `verifyExpiresAt` bigint(11) unsigned DEFAULT '0' COMMENT '验证TXT过期时间',\n  `recordsHealthCheck` json DEFAULT NULL COMMENT '记录健康检查设置',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `version` bigint(20) unsigned DEFAULT '0' COMMENT '版本号',\n  `status` varchar(64) DEFAULT 'none' COMMENT '状态:none|verified',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`),\n  KEY `name` (`name`),\n  KEY `version` (`version`) USING BTREE,\n  KEY `status` (`status`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='DNS域名'",
       "fields": [
         {
           "name": "id",
@@ -119972,7 +119972,7 @@
         },
         {
           "name": "status",
-          "definition": "varchar(64) DEFAULT 'none' COMMENT '状态：none|verified'"
+          "definition": "varchar(64) DEFAULT 'none' COMMENT '状态:none|verified'"
         },
         {
           "name": "state",
@@ -120310,7 +120310,7 @@
       "name": "edgeNSRecords",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeNSRecords` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `domainId` int(11) unsigned DEFAULT '0' COMMENT '域名ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `description` varchar(512) DEFAULT NULL COMMENT '备注',\n  `name` varchar(255) DEFAULT NULL COMMENT '记录名',\n  `type` varchar(32) DEFAULT NULL COMMENT '类型',\n  `value` varchar(4096) DEFAULT NULL COMMENT '值',\n  `mxPriority` int(11) unsigned DEFAULT '0' COMMENT 'MX优先级',\n  `srvPriority` int(11) unsigned DEFAULT '0' COMMENT 'SRV优先级',\n  `srvWeight` int(11) unsigned DEFAULT '0' COMMENT 'SRV权重',\n  `srvPort` int(11) unsigned DEFAULT '0' COMMENT 'SRV端口',\n  `caaFlag` tinyint(1) unsigned DEFAULT '0' COMMENT 'CAA Flag',\n  `caaTag` varchar(32) DEFAULT NULL COMMENT 'CAA TAG',\n  `ttl` int(11) unsigned DEFAULT '0' COMMENT 'TTL（秒）',\n  `weight` int(11) unsigned DEFAULT '0' COMMENT '权重',\n  `routeIds` json DEFAULT NULL COMMENT '线路',\n  `healthCheck` json DEFAULT NULL COMMENT '健康检查配置',\n  `countUp` int(11) unsigned DEFAULT '0' COMMENT '连续上线次数',\n  `countDown` int(11) unsigned DEFAULT '0' COMMENT '连续离线次数',\n  `isUp` tinyint(1) unsigned DEFAULT '1' COMMENT '是否在线',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `version` bigint(20) unsigned DEFAULT '0' COMMENT '版本号',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `domainId` (`domainId`),\n  KEY `version` (`version`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='DNS记录'",
+      "definition": "CREATE TABLE `edgeNSRecords` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `domainId` int(11) unsigned DEFAULT '0' COMMENT '域名ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `description` varchar(512) DEFAULT NULL COMMENT '备注',\n  `name` varchar(255) DEFAULT NULL COMMENT '记录名',\n  `type` varchar(32) DEFAULT NULL COMMENT '类型',\n  `value` varchar(4096) DEFAULT NULL COMMENT '值',\n  `mxPriority` int(11) unsigned DEFAULT '0' COMMENT 'MX优先级',\n  `srvPriority` int(11) unsigned DEFAULT '0' COMMENT 'SRV优先级',\n  `srvWeight` int(11) unsigned DEFAULT '0' COMMENT 'SRV权重',\n  `srvPort` int(11) unsigned DEFAULT '0' COMMENT 'SRV端口',\n  `caaFlag` tinyint(1) unsigned DEFAULT '0' COMMENT 'CAA Flag',\n  `caaTag` varchar(32) DEFAULT NULL COMMENT 'CAA TAG',\n  `ttl` int(11) unsigned DEFAULT '0' COMMENT 'TTL(秒)',\n  `weight` int(11) unsigned DEFAULT '0' COMMENT '权重',\n  `routeIds` json DEFAULT NULL COMMENT '线路',\n  `healthCheck` json DEFAULT NULL COMMENT '健康检查配置',\n  `countUp` int(11) unsigned DEFAULT '0' COMMENT '连续上线次数',\n  `countDown` int(11) unsigned DEFAULT '0' COMMENT '连续离线次数',\n  `isUp` tinyint(1) unsigned DEFAULT '1' COMMENT '是否在线',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `version` bigint(20) unsigned DEFAULT '0' COMMENT '版本号',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `domainId` (`domainId`),\n  KEY `version` (`version`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='DNS记录'",
       "fields": [
         {
           "name": "id",
@@ -120366,7 +120366,7 @@
         },
         {
           "name": "ttl",
-          "definition": "int(11) unsigned DEFAULT '0' COMMENT 'TTL（秒）'"
+          "definition": "int(11) unsigned DEFAULT '0' COMMENT 'TTL(秒)'"
         },
         {
           "name": "weight",
@@ -120476,7 +120476,7 @@
       "name": "edgeNSRoutes",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeNSRoutes` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '0' COMMENT '是否启用',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `categoryId` int(11) unsigned DEFAULT '0' COMMENT '分类ID',\n  `domainId` bigint(11) unsigned DEFAULT '0' COMMENT '域名ID',\n  `adminId` bigint(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `userId` bigint(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `isPublic` tinyint(1) unsigned DEFAULT '0' COMMENT '是否公用（管理员创建的线路）',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `ranges` json DEFAULT NULL COMMENT '范围',\n  `order` int(11) unsigned DEFAULT '0' COMMENT '排序',\n  `version` bigint(20) unsigned DEFAULT '0' COMMENT '版本号',\n  `priority` int(11) unsigned DEFAULT '0' COMMENT '优先级，越高越优先',\n  `code` varchar(128) DEFAULT NULL COMMENT '代号',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `clusterId` (`clusterId`),\n  KEY `domainId` (`domainId`),\n  KEY `userId` (`userId`),\n  KEY `adminId` (`adminId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='DNS线路'",
+      "definition": "CREATE TABLE `edgeNSRoutes` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '0' COMMENT '是否启用',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `categoryId` int(11) unsigned DEFAULT '0' COMMENT '分类ID',\n  `domainId` bigint(11) unsigned DEFAULT '0' COMMENT '域名ID',\n  `adminId` bigint(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `userId` bigint(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `isPublic` tinyint(1) unsigned DEFAULT '0' COMMENT '是否公用(管理员创建的线路)',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `ranges` json DEFAULT NULL COMMENT '范围',\n  `order` int(11) unsigned DEFAULT '0' COMMENT '排序',\n  `version` bigint(20) unsigned DEFAULT '0' COMMENT '版本号',\n  `priority` int(11) unsigned DEFAULT '0' COMMENT '优先级,越高越优先',\n  `code` varchar(128) DEFAULT NULL COMMENT '代号',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `clusterId` (`clusterId`),\n  KEY `domainId` (`domainId`),\n  KEY `userId` (`userId`),\n  KEY `adminId` (`adminId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='DNS线路'",
       "fields": [
         {
           "name": "id",
@@ -120508,7 +120508,7 @@
         },
         {
           "name": "isPublic",
-          "definition": "tinyint(1) unsigned DEFAULT '0' COMMENT '是否公用（管理员创建的线路）'"
+          "definition": "tinyint(1) unsigned DEFAULT '0' COMMENT '是否公用(管理员创建的线路)'"
         },
         {
           "name": "name",
@@ -120528,7 +120528,7 @@
         },
         {
           "name": "priority",
-          "definition": "int(11) unsigned DEFAULT '0' COMMENT '优先级，越高越优先'"
+          "definition": "int(11) unsigned DEFAULT '0' COMMENT '优先级,越高越优先'"
         },
         {
           "name": "code",
@@ -120818,7 +120818,7 @@
       "name": "edgeNodeClusterTrafficDailyStats",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeNodeClusterTrafficDailyStats` (\n  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `day` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD',\n  `bytes` bigint(20) unsigned DEFAULT NULL COMMENT '流量字节',\n  `cachedBytes` bigint(20) unsigned DEFAULT '0' COMMENT '缓存流量',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '请求数',\n  `countCachedRequests` bigint(20) unsigned DEFAULT '0' COMMENT '缓存的请求数',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '攻击请求数',\n  `attackBytes` bigint(20) unsigned DEFAULT '0' COMMENT '攻击流量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cluster_day` (`clusterId`,`day`) USING BTREE\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='总的流量统计（按天）'",
+      "definition": "CREATE TABLE `edgeNodeClusterTrafficDailyStats` (\n  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `day` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD',\n  `bytes` bigint(20) unsigned DEFAULT NULL COMMENT '流量字节',\n  `cachedBytes` bigint(20) unsigned DEFAULT '0' COMMENT '缓存流量',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '请求数',\n  `countCachedRequests` bigint(20) unsigned DEFAULT '0' COMMENT '缓存的请求数',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '攻击请求数',\n  `attackBytes` bigint(20) unsigned DEFAULT '0' COMMENT '攻击流量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cluster_day` (`clusterId`,`day`) USING BTREE\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='总的流量统计(按天)'",
       "fields": [
         {
           "name": "id",
@@ -121233,7 +121233,7 @@
       "name": "edgeNodeIPAddressLogs",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeNodeIPAddressLogs` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `addressId` bigint(20) unsigned DEFAULT '0' COMMENT '地址ID',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `description` varchar(512) DEFAULT NULL COMMENT '描述',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '操作时间',\n  `isUp` tinyint(1) unsigned DEFAULT '0' COMMENT '是否在线',\n  `isOn` tinyint(1) unsigned DEFAULT '0' COMMENT '是否启用',\n  `canAccess` tinyint(1) unsigned DEFAULT '0' COMMENT '是否可访问',\n  `day` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD，用来清理',\n  `backupIP` varchar(128) DEFAULT NULL COMMENT '备用IP',\n  PRIMARY KEY (`id`),\n  KEY `addressId` (`addressId`),\n  KEY `day` (`day`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='IP状态变更日志'",
+      "definition": "CREATE TABLE `edgeNodeIPAddressLogs` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `addressId` bigint(20) unsigned DEFAULT '0' COMMENT '地址ID',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `description` varchar(512) DEFAULT NULL COMMENT '描述',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '操作时间',\n  `isUp` tinyint(1) unsigned DEFAULT '0' COMMENT '是否在线',\n  `isOn` tinyint(1) unsigned DEFAULT '0' COMMENT '是否启用',\n  `canAccess` tinyint(1) unsigned DEFAULT '0' COMMENT '是否可访问',\n  `day` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD,用来清理',\n  `backupIP` varchar(128) DEFAULT NULL COMMENT '备用IP',\n  PRIMARY KEY (`id`),\n  KEY `addressId` (`addressId`),\n  KEY `day` (`day`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='IP状态变更日志'",
       "fields": [
         {
           "name": "id",
@@ -121269,7 +121269,7 @@
         },
         {
           "name": "day",
-          "definition": "varchar(8) COMMENT 'YYYYMMDD，用来清理'"
+          "definition": "varchar(8) COMMENT 'YYYYMMDD,用来清理'"
         },
         {
           "name": "backupIP",
@@ -121450,7 +121450,7 @@
       "name": "edgeNodeLogins",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeNodeLogins` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `nodeId` int(11) unsigned DEFAULT '0' COMMENT '节点ID',\n  `role` varchar(32) DEFAULT 'node' COMMENT '角色',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `type` varchar(255) DEFAULT NULL COMMENT '类型：ssh,agent',\n  `params` json DEFAULT NULL COMMENT '配置参数',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `nodeId` (`nodeId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='节点登录信息'",
+      "definition": "CREATE TABLE `edgeNodeLogins` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `nodeId` int(11) unsigned DEFAULT '0' COMMENT '节点ID',\n  `role` varchar(32) DEFAULT 'node' COMMENT '角色',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `type` varchar(255) DEFAULT NULL COMMENT '类型:ssh,agent',\n  `params` json DEFAULT NULL COMMENT '配置参数',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `nodeId` (`nodeId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='节点登录信息'",
       "fields": [
         {
           "name": "id",
@@ -121470,7 +121470,7 @@
         },
         {
           "name": "type",
-          "definition": "varchar(255) COMMENT '类型：ssh,agent'"
+          "definition": "varchar(255) COMMENT '类型:ssh,agent'"
         },
         {
           "name": "params",
@@ -121604,7 +121604,7 @@
       "name": "edgeNodePriceItems",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeNodePriceItems` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `type` varchar(64) DEFAULT NULL COMMENT '类型：峰值|流量',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `bitsFrom` bigint(20) unsigned DEFAULT '0' COMMENT '起始值',\n  `bitsTo` bigint(20) unsigned DEFAULT '0' COMMENT '结束值',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `type` (`type`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='区域计费设置'",
+      "definition": "CREATE TABLE `edgeNodePriceItems` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `type` varchar(64) DEFAULT NULL COMMENT '类型:峰值|流量',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `bitsFrom` bigint(20) unsigned DEFAULT '0' COMMENT '起始值',\n  `bitsTo` bigint(20) unsigned DEFAULT '0' COMMENT '结束值',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `type` (`type`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='区域计费设置'",
       "fields": [
         {
           "name": "id",
@@ -121616,7 +121616,7 @@
         },
         {
           "name": "type",
-          "definition": "varchar(64) COMMENT '类型：峰值|流量'"
+          "definition": "varchar(64) COMMENT '类型:峰值|流量'"
         },
         {
           "name": "name",
@@ -121706,7 +121706,7 @@
       "name": "edgeNodeTasks",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeNodeTasks` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `role` varchar(32) DEFAULT 'node' COMMENT '节点角色',\n  `nodeId` int(11) unsigned DEFAULT '0' COMMENT '节点ID',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `serverId` bigint(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `userId` bigint(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `type` varchar(255) DEFAULT NULL COMMENT '任务类型',\n  `uniqueId` varchar(255) DEFAULT NULL COMMENT '唯一ID：nodeId@type',\n  `updatedAt` bigint(11) unsigned DEFAULT '0' COMMENT '修改时间',\n  `isDone` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已完成',\n  `isOk` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已完成',\n  `error` varchar(1024) DEFAULT NULL COMMENT '错误信息',\n  `isNotified` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已通知更新',\n  `version` bigint(20) unsigned DEFAULT '0' COMMENT '版本',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `uniqueId` (`uniqueId`) USING BTREE,\n  KEY `nodeId` (`nodeId`),\n  KEY `isDone` (`isDone`),\n  KEY `clusterId` (`clusterId`),\n  KEY `isNotified` (`isNotified`),\n  KEY `serverId` (`serverId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='节点同步任务'",
+      "definition": "CREATE TABLE `edgeNodeTasks` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `role` varchar(32) DEFAULT 'node' COMMENT '节点角色',\n  `nodeId` int(11) unsigned DEFAULT '0' COMMENT '节点ID',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `serverId` bigint(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `userId` bigint(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `type` varchar(255) DEFAULT NULL COMMENT '任务类型',\n  `uniqueId` varchar(255) DEFAULT NULL COMMENT '唯一ID:nodeId@type',\n  `updatedAt` bigint(11) unsigned DEFAULT '0' COMMENT '修改时间',\n  `isDone` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已完成',\n  `isOk` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已完成',\n  `error` varchar(1024) DEFAULT NULL COMMENT '错误信息',\n  `isNotified` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已通知更新',\n  `version` bigint(20) unsigned DEFAULT '0' COMMENT '版本',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `uniqueId` (`uniqueId`) USING BTREE,\n  KEY `nodeId` (`nodeId`),\n  KEY `isDone` (`isDone`),\n  KEY `clusterId` (`clusterId`),\n  KEY `isNotified` (`isNotified`),\n  KEY `serverId` (`serverId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='节点同步任务'",
       "fields": [
         {
           "name": "id",
@@ -121738,7 +121738,7 @@
         },
         {
           "name": "uniqueId",
-          "definition": "varchar(255) COMMENT '唯一ID：nodeId@type'"
+          "definition": "varchar(255) COMMENT '唯一ID:nodeId@type'"
         },
         {
           "name": "updatedAt",
@@ -121801,7 +121801,7 @@
       "name": "edgeNodeThresholds",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeNodeThresholds` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `role` varchar(32) DEFAULT NULL COMMENT '节点角色',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `nodeId` int(11) unsigned DEFAULT '0' COMMENT '节点ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `item` varchar(255) DEFAULT NULL COMMENT '监控项',\n  `param` varchar(255) DEFAULT NULL COMMENT '参数',\n  `operator` varchar(255) DEFAULT NULL COMMENT '操作符',\n  `value` json DEFAULT NULL COMMENT '对比值',\n  `message` varchar(512) DEFAULT NULL COMMENT '消息内容',\n  `notifyDuration` int(11) unsigned DEFAULT '0' COMMENT '通知间隔（单位分钟）',\n  `notifiedAt` int(11) unsigned DEFAULT '0' COMMENT '上次通知时间',\n  `duration` int(11) unsigned DEFAULT '0' COMMENT '时间段',\n  `durationUnit` varchar(16) DEFAULT NULL COMMENT '时间段单位',\n  `sumMethod` varchar(32) DEFAULT NULL COMMENT '聚合方法',\n  `order` int(11) unsigned DEFAULT '0' COMMENT '排序',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `nodeId` (`nodeId`),\n  KEY `clusterId` (`clusterId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='节点监控阈值设置'",
+      "definition": "CREATE TABLE `edgeNodeThresholds` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `role` varchar(32) DEFAULT NULL COMMENT '节点角色',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `nodeId` int(11) unsigned DEFAULT '0' COMMENT '节点ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `item` varchar(255) DEFAULT NULL COMMENT '监控项',\n  `param` varchar(255) DEFAULT NULL COMMENT '参数',\n  `operator` varchar(255) DEFAULT NULL COMMENT '操作符',\n  `value` json DEFAULT NULL COMMENT '对比值',\n  `message` varchar(512) DEFAULT NULL COMMENT '消息内容',\n  `notifyDuration` int(11) unsigned DEFAULT '0' COMMENT '通知间隔(单位分钟)',\n  `notifiedAt` int(11) unsigned DEFAULT '0' COMMENT '上次通知时间',\n  `duration` int(11) unsigned DEFAULT '0' COMMENT '时间段',\n  `durationUnit` varchar(16) DEFAULT NULL COMMENT '时间段单位',\n  `sumMethod` varchar(32) DEFAULT NULL COMMENT '聚合方法',\n  `order` int(11) unsigned DEFAULT '0' COMMENT '排序',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `nodeId` (`nodeId`),\n  KEY `clusterId` (`clusterId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='节点监控阈值设置'",
       "fields": [
         {
           "name": "id",
@@ -121845,7 +121845,7 @@
         },
         {
           "name": "notifyDuration",
-          "definition": "int(11) unsigned DEFAULT '0' COMMENT '通知间隔（单位分钟）'"
+          "definition": "int(11) unsigned DEFAULT '0' COMMENT '通知间隔(单位分钟)'"
         },
         {
           "name": "notifiedAt",
@@ -121892,7 +121892,7 @@
       "name": "edgeNodeTrafficDailyStats",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeNodeTrafficDailyStats` (\n  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `role` varchar(32) DEFAULT 'node' COMMENT '节点角色',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `nodeId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `day` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD',\n  `bytes` bigint(20) unsigned DEFAULT NULL COMMENT '流量字节',\n  `cachedBytes` bigint(20) unsigned DEFAULT '0' COMMENT '缓存流量',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '请求数',\n  `countCachedRequests` bigint(20) unsigned DEFAULT '0' COMMENT '缓存的请求数',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '攻击请求数',\n  `attackBytes` bigint(20) unsigned DEFAULT '0' COMMENT '攻击流量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `node_day` (`clusterId`,`nodeId`,`day`) USING BTREE,\n  KEY `clusterId` (`clusterId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='总的流量统计（按天）'",
+      "definition": "CREATE TABLE `edgeNodeTrafficDailyStats` (\n  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `role` varchar(32) DEFAULT 'node' COMMENT '节点角色',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `nodeId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `day` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD',\n  `bytes` bigint(20) unsigned DEFAULT NULL COMMENT '流量字节',\n  `cachedBytes` bigint(20) unsigned DEFAULT '0' COMMENT '缓存流量',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '请求数',\n  `countCachedRequests` bigint(20) unsigned DEFAULT '0' COMMENT '缓存的请求数',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '攻击请求数',\n  `attackBytes` bigint(20) unsigned DEFAULT '0' COMMENT '攻击流量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `node_day` (`clusterId`,`nodeId`,`day`) USING BTREE,\n  KEY `clusterId` (`clusterId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='总的流量统计(按天)'",
       "fields": [
         {
           "name": "id",
@@ -121959,7 +121959,7 @@
       "name": "edgeNodeTrafficHourlyStats",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeNodeTrafficHourlyStats` (\n  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `role` varchar(32) DEFAULT 'node' COMMENT '节点角色',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `nodeId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `hour` varchar(10) DEFAULT NULL COMMENT 'YYYYMMDDHH',\n  `bytes` bigint(20) unsigned DEFAULT NULL COMMENT '流量字节',\n  `cachedBytes` bigint(20) unsigned DEFAULT '0' COMMENT '缓存流量',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '请求数',\n  `countCachedRequests` bigint(20) unsigned DEFAULT '0' COMMENT '缓存的请求数',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '攻击请求数',\n  `attackBytes` bigint(20) unsigned DEFAULT '0' COMMENT '攻击流量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `node_day` (`clusterId`,`nodeId`,`hour`) USING BTREE,\n  KEY `clusterId` (`clusterId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='总的流量统计（按天）'",
+      "definition": "CREATE TABLE `edgeNodeTrafficHourlyStats` (\n  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `role` varchar(32) DEFAULT 'node' COMMENT '节点角色',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `nodeId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `hour` varchar(10) DEFAULT NULL COMMENT 'YYYYMMDDHH',\n  `bytes` bigint(20) unsigned DEFAULT NULL COMMENT '流量字节',\n  `cachedBytes` bigint(20) unsigned DEFAULT '0' COMMENT '缓存流量',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '请求数',\n  `countCachedRequests` bigint(20) unsigned DEFAULT '0' COMMENT '缓存的请求数',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '攻击请求数',\n  `attackBytes` bigint(20) unsigned DEFAULT '0' COMMENT '攻击流量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `node_day` (`clusterId`,`nodeId`,`hour`) USING BTREE,\n  KEY `clusterId` (`clusterId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='总的流量统计(按天)'",
       "fields": [
         {
           "name": "id",
@@ -122680,7 +122680,7 @@
       "name": "edgePosts",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgePosts` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `categoryId` int(11) unsigned DEFAULT '0' COMMENT '文章分类',\n  `type` varchar(255) DEFAULT NULL COMMENT '类型：normal, url',\n  `url` varchar(255) DEFAULT NULL COMMENT 'URL',\n  `subject` varchar(255) DEFAULT NULL COMMENT '标题',\n  `body` longtext COMMENT '内容',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `isPublished` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已发布',\n  `publishedAt` bigint(11) unsigned DEFAULT '0' COMMENT '发布时间',\n  `productCode` varchar(64) DEFAULT NULL COMMENT '产品代号',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `categoryId` (`categoryId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文章管理'",
+      "definition": "CREATE TABLE `edgePosts` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `categoryId` int(11) unsigned DEFAULT '0' COMMENT '文章分类',\n  `type` varchar(255) DEFAULT NULL COMMENT '类型:normal, url',\n  `url` varchar(255) DEFAULT NULL COMMENT 'URL',\n  `subject` varchar(255) DEFAULT NULL COMMENT '标题',\n  `body` longtext COMMENT '内容',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `isPublished` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已发布',\n  `publishedAt` bigint(11) unsigned DEFAULT '0' COMMENT '发布时间',\n  `productCode` varchar(64) DEFAULT NULL COMMENT '产品代号',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `categoryId` (`categoryId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文章管理'",
       "fields": [
         {
           "name": "id",
@@ -122692,7 +122692,7 @@
         },
         {
           "name": "type",
-          "definition": "varchar(255) COMMENT '类型：normal, url'"
+          "definition": "varchar(255) COMMENT '类型:normal, url'"
         },
         {
           "name": "url",
@@ -141531,7 +141531,7 @@
         {
           "id": 191,
           "values": {
-            "codes": "[\"美属维尔京群岛\", \"维尔京群岛（美国）\", \"美属维尔京群岛\"]",
+            "codes": "[\"美属维尔京群岛\", \"维尔京群岛(美国)\", \"美属维尔京群岛\"]",
             "dataId": "191",
             "id": "191",
             "isCommon": "0",
@@ -142631,7 +142631,7 @@
         {
           "id": 241,
           "values": {
-            "codes": "[\"博内尔岛\", \"博内尔岛、圣尤斯特歇斯和萨巴岛\"]",
+            "codes": "[\"博内尔岛\", \"博内尔岛,圣尤斯特歇斯和萨巴岛\"]",
             "dataId": "3438",
             "id": "241",
             "isCommon": "0",
@@ -142653,7 +142653,7 @@
         {
           "id": 242,
           "values": {
-            "codes": "[\"圣马丁岛\", \"圣马丁\", \"圣马丁岛（荷兰部分）\"]",
+            "codes": "[\"圣马丁岛\", \"圣马丁\", \"圣马丁岛(荷兰部分)\"]",
             "dataId": "3439",
             "id": "242",
             "isCommon": "0",
@@ -159828,7 +159828,7 @@
         {
           "id": 482,
           "values": {
-            "codes": "[\"Baden-Wurttemberg\", \"巴登－符腾堡州\", \"巴登－符腾堡\"]",
+            "codes": "[\"Baden-Wurttemberg\", \"巴登-符腾堡州\", \"巴登-符腾堡\"]",
             "countryId": "65",
             "dataId": "",
             "id": "482",
@@ -250606,7 +250606,7 @@
       "name": "edgeServerClientBrowserMonthlyStats",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeServerClientBrowserMonthlyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `browserId` int(11) unsigned DEFAULT '0' COMMENT '浏览器ID',\n  `month` varchar(6) DEFAULT NULL COMMENT 'YYYYMM',\n  `version` varchar(255) DEFAULT NULL COMMENT '主版本号',\n  `count` bigint(20) unsigned DEFAULT '0' COMMENT '数量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `uniqueId` (`serverId`,`browserId`,`version`,`month`) USING BTREE,\n  KEY `serverId` (`serverId`),\n  KEY `month` (`month`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='浏览器统计（按月）'",
+      "definition": "CREATE TABLE `edgeServerClientBrowserMonthlyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `browserId` int(11) unsigned DEFAULT '0' COMMENT '浏览器ID',\n  `month` varchar(6) DEFAULT NULL COMMENT 'YYYYMM',\n  `version` varchar(255) DEFAULT NULL COMMENT '主版本号',\n  `count` bigint(20) unsigned DEFAULT '0' COMMENT '数量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `uniqueId` (`serverId`,`browserId`,`version`,`month`) USING BTREE,\n  KEY `serverId` (`serverId`),\n  KEY `month` (`month`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='浏览器统计(按月)'",
       "fields": [
         {
           "name": "id",
@@ -250657,7 +250657,7 @@
       "name": "edgeServerClientSystemMonthlyStats",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeServerClientSystemMonthlyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `systemId` int(11) unsigned DEFAULT '0' COMMENT '系统ID',\n  `version` varchar(255) DEFAULT NULL COMMENT '主版本号',\n  `month` varchar(6) DEFAULT NULL COMMENT 'YYYYMM',\n  `count` bigint(20) unsigned DEFAULT '0' COMMENT '数量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `uniqueId` (`serverId`,`systemId`,`version`,`month`) USING BTREE,\n  KEY `serverId` (`serverId`),\n  KEY `month` (`month`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='操作系统统计（按月）'",
+      "definition": "CREATE TABLE `edgeServerClientSystemMonthlyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `systemId` int(11) unsigned DEFAULT '0' COMMENT '系统ID',\n  `version` varchar(255) DEFAULT NULL COMMENT '主版本号',\n  `month` varchar(6) DEFAULT NULL COMMENT 'YYYYMM',\n  `count` bigint(20) unsigned DEFAULT '0' COMMENT '数量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `uniqueId` (`serverId`,`systemId`,`version`,`month`) USING BTREE,\n  KEY `serverId` (`serverId`),\n  KEY `month` (`month`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='操作系统统计(按月)'",
       "fields": [
         {
           "name": "id",
@@ -254051,7 +254051,7 @@
       "name": "edgeServerRegionCityMonthlyStats",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeServerRegionCityMonthlyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `cityId` int(11) unsigned DEFAULT '0' COMMENT '城市ID',\n  `month` varchar(6) DEFAULT NULL COMMENT '月份YYYYMM',\n  `count` bigint(20) unsigned DEFAULT '0' COMMENT '数量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `unique_id` (`serverId`,`cityId`,`month`) USING BTREE,\n  KEY `month` (`month`),\n  KEY `serverId` (`serverId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务用户省份分布统计（按天）'",
+      "definition": "CREATE TABLE `edgeServerRegionCityMonthlyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `cityId` int(11) unsigned DEFAULT '0' COMMENT '城市ID',\n  `month` varchar(6) DEFAULT NULL COMMENT '月份YYYYMM',\n  `count` bigint(20) unsigned DEFAULT '0' COMMENT '数量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `unique_id` (`serverId`,`cityId`,`month`) USING BTREE,\n  KEY `month` (`month`),\n  KEY `serverId` (`serverId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务用户省份分布统计(按天)'",
       "fields": [
         {
           "name": "id",
@@ -254098,7 +254098,7 @@
       "name": "edgeServerRegionCountryDailyStats",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeServerRegionCountryDailyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `countryId` int(11) unsigned DEFAULT '0' COMMENT '国家/区域ID',\n  `day` varchar(8) DEFAULT NULL COMMENT '日期YYYYMMDD',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '请求数量',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '攻击数量',\n  `attackBytes` bigint(20) unsigned DEFAULT '0' COMMENT '攻击流量',\n  `bytes` bigint(20) unsigned DEFAULT '0' COMMENT '总流量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `unique_id` (`serverId`,`countryId`,`day`) USING BTREE,\n  KEY `day` (`day`),\n  KEY `serverId` (`serverId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务用户区域分布统计（按天）'",
+      "definition": "CREATE TABLE `edgeServerRegionCountryDailyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `countryId` int(11) unsigned DEFAULT '0' COMMENT '国家/区域ID',\n  `day` varchar(8) DEFAULT NULL COMMENT '日期YYYYMMDD',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '请求数量',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '攻击数量',\n  `attackBytes` bigint(20) unsigned DEFAULT '0' COMMENT '攻击流量',\n  `bytes` bigint(20) unsigned DEFAULT '0' COMMENT '总流量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `unique_id` (`serverId`,`countryId`,`day`) USING BTREE,\n  KEY `day` (`day`),\n  KEY `serverId` (`serverId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务用户区域分布统计(按天)'",
       "fields": [
         {
           "name": "id",
@@ -254157,7 +254157,7 @@
       "name": "edgeServerRegionCountryMonthlyStats",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeServerRegionCountryMonthlyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `countryId` int(11) unsigned DEFAULT '0' COMMENT '国家/区域ID',\n  `month` varchar(6) DEFAULT NULL COMMENT '月份YYYYMM',\n  `count` bigint(20) unsigned DEFAULT '0' COMMENT '数量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `unique_id` (`serverId`,`countryId`,`month`) USING BTREE,\n  KEY `month` (`month`),\n  KEY `serverId` (`serverId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务用户区域分布统计（按天）'",
+      "definition": "CREATE TABLE `edgeServerRegionCountryMonthlyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `countryId` int(11) unsigned DEFAULT '0' COMMENT '国家/区域ID',\n  `month` varchar(6) DEFAULT NULL COMMENT '月份YYYYMM',\n  `count` bigint(20) unsigned DEFAULT '0' COMMENT '数量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `unique_id` (`serverId`,`countryId`,`month`) USING BTREE,\n  KEY `month` (`month`),\n  KEY `serverId` (`serverId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务用户区域分布统计(按天)'",
       "fields": [
         {
           "name": "id",
@@ -254204,7 +254204,7 @@
       "name": "edgeServerRegionProviderMonthlyStats",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeServerRegionProviderMonthlyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `providerId` int(11) unsigned DEFAULT '0' COMMENT '运营商ID',\n  `month` varchar(6) DEFAULT NULL COMMENT '月份YYYYMM',\n  `count` bigint(20) unsigned DEFAULT '0' COMMENT '数量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `unique_id` (`serverId`,`providerId`,`month`) USING BTREE,\n  KEY `month` (`month`) USING BTREE,\n  KEY `serverId` (`serverId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务用户省份分布统计（按天）'",
+      "definition": "CREATE TABLE `edgeServerRegionProviderMonthlyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `providerId` int(11) unsigned DEFAULT '0' COMMENT '运营商ID',\n  `month` varchar(6) DEFAULT NULL COMMENT '月份YYYYMM',\n  `count` bigint(20) unsigned DEFAULT '0' COMMENT '数量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `unique_id` (`serverId`,`providerId`,`month`) USING BTREE,\n  KEY `month` (`month`) USING BTREE,\n  KEY `serverId` (`serverId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务用户省份分布统计(按天)'",
       "fields": [
         {
           "name": "id",
@@ -254251,7 +254251,7 @@
       "name": "edgeServerRegionProvinceMonthlyStats",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeServerRegionProvinceMonthlyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `provinceId` int(11) unsigned DEFAULT '0' COMMENT '省份ID',\n  `month` varchar(6) DEFAULT NULL COMMENT '月份YYYYMM',\n  `count` bigint(20) unsigned DEFAULT '0' COMMENT '数量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `unique_id` (`serverId`,`provinceId`,`month`) USING BTREE,\n  KEY `month` (`month`),\n  KEY `serverId` (`serverId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务用户省份分布统计（按天）'",
+      "definition": "CREATE TABLE `edgeServerRegionProvinceMonthlyStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `serverId` int(11) unsigned DEFAULT '0' COMMENT '服务ID',\n  `provinceId` int(11) unsigned DEFAULT '0' COMMENT '省份ID',\n  `month` varchar(6) DEFAULT NULL COMMENT '月份YYYYMM',\n  `count` bigint(20) unsigned DEFAULT '0' COMMENT '数量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `unique_id` (`serverId`,`provinceId`,`month`) USING BTREE,\n  KEY `month` (`month`),\n  KEY `serverId` (`serverId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务用户省份分布统计(按天)'",
       "fields": [
         {
           "name": "id",
@@ -254388,7 +254388,7 @@
       "name": "edgeServers",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeServers` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `type` varchar(64) DEFAULT NULL COMMENT '服务类型',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `description` varchar(512) DEFAULT NULL COMMENT '描述',\n  `plainServerNames` json DEFAULT NULL COMMENT '扁平化域名列表',\n  `serverNames` json DEFAULT NULL COMMENT '域名列表',\n  `auditingAt` bigint(11) unsigned DEFAULT '0' COMMENT '审核提交时间',\n  `auditingServerNames` json DEFAULT NULL COMMENT '审核中的域名',\n  `isAuditing` tinyint(1) unsigned DEFAULT '0' COMMENT '是否正在审核',\n  `auditingResult` json DEFAULT NULL COMMENT '审核结果',\n  `http` json DEFAULT NULL COMMENT 'HTTP配置',\n  `https` json DEFAULT NULL COMMENT 'HTTPS配置',\n  `tcp` json DEFAULT NULL COMMENT 'TCP配置',\n  `tls` json DEFAULT NULL COMMENT 'TLS配置',\n  `unix` json DEFAULT NULL COMMENT 'Unix配置（弃用）',\n  `udp` json DEFAULT NULL COMMENT 'UDP配置',\n  `webId` int(11) unsigned DEFAULT '0' COMMENT 'WEB配置',\n  `reverseProxy` json DEFAULT NULL COMMENT '反向代理配置',\n  `groupIds` json DEFAULT NULL COMMENT '分组ID列表',\n  `config` json DEFAULT NULL COMMENT '服务配置，自动生成',\n  `configMd5` varchar(32) DEFAULT NULL COMMENT 'Md5',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `includeNodes` json DEFAULT NULL COMMENT '部署条件',\n  `excludeNodes` json DEFAULT NULL COMMENT '节点排除条件',\n  `version` int(11) unsigned DEFAULT '0' COMMENT '版本号',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `dnsName` varchar(255) DEFAULT NULL COMMENT 'DNS名称',\n  `tcpPorts` json DEFAULT NULL COMMENT '所包含TCP端口',\n  `udpPorts` json DEFAULT NULL COMMENT '所包含UDP端口',\n  `supportCNAME` tinyint(1) unsigned DEFAULT '0' COMMENT '允许CNAME不在域名名单',\n  `trafficLimit` json DEFAULT NULL COMMENT '流量限制',\n  `trafficDay` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD',\n  `trafficMonth` varchar(6) DEFAULT NULL COMMENT 'YYYYMM',\n  `totalDailyTraffic` decimal(20,6) unsigned DEFAULT '0.000000' COMMENT '日流量',\n  `totalMonthlyTraffic` decimal(20,6) unsigned DEFAULT '0.000000' COMMENT '月流量',\n  `trafficLimitStatus` json DEFAULT NULL COMMENT '流量限制状态',\n  `totalTraffic` decimal(20,6) unsigned DEFAULT '0.000000' COMMENT '总流量',\n  `userPlanId` int(11) unsigned DEFAULT '0' COMMENT '所属套餐ID',\n  `lastUserPlanId` int(11) unsigned DEFAULT '0' COMMENT '上一次使用的套餐',\n  `uam` json DEFAULT NULL COMMENT 'UAM设置',\n  `bandwidthTime` varchar(12) DEFAULT NULL COMMENT '带宽更新时间，YYYYMMDDHHII',\n  `bandwidthBytes` bigint(20) unsigned DEFAULT '0' COMMENT '最近带宽峰值',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '最近攻击请求数',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '最近总请求数',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`),\n  KEY `adminId` (`adminId`),\n  KEY `isUpdating_state` (`state`) USING BTREE,\n  KEY `dnsName` (`dnsName`),\n  KEY `clusterId` (`clusterId`),\n  KEY `isAuditing` (`isAuditing`),\n  KEY `webId` (`webId`),\n  KEY `userPlanId` (`userPlanId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务'",
+      "definition": "CREATE TABLE `edgeServers` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `type` varchar(64) DEFAULT NULL COMMENT '服务类型',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `description` varchar(512) DEFAULT NULL COMMENT '描述',\n  `plainServerNames` json DEFAULT NULL COMMENT '扁平化域名列表',\n  `serverNames` json DEFAULT NULL COMMENT '域名列表',\n  `auditingAt` bigint(11) unsigned DEFAULT '0' COMMENT '审核提交时间',\n  `auditingServerNames` json DEFAULT NULL COMMENT '审核中的域名',\n  `isAuditing` tinyint(1) unsigned DEFAULT '0' COMMENT '是否正在审核',\n  `auditingResult` json DEFAULT NULL COMMENT '审核结果',\n  `http` json DEFAULT NULL COMMENT 'HTTP配置',\n  `https` json DEFAULT NULL COMMENT 'HTTPS配置',\n  `tcp` json DEFAULT NULL COMMENT 'TCP配置',\n  `tls` json DEFAULT NULL COMMENT 'TLS配置',\n  `unix` json DEFAULT NULL COMMENT 'Unix配置(弃用)',\n  `udp` json DEFAULT NULL COMMENT 'UDP配置',\n  `webId` int(11) unsigned DEFAULT '0' COMMENT 'WEB配置',\n  `reverseProxy` json DEFAULT NULL COMMENT '反向代理配置',\n  `groupIds` json DEFAULT NULL COMMENT '分组ID列表',\n  `config` json DEFAULT NULL COMMENT '服务配置,自动生成',\n  `configMd5` varchar(32) DEFAULT NULL COMMENT 'Md5',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `includeNodes` json DEFAULT NULL COMMENT '部署条件',\n  `excludeNodes` json DEFAULT NULL COMMENT '节点排除条件',\n  `version` int(11) unsigned DEFAULT '0' COMMENT '版本号',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `dnsName` varchar(255) DEFAULT NULL COMMENT 'DNS名称',\n  `tcpPorts` json DEFAULT NULL COMMENT '所包含TCP端口',\n  `udpPorts` json DEFAULT NULL COMMENT '所包含UDP端口',\n  `supportCNAME` tinyint(1) unsigned DEFAULT '0' COMMENT '允许CNAME不在域名名单',\n  `trafficLimit` json DEFAULT NULL COMMENT '流量限制',\n  `trafficDay` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD',\n  `trafficMonth` varchar(6) DEFAULT NULL COMMENT 'YYYYMM',\n  `totalDailyTraffic` decimal(20,6) unsigned DEFAULT '0.000000' COMMENT '日流量',\n  `totalMonthlyTraffic` decimal(20,6) unsigned DEFAULT '0.000000' COMMENT '月流量',\n  `trafficLimitStatus` json DEFAULT NULL COMMENT '流量限制状态',\n  `totalTraffic` decimal(20,6) unsigned DEFAULT '0.000000' COMMENT '总流量',\n  `userPlanId` int(11) unsigned DEFAULT '0' COMMENT '所属套餐ID',\n  `lastUserPlanId` int(11) unsigned DEFAULT '0' COMMENT '上一次使用的套餐',\n  `uam` json DEFAULT NULL COMMENT 'UAM设置',\n  `bandwidthTime` varchar(12) DEFAULT NULL COMMENT '带宽更新时间,YYYYMMDDHHII',\n  `bandwidthBytes` bigint(20) unsigned DEFAULT '0' COMMENT '最近带宽峰值',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '最近攻击请求数',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '最近总请求数',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`),\n  KEY `adminId` (`adminId`),\n  KEY `isUpdating_state` (`state`) USING BTREE,\n  KEY `dnsName` (`dnsName`),\n  KEY `clusterId` (`clusterId`),\n  KEY `isAuditing` (`isAuditing`),\n  KEY `webId` (`webId`),\n  KEY `userPlanId` (`userPlanId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='服务'",
       "fields": [
         {
           "name": "id",
@@ -254460,7 +254460,7 @@
         },
         {
           "name": "unix",
-          "definition": "json COMMENT 'Unix配置（弃用）'"
+          "definition": "json COMMENT 'Unix配置(弃用)'"
         },
         {
           "name": "udp",
@@ -254480,7 +254480,7 @@
         },
         {
           "name": "config",
-          "definition": "json COMMENT '服务配置，自动生成'"
+          "definition": "json COMMENT '服务配置,自动生成'"
         },
         {
           "name": "configMd5",
@@ -254568,7 +254568,7 @@
         },
         {
           "name": "bandwidthTime",
-          "definition": "varchar(12) COMMENT '带宽更新时间，YYYYMMDDHHII'"
+          "definition": "varchar(12) COMMENT '带宽更新时间,YYYYMMDDHHII'"
         },
         {
           "name": "bandwidthBytes",
@@ -254806,7 +254806,7 @@
       "name": "edgeTrafficDailyStats",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeTrafficDailyStats` (\n  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `day` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD',\n  `cachedBytes` bigint(20) unsigned DEFAULT '0' COMMENT '缓存流量',\n  `bytes` bigint(20) unsigned DEFAULT '0' COMMENT '流量字节',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '请求数',\n  `countCachedRequests` bigint(20) unsigned DEFAULT '0' COMMENT '缓存请求数',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '攻击量',\n  `attackBytes` bigint(20) unsigned DEFAULT '0' COMMENT '攻击流量',\n  `countIPs` bigint(20) unsigned DEFAULT '0' COMMENT '独立IP数',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `day` (`day`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='总的流量统计（按天）'",
+      "definition": "CREATE TABLE `edgeTrafficDailyStats` (\n  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `day` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD',\n  `cachedBytes` bigint(20) unsigned DEFAULT '0' COMMENT '缓存流量',\n  `bytes` bigint(20) unsigned DEFAULT '0' COMMENT '流量字节',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '请求数',\n  `countCachedRequests` bigint(20) unsigned DEFAULT '0' COMMENT '缓存请求数',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '攻击量',\n  `attackBytes` bigint(20) unsigned DEFAULT '0' COMMENT '攻击流量',\n  `countIPs` bigint(20) unsigned DEFAULT '0' COMMENT '独立IP数',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `day` (`day`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='总的流量统计(按天)'",
       "fields": [
         {
           "name": "id",
@@ -254861,7 +254861,7 @@
       "name": "edgeTrafficHourlyStats",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeTrafficHourlyStats` (\n  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `hour` varchar(10) DEFAULT NULL COMMENT 'YYYYMMDDHH',\n  `bytes` bigint(20) unsigned DEFAULT NULL COMMENT '流量字节',\n  `cachedBytes` bigint(20) unsigned DEFAULT '0' COMMENT '缓存流量',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '请求数',\n  `countCachedRequests` bigint(20) unsigned DEFAULT '0' COMMENT '缓存请求数',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '攻击数',\n  `attackBytes` bigint(20) unsigned DEFAULT '0' COMMENT '攻击流量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `hour` (`hour`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='总的流量统计（按小时）'",
+      "definition": "CREATE TABLE `edgeTrafficHourlyStats` (\n  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `hour` varchar(10) DEFAULT NULL COMMENT 'YYYYMMDDHH',\n  `bytes` bigint(20) unsigned DEFAULT NULL COMMENT '流量字节',\n  `cachedBytes` bigint(20) unsigned DEFAULT '0' COMMENT '缓存流量',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '请求数',\n  `countCachedRequests` bigint(20) unsigned DEFAULT '0' COMMENT '缓存请求数',\n  `countAttackRequests` bigint(20) unsigned DEFAULT '0' COMMENT '攻击数',\n  `attackBytes` bigint(20) unsigned DEFAULT '0' COMMENT '攻击流量',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `hour` (`hour`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='总的流量统计(按小时)'",
       "fields": [
         {
           "name": "id",
@@ -254912,7 +254912,7 @@
       "name": "edgeTrafficPackagePeriods",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeTrafficPackagePeriods` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `count` int(11) unsigned DEFAULT '0' COMMENT '数量',\n  `unit` varchar(8) DEFAULT NULL COMMENT '单位：month, year',\n  `months` int(11) unsigned DEFAULT '0' COMMENT '月数',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='流量包有效期'",
+      "definition": "CREATE TABLE `edgeTrafficPackagePeriods` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `count` int(11) unsigned DEFAULT '0' COMMENT '数量',\n  `unit` varchar(8) DEFAULT NULL COMMENT '单位:month, year',\n  `months` int(11) unsigned DEFAULT '0' COMMENT '月数',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='流量包有效期'",
       "fields": [
         {
           "name": "id",
@@ -254928,7 +254928,7 @@
         },
         {
           "name": "unit",
-          "definition": "varchar(8) COMMENT '单位：month, year'"
+          "definition": "varchar(8) COMMENT '单位:month, year'"
         },
         {
           "name": "months",
@@ -254994,7 +254994,7 @@
       "name": "edgeTrafficPackages",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeTrafficPackages` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `size` int(11) unsigned DEFAULT '0' COMMENT '尺寸',\n  `unit` varchar(8) DEFAULT NULL COMMENT '单位（gb|tb等）',\n  `bytes` bigint(20) unsigned DEFAULT '0' COMMENT '字节',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='流量包'",
+      "definition": "CREATE TABLE `edgeTrafficPackages` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `size` int(11) unsigned DEFAULT '0' COMMENT '尺寸',\n  `unit` varchar(8) DEFAULT NULL COMMENT '单位(gb|tb等)',\n  `bytes` bigint(20) unsigned DEFAULT '0' COMMENT '字节',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='流量包'",
       "fields": [
         {
           "name": "id",
@@ -255006,7 +255006,7 @@
         },
         {
           "name": "unit",
-          "definition": "varchar(8) COMMENT '单位（gb|tb等）'"
+          "definition": "varchar(8) COMMENT '单位(gb|tb等)'"
         },
         {
           "name": "bytes",
@@ -255265,7 +255265,7 @@
       "name": "edgeUserAccountLogs",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeUserAccountLogs` (\n  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `userId` bigint(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `accountId` bigint(11) unsigned DEFAULT '0' COMMENT '账户ID',\n  `delta` decimal(11,2) DEFAULT '0.00' COMMENT '操作余额的数量（可为负）',\n  `deltaFrozen` decimal(11,2) DEFAULT '0.00' COMMENT '操作冻结的数量（可为负）',\n  `total` decimal(11,2) unsigned DEFAULT '0.00' COMMENT '操作后余额',\n  `totalFrozen` decimal(11,2) unsigned DEFAULT '0.00' COMMENT '操作后冻结余额',\n  `eventType` varchar(128) DEFAULT NULL COMMENT '类型',\n  `description` varchar(512) DEFAULT NULL COMMENT '描述文字',\n  `day` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '时间',\n  `params` json DEFAULT NULL COMMENT '参数',\n  PRIMARY KEY (`id`),\n  KEY `accountId` (`accountId`),\n  KEY `type` (`eventType`),\n  KEY `day` (`day`),\n  KEY `userId` (`userId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户账户日志'",
+      "definition": "CREATE TABLE `edgeUserAccountLogs` (\n  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `userId` bigint(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `accountId` bigint(11) unsigned DEFAULT '0' COMMENT '账户ID',\n  `delta` decimal(11,2) DEFAULT '0.00' COMMENT '操作余额的数量(可为负)',\n  `deltaFrozen` decimal(11,2) DEFAULT '0.00' COMMENT '操作冻结的数量(可为负)',\n  `total` decimal(11,2) unsigned DEFAULT '0.00' COMMENT '操作后余额',\n  `totalFrozen` decimal(11,2) unsigned DEFAULT '0.00' COMMENT '操作后冻结余额',\n  `eventType` varchar(128) DEFAULT NULL COMMENT '类型',\n  `description` varchar(512) DEFAULT NULL COMMENT '描述文字',\n  `day` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '时间',\n  `params` json DEFAULT NULL COMMENT '参数',\n  PRIMARY KEY (`id`),\n  KEY `accountId` (`accountId`),\n  KEY `type` (`eventType`),\n  KEY `day` (`day`),\n  KEY `userId` (`userId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户账户日志'",
       "fields": [
         {
           "name": "id",
@@ -255281,11 +255281,11 @@
         },
         {
           "name": "delta",
-          "definition": "decimal(11,2) DEFAULT '0.00' COMMENT '操作余额的数量（可为负）'"
+          "definition": "decimal(11,2) DEFAULT '0.00' COMMENT '操作余额的数量(可为负)'"
         },
         {
           "name": "deltaFrozen",
-          "definition": "decimal(11,2) DEFAULT '0.00' COMMENT '操作冻结的数量（可为负）'"
+          "definition": "decimal(11,2) DEFAULT '0.00' COMMENT '操作冻结的数量(可为负)'"
         },
         {
           "name": "total",
@@ -257075,7 +257075,7 @@
       "name": "edgeUserIdentities",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeUserIdentities` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `userId` bigint(20) unsigned DEFAULT '0' COMMENT '用户ID',\n  `orgType` varchar(64) DEFAULT NULL COMMENT '组织类型',\n  `type` varchar(64) DEFAULT NULL COMMENT '证件类型',\n  `realName` varchar(128) DEFAULT NULL COMMENT '真实姓名',\n  `number` varchar(128) DEFAULT NULL COMMENT '编号',\n  `fileIds` json DEFAULT NULL COMMENT '文件ID',\n  `status` varchar(32) DEFAULT NULL COMMENT '状态：none,submitted,verified,rejected',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `updatedAt` bigint(11) unsigned DEFAULT '0' COMMENT '修改时间',\n  `submittedAt` bigint(11) unsigned DEFAULT '0' COMMENT '提交时间',\n  `rejectedAt` bigint(11) unsigned DEFAULT '0' COMMENT '拒绝时间',\n  `verifiedAt` bigint(11) unsigned DEFAULT '0' COMMENT '认证时间',\n  `rejectReason` varchar(255) DEFAULT NULL COMMENT '拒绝原因',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`),\n  KEY `status` (`status`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户实名认证信息'",
+      "definition": "CREATE TABLE `edgeUserIdentities` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `userId` bigint(20) unsigned DEFAULT '0' COMMENT '用户ID',\n  `orgType` varchar(64) DEFAULT NULL COMMENT '组织类型',\n  `type` varchar(64) DEFAULT NULL COMMENT '证件类型',\n  `realName` varchar(128) DEFAULT NULL COMMENT '真实姓名',\n  `number` varchar(128) DEFAULT NULL COMMENT '编号',\n  `fileIds` json DEFAULT NULL COMMENT '文件ID',\n  `status` varchar(32) DEFAULT NULL COMMENT '状态:none,submitted,verified,rejected',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `updatedAt` bigint(11) unsigned DEFAULT '0' COMMENT '修改时间',\n  `submittedAt` bigint(11) unsigned DEFAULT '0' COMMENT '提交时间',\n  `rejectedAt` bigint(11) unsigned DEFAULT '0' COMMENT '拒绝时间',\n  `verifiedAt` bigint(11) unsigned DEFAULT '0' COMMENT '认证时间',\n  `rejectReason` varchar(255) DEFAULT NULL COMMENT '拒绝原因',\n  PRIMARY KEY (`id`),\n  KEY `userId` (`userId`),\n  KEY `status` (`status`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户实名认证信息'",
       "fields": [
         {
           "name": "id",
@@ -257107,7 +257107,7 @@
         },
         {
           "name": "status",
-          "definition": "varchar(32) COMMENT '状态：none,submitted,verified,rejected'"
+          "definition": "varchar(32) COMMENT '状态:none,submitted,verified,rejected'"
         },
         {
           "name": "state",
@@ -259085,7 +259085,7 @@
       "name": "edgeUserPlanStats",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeUserPlanStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `userPlanId` bigint(11) unsigned DEFAULT '0' COMMENT '用户套餐ID',\n  `date` varchar(16) DEFAULT NULL COMMENT '日期：YYYYMMDD或YYYYMM',\n  `dateType` varchar(16) DEFAULT NULL COMMENT '日期类型：day|month',\n  `trafficBytes` bigint(20) unsigned DEFAULT '0' COMMENT '流量',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '总请求数',\n  `countWebsocketConnections` bigint(20) unsigned DEFAULT '0' COMMENT 'Websocket连接数',\n  `isProcessed` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已处理',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `userPlanId_date_dateType` (`userPlanId`,`date`,`dateType`) USING BTREE,\n  KEY `isProcessed` (`isProcessed`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户套餐统计'",
+      "definition": "CREATE TABLE `edgeUserPlanStats` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `userPlanId` bigint(11) unsigned DEFAULT '0' COMMENT '用户套餐ID',\n  `date` varchar(16) DEFAULT NULL COMMENT '日期:YYYYMMDD或YYYYMM',\n  `dateType` varchar(16) DEFAULT NULL COMMENT '日期类型:day|month',\n  `trafficBytes` bigint(20) unsigned DEFAULT '0' COMMENT '流量',\n  `countRequests` bigint(20) unsigned DEFAULT '0' COMMENT '总请求数',\n  `countWebsocketConnections` bigint(20) unsigned DEFAULT '0' COMMENT 'Websocket连接数',\n  `isProcessed` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已处理',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `userPlanId_date_dateType` (`userPlanId`,`date`,`dateType`) USING BTREE,\n  KEY `isProcessed` (`isProcessed`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户套餐统计'",
       "fields": [
         {
           "name": "id",
@@ -259097,11 +259097,11 @@
         },
         {
           "name": "date",
-          "definition": "varchar(16) COMMENT '日期：YYYYMMDD或YYYYMM'"
+          "definition": "varchar(16) COMMENT '日期:YYYYMMDD或YYYYMM'"
         },
         {
           "name": "dateType",
-          "definition": "varchar(16) COMMENT '日期类型：day|month'"
+          "definition": "varchar(16) COMMENT '日期类型:day|month'"
         },
         {
           "name": "trafficBytes",
@@ -259431,7 +259431,7 @@
       "name": "edgeUserTrafficBills",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeUserTrafficBills` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `billId` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '主账单ID',\n  `regionId` int(11) unsigned DEFAULT '0' COMMENT '区域ID',\n  `amount` decimal(11,2) unsigned DEFAULT '0.00' COMMENT '金额',\n  `bandwidthMB` decimal(20,4) unsigned DEFAULT '0.0000' COMMENT '带宽MB',\n  `bandwidthPercentile` tinyint(3) unsigned DEFAULT '0' COMMENT '带宽百分位',\n  `trafficGB` decimal(20,8) unsigned DEFAULT '0.00000000' COMMENT '流量GB',\n  `trafficPackageGB` decimal(20,8) unsigned DEFAULT '0.00000000' COMMENT '使用的流量包GB',\n  `userTrafficPackageIds` json DEFAULT NULL COMMENT '使用的流量包ID',\n  `pricePerUnit` decimal(11,4) unsigned DEFAULT '0.0000' COMMENT '单位价格',\n  `priceType` varchar(32) DEFAULT NULL COMMENT '计费方式：traffic|bandwidth',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`) USING BTREE,\n  UNIQUE KEY `uniqueId` (`billId`,`regionId`) USING BTREE,\n  KEY `billId` (`billId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户流量/带宽账单'",
+      "definition": "CREATE TABLE `edgeUserTrafficBills` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `billId` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '主账单ID',\n  `regionId` int(11) unsigned DEFAULT '0' COMMENT '区域ID',\n  `amount` decimal(11,2) unsigned DEFAULT '0.00' COMMENT '金额',\n  `bandwidthMB` decimal(20,4) unsigned DEFAULT '0.0000' COMMENT '带宽MB',\n  `bandwidthPercentile` tinyint(3) unsigned DEFAULT '0' COMMENT '带宽百分位',\n  `trafficGB` decimal(20,8) unsigned DEFAULT '0.00000000' COMMENT '流量GB',\n  `trafficPackageGB` decimal(20,8) unsigned DEFAULT '0.00000000' COMMENT '使用的流量包GB',\n  `userTrafficPackageIds` json DEFAULT NULL COMMENT '使用的流量包ID',\n  `pricePerUnit` decimal(11,4) unsigned DEFAULT '0.0000' COMMENT '单位价格',\n  `priceType` varchar(32) DEFAULT NULL COMMENT '计费方式:traffic|bandwidth',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`) USING BTREE,\n  UNIQUE KEY `uniqueId` (`billId`,`regionId`) USING BTREE,\n  KEY `billId` (`billId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户流量/带宽账单'",
       "fields": [
         {
           "name": "id",
@@ -259475,7 +259475,7 @@
         },
         {
           "name": "priceType",
-          "definition": "varchar(32) COMMENT '计费方式：traffic|bandwidth'"
+          "definition": "varchar(32) COMMENT '计费方式:traffic|bandwidth'"
         },
         {
           "name": "state",
@@ -259656,7 +259656,7 @@
       "name": "edgeUsers",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeUsers` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `username` varchar(64) DEFAULT NULL COMMENT '用户名',\n  `password` varchar(32) DEFAULT NULL COMMENT '密码',\n  `fullname` varchar(64) DEFAULT NULL COMMENT '真实姓名',\n  `mobile` varchar(11) DEFAULT NULL COMMENT '手机号',\n  `verifiedMobile` varchar(20) DEFAULT NULL COMMENT '已验证手机号',\n  `mobileIsVerified` tinyint(1) unsigned DEFAULT '0' COMMENT '手机号是否已验证',\n  `tel` varchar(255) DEFAULT NULL COMMENT '联系电话',\n  `remark` varchar(1024) DEFAULT NULL COMMENT '备注',\n  `email` varchar(255) DEFAULT NULL COMMENT '邮箱地址',\n  `verifiedEmail` varchar(255) DEFAULT NULL COMMENT '激活后的邮箱',\n  `emailIsVerified` tinyint(1) unsigned DEFAULT '0' COMMENT '邮箱是否已验证',\n  `avatarFileId` bigint(11) unsigned DEFAULT '0' COMMENT '头像文件ID',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `day` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD',\n  `updatedAt` bigint(11) unsigned DEFAULT '0' COMMENT '修改时间',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `source` varchar(255) DEFAULT NULL COMMENT '来源',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `features` json DEFAULT NULL COMMENT '允许操作的特征',\n  `registeredIP` varchar(64) DEFAULT NULL COMMENT '注册使用的IP',\n  `isRejected` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已拒绝',\n  `rejectReason` varchar(255) DEFAULT NULL COMMENT '拒绝理由',\n  `isVerified` tinyint(1) unsigned DEFAULT '1' COMMENT '是否验证通过',\n  `requirePlans` tinyint(1) unsigned DEFAULT '0' COMMENT '是否需要购买套餐',\n  `modules` json DEFAULT NULL COMMENT '用户模块',\n  `priceType` varchar(32) DEFAULT NULL COMMENT '计费类型：traffic|bandwidth',\n  `pricePeriod` varchar(32) DEFAULT NULL COMMENT '结算周期',\n  `serversEnabled` tinyint(1) unsigned DEFAULT '1' COMMENT '是否禁用所有服务',\n  `notification` json DEFAULT NULL COMMENT '通知设置',\n  `bandwidthAlgo` varchar(16) DEFAULT NULL COMMENT '带宽算法',\n  `bandwidthModifier` decimal(4,0) unsigned DEFAULT '0' COMMENT '带宽修正值',\n  `lang` varchar(64) DEFAULT NULL COMMENT '语言代号',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `username_state` (`username`,`state`),\n  KEY `username` (`username`),\n  KEY `day` (`day`),\n  KEY `verifiedEmail` (`verifiedEmail`),\n  KEY `verifiedMobile` (`verifiedMobile`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户'",
+      "definition": "CREATE TABLE `edgeUsers` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `username` varchar(64) DEFAULT NULL COMMENT '用户名',\n  `password` varchar(32) DEFAULT NULL COMMENT '密码',\n  `fullname` varchar(64) DEFAULT NULL COMMENT '真实姓名',\n  `mobile` varchar(11) DEFAULT NULL COMMENT '手机号',\n  `verifiedMobile` varchar(20) DEFAULT NULL COMMENT '已验证手机号',\n  `mobileIsVerified` tinyint(1) unsigned DEFAULT '0' COMMENT '手机号是否已验证',\n  `tel` varchar(255) DEFAULT NULL COMMENT '联系电话',\n  `remark` varchar(1024) DEFAULT NULL COMMENT '备注',\n  `email` varchar(255) DEFAULT NULL COMMENT '邮箱地址',\n  `verifiedEmail` varchar(255) DEFAULT NULL COMMENT '激活后的邮箱',\n  `emailIsVerified` tinyint(1) unsigned DEFAULT '0' COMMENT '邮箱是否已验证',\n  `avatarFileId` bigint(11) unsigned DEFAULT '0' COMMENT '头像文件ID',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `day` varchar(8) DEFAULT NULL COMMENT 'YYYYMMDD',\n  `updatedAt` bigint(11) unsigned DEFAULT '0' COMMENT '修改时间',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  `source` varchar(255) DEFAULT NULL COMMENT '来源',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `features` json DEFAULT NULL COMMENT '允许操作的特征',\n  `registeredIP` varchar(64) DEFAULT NULL COMMENT '注册使用的IP',\n  `isRejected` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已拒绝',\n  `rejectReason` varchar(255) DEFAULT NULL COMMENT '拒绝理由',\n  `isVerified` tinyint(1) unsigned DEFAULT '1' COMMENT '是否验证通过',\n  `requirePlans` tinyint(1) unsigned DEFAULT '0' COMMENT '是否需要购买套餐',\n  `modules` json DEFAULT NULL COMMENT '用户模块',\n  `priceType` varchar(32) DEFAULT NULL COMMENT '计费类型:traffic|bandwidth',\n  `pricePeriod` varchar(32) DEFAULT NULL COMMENT '结算周期',\n  `serversEnabled` tinyint(1) unsigned DEFAULT '1' COMMENT '是否禁用所有服务',\n  `notification` json DEFAULT NULL COMMENT '通知设置',\n  `bandwidthAlgo` varchar(16) DEFAULT NULL COMMENT '带宽算法',\n  `bandwidthModifier` decimal(4,0) unsigned DEFAULT '0' COMMENT '带宽修正值',\n  `lang` varchar(64) DEFAULT NULL COMMENT '语言代号',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `username_state` (`username`,`state`),\n  KEY `username` (`username`),\n  KEY `day` (`day`),\n  KEY `verifiedEmail` (`verifiedEmail`),\n  KEY `verifiedMobile` (`verifiedMobile`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户'",
       "fields": [
         {
           "name": "id",
@@ -259768,7 +259768,7 @@
         },
         {
           "name": "priceType",
-          "definition": "varchar(32) COMMENT '计费类型：traffic|bandwidth'"
+          "definition": "varchar(32) COMMENT '计费类型:traffic|bandwidth'"
         },
         {
           "name": "pricePeriod",

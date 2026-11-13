@@ -134,7 +134,7 @@ func (this *ServerDomainHourlyStatDAO) FindTopDomainStats(tx *dbs.Tx, hourFrom s
 
 			var topResults = []*ServerDomainHourlyStat{}
 
-			// TODO 节点如果已经被删除，则忽略
+			// TODO 节点如果已经被删除,则忽略
 			_, err := this.Query(tx).
 				Table(table).
 				Between("hour", hourFrom, hourTo).
@@ -182,7 +182,7 @@ func (this *ServerDomainHourlyStatDAO) FindTopDomainStatsWithAttack(tx *dbs.Tx, 
 
 			var topResults = []*ServerDomainHourlyStat{}
 
-			// TODO 节点如果已经被删除，则忽略
+			// TODO 节点如果已经被删除,则忽略
 			_, err := this.Query(tx).
 				Table(table).
 				Gt("countAttackRequests", 0).
@@ -231,7 +231,7 @@ func (this *ServerDomainHourlyStatDAO) FindTopDomainStatsWithClusterId(tx *dbs.T
 
 			var topResults = []*ServerDomainHourlyStat{}
 
-			// TODO 节点如果已经被删除，则忽略
+			// TODO 节点如果已经被删除,则忽略
 			_, err := this.Query(tx).
 				Table(table).
 				Attr("clusterId", clusterId).
@@ -281,7 +281,7 @@ func (this *ServerDomainHourlyStatDAO) FindTopDomainStatsWithNodeId(tx *dbs.Tx, 
 
 			var topResults = []*ServerDomainHourlyStat{}
 
-			// TODO 节点如果已经被删除，则忽略
+			// TODO 节点如果已经被删除,则忽略
 			_, err := this.Query(tx).
 				Table(table).
 				Attr("nodeId", nodeId).
@@ -331,7 +331,7 @@ func (this *ServerDomainHourlyStatDAO) FindTopDomainStatsWithServerId(tx *dbs.Tx
 
 			var topResults = []*ServerDomainHourlyStat{}
 
-			// TODO 节点如果已经被删除，则忽略
+			// TODO 节点如果已经被删除,则忽略
 			_, err := this.Query(tx).
 				Table(table).
 				Attr("serverId", serverId).

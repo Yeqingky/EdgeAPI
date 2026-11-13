@@ -10,7 +10,7 @@ var SharedCache = NewCache()
 
 // Cache TTL缓存
 // 最大的缓存时间为30 * 86400
-// Piece数据结构：
+// Piece数据结构:
 //
 //	    Piece1            |  Piece2 | Piece3 | ...
 //	[ Item1, Item2, ... ] |   ...

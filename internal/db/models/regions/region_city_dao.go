@@ -124,7 +124,7 @@ func (this *RegionCityDAO) FindCityIdWithName(tx *dbs.Tx, provinceId int64, city
 		Attr("provinceId", provinceId).
 		Where("(name=:cityName OR customName=:cityName OR JSON_CONTAINS(codes, :cityNameJSON) OR JSON_CONTAINS(customCodes, :cityNameJSON))").
 		Param("cityName", cityName).
-		Param("cityNameJSON", strconv.Quote(cityName)). // 查询的需要是个JSON字符串，所以这里加双引号
+		Param("cityNameJSON", strconv.Quote(cityName)). // 查询的需要是个JSON字符串,所以这里加双引号
 		Result(RegionCityField_ValueId).
 		FindInt64Col(0)
 }

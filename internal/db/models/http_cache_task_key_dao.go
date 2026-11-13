@@ -32,9 +32,9 @@ func init() {
 }
 
 // CreateKey 创建Key
-// 参数：
+// 参数:
 //   - clusterId 集群ID
-//   - nodeMapJSON 集群下节点映射，格式类似于 `{ "节点1":true, ... }`
+//   - nodeMapJSON 集群下节点映射,格式类似于 `{ "节点1":true, ... }`
 func (this *HTTPCacheTaskKeyDAO) CreateKey(tx *dbs.Tx, taskId int64, key string, taskType HTTPCacheTaskType, keyType string, clusterId int64) (int64, error) {
 	var op = NewHTTPCacheTaskKeyOperator()
 	op.TaskId = taskId
@@ -119,7 +119,7 @@ func (this *HTTPCacheTaskKeyDAO) UpdateKeyStatus(tx *dbs.Tx, keyId int64, nodeId
 		var taskIsDone = !taskIsNotDone
 		var hasErrors = true
 		if taskIsDone {
-			// 已经完成，是否有错误
+			// 已经完成,是否有错误
 			hasErrors, err = this.Query(tx).
 				Attr("taskId", taskId).
 				Where("JSON_LENGTH(errors)>0").

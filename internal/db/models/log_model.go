@@ -12,7 +12,7 @@ const (
 	LogField_AdminId         dbs.FieldName = "adminId"         // 管理员ID
 	LogField_ProviderId      dbs.FieldName = "providerId"      // 供应商ID
 	LogField_Ip              dbs.FieldName = "ip"              // IP地址
-	LogField_Type            dbs.FieldName = "type"            // 类型：admin, user
+	LogField_Type            dbs.FieldName = "type"            // 类型:admin, user
 	LogField_Day             dbs.FieldName = "day"             // 日期
 	LogField_BillId          dbs.FieldName = "billId"          // 账单ID
 	LogField_LangMessageCode dbs.FieldName = "langMessageCode" // 多语言消息代号
@@ -31,7 +31,7 @@ type Log struct {
 	AdminId         uint32   `field:"adminId"`         // 管理员ID
 	ProviderId      uint32   `field:"providerId"`      // 供应商ID
 	Ip              string   `field:"ip"`              // IP地址
-	Type            string   `field:"type"`            // 类型：admin, user
+	Type            string   `field:"type"`            // 类型:admin, user
 	Day             string   `field:"day"`             // 日期
 	BillId          uint32   `field:"billId"`          // 账单ID
 	LangMessageCode string   `field:"langMessageCode"` // 多语言消息代号
@@ -49,7 +49,7 @@ type LogOperator struct {
 	AdminId         any // 管理员ID
 	ProviderId      any // 供应商ID
 	Ip              any // IP地址
-	Type            any // 类型：admin, user
+	Type            any // 类型:admin, user
 	Day             any // 日期
 	BillId          any // 账单ID
 	LangMessageCode any // 多语言消息代号

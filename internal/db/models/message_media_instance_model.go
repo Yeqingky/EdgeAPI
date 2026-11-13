@@ -12,7 +12,7 @@ type MessageMediaInstance struct {
 	Description string   `field:"description"` // 备注
 	Rate        dbs.JSON `field:"rate"`        // 发送频率
 	State       uint8    `field:"state"`       // 状态
-	HashLife    int32    `field:"hashLife"`    // HASH有效期（秒）
+	HashLife    int32    `field:"hashLife"`    // HASH有效期(秒)
 }
 
 type MessageMediaInstanceOperator struct {
@@ -24,7 +24,7 @@ type MessageMediaInstanceOperator struct {
 	Description interface{} // 备注
 	Rate        interface{} // 发送频率
 	State       interface{} // 状态
-	HashLife    interface{} // HASH有效期（秒）
+	HashLife    interface{} // HASH有效期(秒)
 }
 
 func NewMessageMediaInstanceOperator() *MessageMediaInstanceOperator {

@@ -99,7 +99,7 @@ func (this *AdminDAO) FindAdminFullname(tx *dbs.Tx, adminId int64) (string, erro
 		FindStringCol("")
 }
 
-// CheckAdminPassword 检查用户名、密码
+// CheckAdminPassword 检查用户名,密码
 func (this *AdminDAO) CheckAdminPassword(tx *dbs.Tx, username string, encryptedPassword string) (int64, error) {
 	if len(username) == 0 || len(encryptedPassword) == 0 {
 		return 0, nil

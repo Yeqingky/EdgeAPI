@@ -78,7 +78,7 @@ func (this *APINode) Start() {
 
 	logs.Println("[API_NODE]start api node, pid: " + strconv.Itoa(os.Getpid()))
 
-	// 保存启动过程中的问题，以便于查看
+	// 保存启动过程中的问题,以便于查看
 	defer func() {
 		this.saveIssues()
 	}()
@@ -168,13 +168,13 @@ func (this *APINode) Start() {
 	if apiNode == nil {
 		var errString = "can not start node, wrong 'nodeId' or 'secret'"
 		logs.Println("[API_NODE]" + errString)
-		this.addStartIssue("config", errString, "请在api.yaml配置文件中填写正确的`nodeId`和`secret`，如果数据库或者管理节点或API节点是从别的服务器迁移过来的，请将老的系统配置拷贝到当前节点配置下")
+		this.addStartIssue("config", errString, "请在api.yaml配置文件中填写正确的`nodeId`和`secret`,如果数据库或者管理节点或API节点是从别的服务器迁移过来的,请将老的系统配置拷贝到当前节点配置下")
 		return
 	}
 	config.SetNumberId(int64(apiNode.Id))
 
 	// 清除上一次启动错误
-	// 这个错误文件可能不存在，不需要处理错误
+	// 这个错误文件可能不存在,不需要处理错误
 	_ = os.Remove(this.issuesFile)
 
 	// 设置rlimit
@@ -390,14 +390,14 @@ func (this *APINode) autoUpgrade() error {
 		return fmt.Errorf("query version failed: %w", err)
 	}
 	if one != nil {
-		// 如果是同样的版本，则直接认为是最新版本
+		// 如果是同样的版本,则直接认为是最新版本
 		var version = one.GetString("version")
 		if setup.CompareVersion(version, setup.ComposeSQLVersion()) >= 0 {
 			return nil
 		}
 	}
 
-	// 不使用remotelog()，因为此时还没有启动完成
+	// 不使用remotelog(),因为此时还没有启动完成
 	logs.Println("[API_NODE]upgrade database starting ...")
 	err = setup.NewSQLExecutor(dbConfig).Run(false)
 	if err != nil {
@@ -918,20 +918,20 @@ func (this *APINode) dbIssueSuggestion(errString string) string {
 	if strings.Contains(errString, "connection refused") {
 		// 本机
 		if strings.HasPrefix(addr, "127.0.0.1:") || strings.HasPrefix(addr, "localhost:") {
-			return "试图连接到数据库被拒绝，请检查：1）本地数据库服务是否已经启动；2）数据库IP和端口（" + addr + "）是否正确；（当前数据库配置为：" + dsn + "，配置文件位置：" + dbConfigPath + "）。"
+			return "试图连接到数据库被拒绝,请检查:1)本地数据库服务是否已经启动;2)数据库IP和端口(" + addr + ")是否正确;(当前数据库配置为:" + dsn + ",配置文件位置:" + dbConfigPath + ")."
 		} else {
-			return "试图连接到数据库被拒绝，请检查：1）数据库服务是否已经启动；2）数据库IP和端口（" + addr + "）是否正确；3）防火墙设置；（当前数据库配置为：" + dsn + "，配置文件位置：" + dbConfigPath + "）。"
+			return "试图连接到数据库被拒绝,请检查:1)数据库服务是否已经启动;2)数据库IP和端口(" + addr + ")是否正确;3)防火墙设置;(当前数据库配置为:" + dsn + ",配置文件位置:" + dbConfigPath + ")."
 		}
 	}
 
 	// 权限错误
 	if strings.Contains(errString, "Error 1045") || strings.Contains(errString, "Error 1044") {
-		return "使用的用户和密码没有权限连接到指定数据库，请检查：1）数据库配置文件中的用户名（" + dsnConfig.User + "）和密码（" + dsnConfig.Passwd + "）是否正确；2）使用的用户是否已经在数据库中设置了正确的权限；（当前数据库配置为：" + dsn + "，配置文件位置：" + dbConfigPath + "）。"
+		return "使用的用户和密码没有权限连接到指定数据库,请检查:1)数据库配置文件中的用户名(" + dsnConfig.User + ")和密码(" + dsnConfig.Passwd + ")是否正确;2)使用的用户是否已经在数据库中设置了正确的权限;(当前数据库配置为:" + dsn + ",配置文件位置:" + dbConfigPath + ")."
 	}
 
 	// 数据库名称错误
 	if strings.Contains(errString, "Error 1049") {
-		return "数据库名称配置错误，请检查：数据库配置文件中数据库名称（" + dsnConfig.DBName + "）是否正确；（当前数据库配置为：" + dsn + "，配置文件位置：" + dbConfigPath + "）。"
+		return "数据库名称配置错误,请检查:数据库配置文件中数据库名称(" + dsnConfig.DBName + ")是否正确;(当前数据库配置为:" + dsn + ",配置文件位置:" + dbConfigPath + ")."
 	}
 
 	return ""

@@ -75,7 +75,7 @@ func (this *SysSettingDAO) UpdateSetting(tx *dbs.Tx, codeFormat string, valueJSO
 			if err != nil {
 				lastErr = err
 
-				// 因为错误的原因可能是因为code冲突，所以这里我们继续执行
+				// 因为错误的原因可能是因为code冲突,所以这里我们继续执行
 				continue
 			}
 

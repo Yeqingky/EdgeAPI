@@ -22,7 +22,7 @@ const (
 	HTTPWebField_ResponseHeader     dbs.FieldName = "responseHeader"     // 响应Header配置
 	HTTPWebField_AccessLog          dbs.FieldName = "accessLog"          // 访问日志配置
 	HTTPWebField_Stat               dbs.FieldName = "stat"               // 统计配置
-	HTTPWebField_Gzip               dbs.FieldName = "gzip"               // Gzip配置（v0.3.2弃用）
+	HTTPWebField_Gzip               dbs.FieldName = "gzip"               // Gzip配置(v0.3.2弃用)
 	HTTPWebField_Compression        dbs.FieldName = "compression"        // 压缩配置
 	HTTPWebField_Cache              dbs.FieldName = "cache"              // 缓存配置
 	HTTPWebField_Firewall           dbs.FieldName = "firewall"           // 防火墙设置
@@ -66,7 +66,7 @@ type HTTPWeb struct {
 	ResponseHeader     dbs.JSON `field:"responseHeader"`     // 响应Header配置
 	AccessLog          dbs.JSON `field:"accessLog"`          // 访问日志配置
 	Stat               dbs.JSON `field:"stat"`               // 统计配置
-	Gzip               dbs.JSON `field:"gzip"`               // Gzip配置（v0.3.2弃用）
+	Gzip               dbs.JSON `field:"gzip"`               // Gzip配置(v0.3.2弃用)
 	Compression        dbs.JSON `field:"compression"`        // 压缩配置
 	Cache              dbs.JSON `field:"cache"`              // 缓存配置
 	Firewall           dbs.JSON `field:"firewall"`           // 防火墙设置
@@ -109,7 +109,7 @@ type HTTPWebOperator struct {
 	ResponseHeader     any // 响应Header配置
 	AccessLog          any // 访问日志配置
 	Stat               any // 统计配置
-	Gzip               any // Gzip配置（v0.3.2弃用）
+	Gzip               any // Gzip配置(v0.3.2弃用)
 	Compression        any // 压缩配置
 	Cache              any // 缓存配置
 	Firewall           any // 防火墙设置

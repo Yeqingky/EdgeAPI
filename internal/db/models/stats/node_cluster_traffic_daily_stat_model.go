@@ -1,6 +1,6 @@
 package stats
 
-// NodeClusterTrafficDailyStat 总的流量统计（按天）
+// NodeClusterTrafficDailyStat 总的流量统计(按天)
 type NodeClusterTrafficDailyStat struct {
 	Id                  uint64 `field:"id"`                  // ID
 	ClusterId           uint32 `field:"clusterId"`           // 集群ID

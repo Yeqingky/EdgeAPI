@@ -1,6 +1,6 @@
 package stats
 
-// 服务用户区域分布统计（按天）
+// 服务用户区域分布统计(按天)
 type ServerRegionCountryMonthlyStat struct {
 	Id        uint64 `field:"id"`        // ID
 	ServerId  uint32 `field:"serverId"`  // 服务ID

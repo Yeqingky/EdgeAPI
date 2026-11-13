@@ -83,7 +83,7 @@ func init() {
 								}
 							}
 
-							// 如果运行时间过长，则不使用事务
+							// 如果运行时间过长,则不使用事务
 							if time.Since(before) > 1*time.Second {
 								useTx = false
 							}
@@ -99,7 +99,7 @@ func init() {
 								remotelogs.Error("ServerBandwidthStatService", "dump bandwidth stats failed: "+err.Error())
 							}
 
-							// 更新网站的bandwidth字段，方便快速排序
+							// 更新网站的bandwidth字段,方便快速排序
 							err = models.SharedServerDAO.UpdateServerBandwidth(tx, stat.ServerId, stat.Day+stat.TimeAt, stat.Bytes, stat.CountRequests, stat.CountAttackRequests)
 							if err != nil {
 								remotelogs.Error("ServerBandwidthStatService", "update server bandwidth failed: "+err.Error())

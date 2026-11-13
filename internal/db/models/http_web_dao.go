@@ -289,7 +289,7 @@ func (this *HTTPWebDAO) ComposeWebConfig(tx *dbs.Tx, webId int64, isLocationOrGr
 			config.Cache = cacheConfig
 		}
 
-		// 暂不支持自定义缓存策略设置，因为同一个集群下的服务需要集中管理
+		// 暂不支持自定义缓存策略设置,因为同一个集群下的服务需要集中管理
 	}
 
 	// 防火墙配置
@@ -1004,7 +1004,7 @@ func (this *HTTPWebDAO) FindAllWebIdsWithHTTPFirewallPolicyId(tx *dbs.Tx, firewa
 		ResultPk().
 		Where(`JSON_CONTAINS(firewall, :jsonQuery)`).
 		Param("jsonQuery", maps.Map{
-			// 这里不加入isOn的判断，无论是否开启我们都同步
+			// 这里不加入isOn的判断,无论是否开启我们都同步
 			"firewallPolicyId": firewallPolicyId,
 		}.AsJSON()).
 		FindAll()

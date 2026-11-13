@@ -7,7 +7,7 @@ import (
 	"github.com/iwind/TeaGo/dbs"
 )
 
-// TODO 需要定时对所有IP的PTR进行检查，剔除已经变更的IP
+// TODO 需要定时对所有IP的PTR进行检查,剔除已经变更的IP
 
 type ClientAgentIPDAO dbs.DAO
 

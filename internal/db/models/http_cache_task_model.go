@@ -4,7 +4,7 @@ package models
 type HTTPCacheTask struct {
 	Id          uint64 `field:"id"`          // ID
 	UserId      uint32 `field:"userId"`      // 用户ID
-	Type        string `field:"type"`        // 任务类型：purge|fetch
+	Type        string `field:"type"`        // 任务类型:purge|fetch
 	KeyType     string `field:"keyType"`     // Key类型
 	State       uint8  `field:"state"`       // 状态
 	CreatedAt   uint64 `field:"createdAt"`   // 创建时间
@@ -19,7 +19,7 @@ type HTTPCacheTask struct {
 type HTTPCacheTaskOperator struct {
 	Id          any // ID
 	UserId      any // 用户ID
-	Type        any // 任务类型：purge|fetch
+	Type        any // 任务类型:purge|fetch
 	KeyType     any // Key类型
 	State       any // 状态
 	CreatedAt   any // 创建时间

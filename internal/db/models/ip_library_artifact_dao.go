@@ -82,7 +82,7 @@ func (this *IPLibraryArtifactDAO) CreateArtifact(tx *dbs.Tx, name string, fileId
 
 	var code = stringutil.Md5(utils.Sha1RandomString())[:8]
 	meta.Code = code
-	op.Code = code // 要比较短，方便识别
+	op.Code = code // 要比较短,方便识别
 
 	return this.SaveInt64(tx, op)
 }

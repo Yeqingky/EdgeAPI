@@ -340,8 +340,8 @@ func upgradeV0_3_0(db *dbs.DB) error {
 
 // v0.3.1
 func upgradeV0_3_1(db *dbs.DB) error {
-	// 清空域名统计，已使用分表代替
-	// 因为可能有权限问题，所以我们忽略错误
+	// 清空域名统计,已使用分表代替
+	// 因为可能有权限问题,所以我们忽略错误
 	_, _ = db.Exec("TRUNCATE table edgeServerDomainHourlyStats")
 
 	// 升级APIToken

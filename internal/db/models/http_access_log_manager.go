@@ -13,7 +13,7 @@ import (
 )
 
 // 访问日志的两个表格形式
-// 括号位置需要固定，会用来读取日期和分区
+// 括号位置需要固定,会用来读取日期和分区
 var accessLogTableMainReg = regexp.MustCompile(`_(\d{8})$`)
 var accessLogTablePartialReg = regexp.MustCompile(`_(\d{8})_(\d{4})$`)
 
@@ -58,7 +58,7 @@ func (this *HTTPAccessLogManager) FindTableNames(db *dbs.DB, day string) ([]stri
 	}
 
 	// 排序
-	// 这里不能直接使用sort.Strings()，因为表名里面可能大小写混合
+	// 这里不能直接使用sort.Strings(),因为表名里面可能大小写混合
 	sort.Slice(results, func(i, j int) bool {
 		var name1 = results[i]
 		var name2 = results[j]
@@ -101,7 +101,7 @@ func (this *HTTPAccessLogManager) FindTables(db *dbs.DB, day string) ([]*httpAcc
 			if accessLogTableMainReg.MatchString(tableName) {
 				tableNames = append(tableNames, tableName)
 
-				// 查找已有的表格信息，避免SHOW FIELDS
+				// 查找已有的表格信息,避免SHOW FIELDS
 				var tableDay = tableName[strings.LastIndex(tableName, "_")+1:]
 				var cacheKey = this.composeTableCacheKey(cachePrefix, tableDay)
 				this.locker.Lock()
@@ -432,6 +432,6 @@ func (this *HTTPAccessLogManager) checkTableFields(db *dbs.DB, tableName string)
 
 // 组合表格的缓存Key
 func (this *HTTPAccessLogManager) composeTableCacheKey(dsn string, day string) string {
-	// 注意：格式一定要固定，下面清除缓存的时候需要用到
+	// 注意:格式一定要固定,下面清除缓存的时候需要用到
 	return dsn + "_" + day
 }

@@ -7,7 +7,7 @@ import (
 	"github.com/iwind/TeaGo/dbs"
 )
 
-// CreateMessageTasks 从集群、节点或者服务中创建任务
+// CreateMessageTasks 从集群,节点或者服务中创建任务
 func (this *MessageTaskDAO) CreateMessageTasks(tx *dbs.Tx, role nodeconfigs.NodeRole, clusterId int64, nodeId int64, serverId int64, messageType MessageType, subject string, body string) error {
 	return nil
 }

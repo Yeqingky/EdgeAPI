@@ -405,7 +405,7 @@ func (this *IPItemDAO) CreateIPItem(tx *dbs.Tx,
 	}
 	itemId := types.Int64(op.Id)
 
-	// 自动加入名单不需要即时更新，防止数量过多而导致性能问题
+	// 自动加入名单不需要即时更新,防止数量过多而导致性能问题
 	if autoAdded {
 		return itemId, nil
 	}
@@ -534,7 +534,7 @@ func (this *IPItemDAO) ListIPItemsWithListId(tx *dbs.Tx, listId int64, sourceUse
 func (this *IPItemDAO) ListIPItemsAfterVersion(tx *dbs.Tx, version int64, size int64) (result []*IPItem, err error) {
 	_, err = this.Query(tx).
 		UseIndex("version").
-		// 这里不要设置状态参数，因为我们要知道哪些是删除的
+		// 这里不要设置状态参数,因为我们要知道哪些是删除的
 		Gt("version", version).
 		Asc("version").
 		Limit(size).
@@ -833,13 +833,13 @@ func (this *IPItemDAO) CleanExpiredIPItems(tx *dbs.Tx) error {
 		Where("(createdAt<=:timestamp AND updatedAt<=:timestamp)").
 		State(IPItemStateDisabled).
 		Param("timestamp", time.Now().Unix()-7*86400). // N 天之前过期的
-		Limit(10000).                                  // 限制条数，防止数量过多导致超时
+		Limit(10000).                                  // 限制条数,防止数量过多导致超时
 		Delete()
 	if err != nil {
 		return err
 	}
 
-	// 将过期的设置为已删除，这样是为了在 expiredAt<UNIX_TIMESTAMP()边缘节点让过期的IP有一个执行删除的机会
+	// 将过期的设置为已删除,这样是为了在 expiredAt<UNIX_TIMESTAMP()边缘节点让过期的IP有一个执行删除的机会
 	ones, _, err := this.Query(tx).
 		ResultPk().
 		Where("(expiredAt>0 AND expiredAt<=:timestamp)").

@@ -111,7 +111,7 @@ func (this *NodeTaskService) FindNodeClusterTasks(ctx context.Context, req *pb.F
 
 		// 错误的节点任务
 		pbNodeTasks := []*pb.NodeTask{}
-		// TODO 考虑节点特别多的情形，比如只显示前100个
+		// TODO 考虑节点特别多的情形,比如只显示前100个
 		// TODO 支持NS节点
 		tasks, err := models.SharedNodeTaskDAO.FindAllDoingNodeTasksWithClusterId(tx, nodeconfigs.NodeRoleNode, clusterId)
 		if err != nil {
@@ -124,7 +124,7 @@ func (this *NodeTaskService) FindNodeClusterTasks(ctx context.Context, req *pb.F
 				return nil, err
 			}
 
-			// 是否超时（N秒内没有更新）
+			// 是否超时(N秒内没有更新)
 			if int64(task.UpdatedAt) < time.Now().Unix()-180 {
 				task.IsDone = true
 				task.IsOk = false

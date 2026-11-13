@@ -806,10 +806,10 @@ func (this *IPItemService) ListAllEnabledIPItems(ctx context.Context, req *pb.Li
 			IsGlobal: list.IsGlobal,
 		}
 
-		// 所属服务（注意与SourceServer不同）
+		// 所属服务(注意与SourceServer不同)
 		var pbFirewallServer *pb.Server
 
-		// 所属策略（注意与SourceHTTPFirewallPolicy不同）
+		// 所属策略(注意与SourceHTTPFirewallPolicy不同)
 		var pbFirewallPolicy *pb.HTTPFirewallPolicy
 		if !list.IsPublic {
 			policy, err := models.SharedHTTPFirewallPolicyDAO.FindEnabledFirewallPolicyWithIPListId(tx, int64(list.Id))

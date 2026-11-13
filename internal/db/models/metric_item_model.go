@@ -6,8 +6,8 @@ import "github.com/iwind/TeaGo/dbs"
 type MetricItem struct {
 	Id            uint64   `field:"id"`            // ID
 	IsOn          bool     `field:"isOn"`          // 是否启用
-	Code          string   `field:"code"`          // 代号（用来区分是否内置）
-	Category      string   `field:"category"`      // 类型，比如http, tcp等
+	Code          string   `field:"code"`          // 代号(用来区分是否内置)
+	Category      string   `field:"category"`      // 类型,比如http, tcp等
 	AdminId       uint32   `field:"adminId"`       // 管理员ID
 	UserId        uint32   `field:"userId"`        // 用户ID
 	Name          string   `field:"name"`          // 指标名称
@@ -25,8 +25,8 @@ type MetricItem struct {
 type MetricItemOperator struct {
 	Id            interface{} // ID
 	IsOn          interface{} // 是否启用
-	Code          interface{} // 代号（用来区分是否内置）
-	Category      interface{} // 类型，比如http, tcp等
+	Code          interface{} // 代号(用来区分是否内置)
+	Category      interface{} // 类型,比如http, tcp等
 	AdminId       interface{} // 管理员ID
 	UserId        interface{} // 用户ID
 	Name          interface{} // 指标名称

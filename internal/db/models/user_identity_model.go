@@ -11,7 +11,7 @@ type UserIdentity struct {
 	RealName     string   `field:"realName"`     // 真实姓名
 	Number       string   `field:"number"`       // 编号
 	FileIds      dbs.JSON `field:"fileIds"`      // 文件ID
-	Status       string   `field:"status"`       // 状态：none,submitted,verified,rejected
+	Status       string   `field:"status"`       // 状态:none,submitted,verified,rejected
 	State        uint8    `field:"state"`        // 状态
 	CreatedAt    uint64   `field:"createdAt"`    // 创建时间
 	UpdatedAt    uint64   `field:"updatedAt"`    // 修改时间
@@ -29,7 +29,7 @@ type UserIdentityOperator struct {
 	RealName     interface{} // 真实姓名
 	Number       interface{} // 编号
 	FileIds      interface{} // 文件ID
-	Status       interface{} // 状态：none,submitted,verified,rejected
+	Status       interface{} // 状态:none,submitted,verified,rejected
 	State        interface{} // 状态
 	CreatedAt    interface{} // 创建时间
 	UpdatedAt    interface{} // 修改时间

@@ -13,7 +13,7 @@ import (
 type DNSTaskType = string
 
 const (
-	DNSTaskTypeClusterChange       DNSTaskType = "clusterChange"       // 集群节点、服务发生变化
+	DNSTaskTypeClusterChange       DNSTaskType = "clusterChange"       // 集群节点,服务发生变化
 	DNSTaskTypeClusterNodesChange  DNSTaskType = "clusterNodesChange"  // 集群中节点发生变化
 	DNSTaskTypeClusterRemoveDomain DNSTaskType = "clusterRemoveDomain" // 从集群中移除域名
 	DNSTaskTypeNodeChange          DNSTaskType = "nodeChange"
@@ -191,7 +191,7 @@ func (this *DNSTaskDAO) UpdateDNSTaskDone(tx *dbs.Tx, taskId int64, taskVersion 
 		return err
 	}
 
-	// 如果版本号发生变化，则说明有新的要执行的任务
+	// 如果版本号发生变化,则说明有新的要执行的任务
 	if taskVersion > 0 && currentVersion > 0 && currentVersion != taskVersion {
 		return nil
 	}

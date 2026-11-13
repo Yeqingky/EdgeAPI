@@ -108,7 +108,7 @@ func (this *LoginSessionDAO) WriteSessionValue(tx *dbs.Tx, sid string, key strin
 		}
 	}
 	if sessionId == 0 {
-		// 不存在，则创建之
+		// 不存在,则创建之
 		sessionId, err = this.CreateSession(tx, sid, "", time.Now().Unix()+30*86400 /** 默认30天**/)
 		if err != nil {
 			return err
@@ -181,7 +181,7 @@ func (this *LoginSessionDAO) ClearOldSessions(tx *dbs.Tx, adminId int64, userId 
 		Attr("adminId", adminId).
 		Attr("userId", userId).
 		Neq("sid", sid).
-		Neq("ip", ip). // 同一个IP允许多个SID，因为有人可能会同时使用手机端和PC端
+		Neq("ip", ip). // 同一个IP允许多个SID,因为有人可能会同时使用手机端和PC端
 		DeleteQuickly()
 	if err != nil {
 		return err

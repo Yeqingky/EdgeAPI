@@ -16,7 +16,7 @@ type NSDomain struct {
 	RecordsHealthCheck dbs.JSON `field:"recordsHealthCheck"` // 记录健康检查设置
 	CreatedAt          uint64   `field:"createdAt"`          // 创建时间
 	Version            uint64   `field:"version"`            // 版本号
-	Status             string   `field:"status"`             // 状态：none|verified
+	Status             string   `field:"status"`             // 状态:none|verified
 	State              uint8    `field:"state"`              // 状态
 }
 
@@ -33,7 +33,7 @@ type NSDomainOperator struct {
 	RecordsHealthCheck any // 记录健康检查设置
 	CreatedAt          any // 创建时间
 	Version            any // 版本号
-	Status             any // 状态：none|verified
+	Status             any // 状态:none|verified
 	State              any // 状态
 }
 

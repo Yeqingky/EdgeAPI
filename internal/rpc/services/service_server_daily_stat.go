@@ -55,13 +55,13 @@ func (this *ServerDailyStatService) UploadServerDailyStats(ctx context.Context, 
 			}
 		}
 
-		// 总体流量（按天）
+		// 总体流量(按天)
 		err = stats.SharedTrafficDailyStatDAO.IncreaseDailyStat(tx, timeutil.FormatTime("Ymd", stat.CreatedAt), stat.Bytes, stat.CachedBytes, stat.CountRequests, stat.CountCachedRequests, stat.CountAttackRequests, stat.AttackBytes)
 		if err != nil {
 			return nil, err
 		}
 
-		// 总体统计（按小时）
+		// 总体统计(按小时)
 		err = stats.SharedTrafficHourlyStatDAO.IncreaseHourlyStat(tx, timeutil.FormatTime("YmdH", stat.CreatedAt), stat.Bytes, stat.CachedBytes, stat.CountRequests, stat.CountCachedRequests, stat.CountAttackRequests, stat.AttackBytes)
 		if err != nil {
 			return nil, err

@@ -24,7 +24,7 @@ func (this *Node) DecodeInstallStatus() (*NodeInstallStatus, error) {
 		return NewNodeInstallStatus(), err
 	}
 
-	// 如果N秒钟没有更新状态，则认为不在运行
+	// 如果N秒钟没有更新状态,则认为不在运行
 	if status.IsRunning && status.UpdatedAt < time.Now().Unix()-10 {
 		status.IsRunning = false
 		status.IsFinished = true

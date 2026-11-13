@@ -50,7 +50,7 @@ type CacheTaskManager struct {
 	cacheMap map[string]interface{}
 	locker   sync.Mutex
 
-	nodeTasksTooSlow bool // 记录节点任务是否太慢，如果太慢就不再后台执行
+	nodeTasksTooSlow bool // 记录节点任务是否太慢,如果太慢就不再后台执行
 
 	ticker *time.Ticker
 }
@@ -329,7 +329,7 @@ func (this *CacheTaskManager) findAllMetricDataCharts(tx *dbs.Tx) (result []*pb.
 	return pbMetricCharts, nil
 }
 
-// 某个集群、节点或者服务的指标统计
+// 某个集群,节点或者服务的指标统计
 func (this *CacheTaskManager) findNodeClusterMetricDataCharts(tx *dbs.Tx, clusterId int64, nodeId int64, serverId int64, category string) (result []*pb.MetricDataChart, err error) {
 	// 集群指标
 	clusterMetricItems, err := models.SharedNodeClusterMetricItemDAO.FindAllClusterItems(tx, clusterId, category)

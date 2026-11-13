@@ -206,7 +206,7 @@ func (this *NodeService) NodeStream(server pb.NodeService_NodeStreamServer) erro
 		}
 
 		func(req *pb.NodeStreamMessage) {
-			// 因为 responseChan.Chan 有被关闭的风险，所以我们使用recover防止panic
+			// 因为 responseChan.Chan 有被关闭的风险,所以我们使用recover防止panic
 			defer func() {
 				_ = recover()
 			}()

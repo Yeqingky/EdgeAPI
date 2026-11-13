@@ -63,7 +63,7 @@ func init() {
 								}
 							}
 
-							// 如果运行时间过长，则不使用事务
+							// 如果运行时间过长,则不使用事务
 							if time.Since(before) > 1*time.Second {
 								useTx = false
 							}

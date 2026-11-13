@@ -62,8 +62,8 @@ func (this *SSLCertExpireCheckExecutor) Loop() error {
 		}
 		for _, cert := range certs {
 			// 发送消息
-			var subject = "SSL证书\"" + cert.Name + "\"在" + strconv.Itoa(days) + "天后将到期，"
-			var msg = "SSL证书\"" + cert.Name + "\"（" + this.summaryDNSNames(cert.DnsNames) + "）在" + strconv.Itoa(days) + "天后将到期，"
+			var subject = "SSL证书\"" + cert.Name + "\"在" + strconv.Itoa(days) + "天后将到期,"
+			var msg = "SSL证书\"" + cert.Name + "\"(" + this.summaryDNSNames(cert.DnsNames) + ")在" + strconv.Itoa(days) + "天后将到期,"
 
 			// 是否有自动更新任务
 			if cert.AcmeTaskId > 0 {
@@ -73,13 +73,13 @@ func (this *SSLCertExpireCheckExecutor) Loop() error {
 				}
 				if task != nil {
 					if task.AutoRenew == 1 {
-						msg += "此证书是免费申请的证书，且已设置了自动续期，将会在到期前三天自动尝试续期。"
+						msg += "此证书是免费申请的证书,且已设置了自动续期,将会在到期前三天自动尝试续期."
 					} else {
-						msg += "此证书是免费申请的证书，没有设置自动续期，请在到期前手动执行续期任务。"
+						msg += "此证书是免费申请的证书,没有设置自动续期,请在到期前手动执行续期任务."
 					}
 				}
 			} else {
-				msg += "请及时更新证书。"
+				msg += "请及时更新证书."
 			}
 
 			err = models.SharedMessageDAO.CreateMessage(nil, int64(cert.AdminId), int64(cert.UserId), models.MessageTypeSSLCertExpiring, models.MessageLevelWarning, subject, msg, maps.Map{
@@ -106,8 +106,8 @@ func (this *SSLCertExpireCheckExecutor) Loop() error {
 		}
 		for _, cert := range certs {
 			// 发送消息
-			var subject = "SSL证书\"" + cert.Name + "\"在" + strconv.Itoa(days) + "天后将到期，"
-			var msg = "SSL证书\"" + cert.Name + "\"（" + this.summaryDNSNames(cert.DnsNames) + "）在" + strconv.Itoa(days) + "天后将到期，"
+			var subject = "SSL证书\"" + cert.Name + "\"在" + strconv.Itoa(days) + "天后将到期,"
+			var msg = "SSL证书\"" + cert.Name + "\"(" + this.summaryDNSNames(cert.DnsNames) + ")在" + strconv.Itoa(days) + "天后将到期,"
 
 			// 是否有自动更新任务
 			if cert.AcmeTaskId > 0 {
@@ -121,7 +121,7 @@ func (this *SSLCertExpireCheckExecutor) Loop() error {
 						if isOk {
 							// 发送成功通知
 							subject = "系统已成功为你自动更新了证书\"" + cert.Name + "\""
-							msg = "系统已成功为你自动更新了证书\"" + cert.Name + "\"（" + this.summaryDNSNames(cert.DnsNames) + "）。"
+							msg = "系统已成功为你自动更新了证书\"" + cert.Name + "\"(" + this.summaryDNSNames(cert.DnsNames) + ")."
 							err = models.SharedMessageDAO.CreateMessage(nil, int64(cert.AdminId), int64(cert.UserId), models.MessageTypeSSLCertACMETaskSuccess, models.MessageLevelSuccess, subject, msg, maps.Map{
 								"certId":     cert.Id,
 								"acmeTaskId": cert.AcmeTaskId,
@@ -138,7 +138,7 @@ func (this *SSLCertExpireCheckExecutor) Loop() error {
 						} else {
 							// 发送失败通知
 							subject = "系统在尝试自动更新证书\"" + cert.Name + "\"时发生错误"
-							msg = "系统在尝试自动更新证书\"" + cert.Name + "\"（" + this.summaryDNSNames(cert.DnsNames) + "）时发生错误：" + errMsg + "。请检查系统设置并修复错误。"
+							msg = "系统在尝试自动更新证书\"" + cert.Name + "\"(" + this.summaryDNSNames(cert.DnsNames) + ")时发生错误:" + errMsg + ".请检查系统设置并修复错误."
 							err = models.SharedMessageDAO.CreateMessage(nil, int64(cert.AdminId), int64(cert.UserId), models.MessageTypeSSLCertACMETaskFailed, models.MessageLevelError, subject, msg, maps.Map{
 								"certId":     cert.Id,
 								"acmeTaskId": cert.AcmeTaskId,
@@ -158,11 +158,11 @@ func (this *SSLCertExpireCheckExecutor) Loop() error {
 						continue
 
 					} else {
-						msg += "此证书是免费申请的证书，没有设置自动续期，请在到期前手动执行续期任务。"
+						msg += "此证书是免费申请的证书,没有设置自动续期,请在到期前手动执行续期任务."
 					}
 				}
 			} else {
-				msg += "请及时更新证书。"
+				msg += "请及时更新证书."
 			}
 
 			err = models.SharedMessageDAO.CreateMessage(nil, int64(cert.AdminId), int64(cert.UserId), models.MessageTypeSSLCertExpiring, models.MessageLevelWarning, subject, msg, maps.Map{
@@ -190,8 +190,8 @@ func (this *SSLCertExpireCheckExecutor) Loop() error {
 		for _, cert := range certs {
 			// 发送消息
 			var today = timeutil.Format("Y-m-d")
-			var subject = "SSL证书\"" + cert.Name + "\"在今天（" + today + "）过期"
-			var msg = "SSL证书\"" + cert.Name + "\"（" + this.summaryDNSNames(cert.DnsNames) + "）在今天（" + today + "）过期，请及时更新证书，之后将不再重复提醒。"
+			var subject = "SSL证书\"" + cert.Name + "\"在今天(" + today + ")过期"
+			var msg = "SSL证书\"" + cert.Name + "\"(" + this.summaryDNSNames(cert.DnsNames) + ")在今天(" + today + ")过期,请及时更新证书,之后将不再重复提醒."
 			err = models.SharedMessageDAO.CreateMessage(nil, int64(cert.AdminId), int64(cert.UserId), models.MessageTypeSSLCertExpiring, models.MessageLevelWarning, subject, msg, maps.Map{
 				"certId":     cert.Id,
 				"acmeTaskId": cert.AcmeTaskId,
@@ -231,8 +231,8 @@ func (this *SSLCertExpireCheckExecutor) summaryDNSNames(dnsNamesJSON []byte) str
 		return "包含" + dnsNames[0] + "域名"
 	}
 	if count <= 10 {
-		return "包含" + strings.Join(dnsNames, "、") + "等域名"
+		return "包含" + strings.Join(dnsNames, ",") + "等域名"
 	}
 
-	return "包含" + strings.Join(dnsNames[:10], "、") + "等" + types.String(count) + "个域名"
+	return "包含" + strings.Join(dnsNames[:10], ",") + "等" + types.String(count) + "个域名"
 }

@@ -165,7 +165,7 @@ func (this *Setup) Run() error {
 			}
 		}
 		if this.config.APINodeProtocol == "https" {
-			// TODO 如果在安装过程中开启了HTTPS，需要同时上传SSL证书
+			// TODO 如果在安装过程中开启了HTTPS,需要同时上传SSL证书
 			var httpsConfig = &serverconfigs.HTTPSProtocolConfig{}
 			httpsConfig.IsOn = true
 			httpsConfig.Listen = []*serverconfigs.NetworkAddressConfig{

@@ -45,7 +45,7 @@ func (this *NodeTaskExtractor) Loop() error {
 		return nil
 	}
 
-	// 这里不解锁，是为了让任务N秒钟之内只运行一次
+	// 这里不解锁,是为了让任务N秒钟之内只运行一次
 
 	for _, role := range []string{nodeconfigs.NodeRoleNode, nodeconfigs.NodeRoleDNS} {
 		err := models.SharedNodeTaskDAO.ExtractAllClusterTasks(nil, role)

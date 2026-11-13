@@ -66,7 +66,7 @@ func (this *NodeLogDAO) CreateLog(tx *dbs.Tx, nodeRole nodeconfigs.NodeRole, nod
 
 	var hash = stringutil.Md5(nodeRole + "@" + types.String(nodeId) + "@" + types.String(serverId) + "@" + types.String(originId) + "@" + level + "@" + tag + "@" + description + "@" + string(paramsJSON))
 
-	// 检查是否在重复最后一条，避免重复创建
+	// 检查是否在重复最后一条,避免重复创建
 	lastLog, err := this.Query(tx).
 		Result("id", "hash", "createdAt").
 		DescPk().

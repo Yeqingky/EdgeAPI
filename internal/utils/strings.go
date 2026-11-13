@@ -21,7 +21,7 @@ func SplitStrings(s string, glue string) []string {
 	return result
 }
 
-// ContainsStringInsensitive 检查是否包含某个字符串，并且不区分大小写
+// ContainsStringInsensitive 检查是否包含某个字符串,并且不区分大小写
 func ContainsStringInsensitive(list []string, search string) bool {
 	search = strings.ToLower(search)
 	for _, s := range list {
@@ -83,7 +83,7 @@ func LimitString(s string, maxLength int) string {
 }
 
 // SplitKeywordArgs 分隔关键词参数
-// 支持：hello, "hello", name:hello, name:"hello", name:\"hello\"
+// 支持:hello, "hello", name:hello, name:"hello", name:\"hello\"
 func SplitKeywordArgs(s string) (args []splitArg) {
 	var value []rune
 	var beginQuote = false

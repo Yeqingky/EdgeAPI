@@ -44,7 +44,7 @@ func (this *DNSTaskExecutor) Start() {
 		select {
 		case <-this.ticker.C:
 		case <-dnsmodels.DNSTasksNotifier:
-			time.Sleep(3 * time.Second) // 人为延长N秒，等待可能的几个任务合并
+			time.Sleep(3 * time.Second) // 人为延长N秒,等待可能的几个任务合并
 		}
 
 		err := this.Loop()
@@ -155,7 +155,7 @@ func (this *DNSTaskExecutor) doServer(taskId int64, taskVersion int64, oldCluste
 		return err
 	}
 
-	// 如果集群发生了变化，则从老的集群中删除
+	// 如果集群发生了变化,则从老的集群中删除
 	if oldClusterId > 0 && int64(serverDNS.ClusterId) != oldClusterId {
 		oldManager, oldDomainId, oldDomain, _, _, err := this.findDNSManagerWithClusterId(tx, oldClusterId)
 		if err != nil {
@@ -177,7 +177,7 @@ func (this *DNSTaskExecutor) doServer(taskId int64, taskVersion int64, oldCluste
 					}
 
 					// 更新域名中记录缓存
-					// 这里不创建域名更新任务，而是直接更新，避免影响其他任务的执行
+					// 这里不创建域名更新任务,而是直接更新,避免影响其他任务的执行
 					err = this.doDomain(oldDomainId)
 					if err != nil {
 						return err
@@ -480,7 +480,7 @@ func (this *DNSTaskExecutor) doCluster(taskId int64, taskVersion int64, clusterI
 		if err != nil {
 			return err
 		}
-		serverRecords := []*dnstypes.Record{}             // 之所以用数组再存一遍，是因为dnsName可能会重复
+		serverRecords := []*dnstypes.Record{}             // 之所以用数组再存一遍,是因为dnsName可能会重复
 		serverRecordsMap := map[string]*dnstypes.Record{} // dnsName => *Record
 		for _, record := range records {
 			if record.Type == dnstypes.RecordTypeCNAME && record.Value == clusterDomain+"." {
@@ -506,7 +506,7 @@ func (this *DNSTaskExecutor) doCluster(taskId int64, taskVersion int64, clusterI
 						Name:  dnsName,
 						Type:  dnstypes.RecordTypeCNAME,
 						Value: clusterDomain + ".",
-						Route: "", // 注意这里为空，需要在执行过程中获取默认值
+						Route: "", // 注意这里为空,需要在执行过程中获取默认值
 						TTL:   ttl,
 					})
 					if err != nil {
@@ -522,7 +522,7 @@ func (this *DNSTaskExecutor) doCluster(taskId int64, taskVersion int64, clusterI
 			cnameRecords = dnsConfig.CNAMERecords
 		}
 		for _, cnameRecord := range cnameRecords {
-			// 如果记录已存在，则跳过
+			// 如果记录已存在,则跳过
 			if lists.ContainsString(serverDNSNames, cnameRecord) {
 				continue
 			}
@@ -536,7 +536,7 @@ func (this *DNSTaskExecutor) doCluster(taskId int64, taskVersion int64, clusterI
 					Name:  cnameRecord,
 					Type:  dnstypes.RecordTypeCNAME,
 					Value: clusterDomain + ".",
-					Route: "", // 注意这里为空，需要在执行过程中获取默认值
+					Route: "", // 注意这里为空,需要在执行过程中获取默认值
 					TTL:   ttl,
 				})
 				if err != nil {
@@ -600,7 +600,7 @@ func (this *DNSTaskExecutor) doClusterRemove(taskId int64, taskVersion int64, cl
 		}
 	}
 
-	// 再次检查是否正在使用，如果正在使用，则直接返回
+	// 再次检查是否正在使用,如果正在使用,则直接返回
 	if dnsInfo != nil && dnsInfo.State == models.NodeClusterStateEnabled /** 尚未被删除 **/ && int64(dnsInfo.DnsDomainId) == domainId && dnsInfo.DnsName == dnsName {
 		isOk = true
 		return nil

@@ -163,7 +163,7 @@ func (this *ServerStatBoardService) ComposeServerStatNodeClusterBoard(ctx contex
 		})
 	}
 
-	// CPU、内存、负载
+	// CPU,内存,负载
 	cpuValues, err := models.SharedNodeValueDAO.ListValuesWithClusterId(tx, "node", req.NodeClusterId, nodeconfigs.NodeValueItemCPU, "usage", nodeconfigs.NodeValueRangeMinute)
 	if err != nil {
 		return nil, err
@@ -379,7 +379,7 @@ func (this *ServerStatBoardService) ComposeServerStatNodeBoard(ctx context.Conte
 		})
 	}
 
-	// CPU、内存、负载
+	// CPU,内存,负载
 	cpuValues, err := models.SharedNodeValueDAO.ListValues(tx, "node", req.NodeId, nodeconfigs.NodeValueItemCPU, nodeconfigs.NodeValueRangeMinute)
 	if err != nil {
 		return nil, err
@@ -488,7 +488,7 @@ func (this *ServerStatBoardService) ComposeServerStatBoard(ctx context.Context, 
 
 		// 当前N分钟区间
 		{
-			// 查询最近的三个时段，以尽可能获取数据
+			// 查询最近的三个时段,以尽可能获取数据
 			var timestamp = time.Now().Unix() / 300 * 300
 			var minute1 = timeutil.FormatTime("Hi", timestamp)
 			var minute2 = timeutil.FormatTime("Hi", timestamp-300)

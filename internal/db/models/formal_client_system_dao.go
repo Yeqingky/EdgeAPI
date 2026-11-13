@@ -86,7 +86,7 @@ func (this *FormalClientSystemDAO) FindSystemIdWithNameCacheable(tx *dbs.Tx, sys
 		return types.Int64(cacheItem.Value), nil
 	}
 
-	// 先使用 name 查找，因为有索引，所以会快一些
+	// 先使用 name 查找,因为有索引,所以会快一些
 	systemId, err := this.Query(tx).
 		Attr("name", systemName).
 		ResultPk().
@@ -98,7 +98,7 @@ func (this *FormalClientSystemDAO) FindSystemIdWithNameCacheable(tx *dbs.Tx, sys
 	if systemId == 0 {
 		systemId, err = this.Query(tx).
 			Where("JSON_CONTAINS(codes, :systemName)").
-			Param("systemName", strconv.Quote(systemName)). // 查询的需要是个JSON字符串，所以这里加双引号
+			Param("systemName", strconv.Quote(systemName)). // 查询的需要是个JSON字符串,所以这里加双引号
 			ResultPk().
 			FindInt64Col(0)
 		if err != nil {

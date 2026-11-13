@@ -1,6 +1,6 @@
 package stats
 
-// 操作系统统计（按月）
+// 操作系统统计(按月)
 type ServerClientSystemMonthlyStat struct {
 	Id       uint64 `field:"id"`       // ID
 	ServerId uint32 `field:"serverId"` // 服务ID

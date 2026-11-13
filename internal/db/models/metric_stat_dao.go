@@ -253,7 +253,7 @@ func (this *MetricStatDAO) FindItemStatsAtLastTime(tx *dbs.Tx, itemId int64, ign
 			Attr("itemId", itemId).
 			Attr("version", version).
 			Attr("time", lastTime).
-			// TODO 增加更多聚合算法，比如 AVG、MEDIAN、MIN、MAX 等
+			// TODO 增加更多聚合算法,比如 AVG,MEDIAN,MIN,MAX 等
 			// TODO 这里的 MIN(`keys`) 在MySQL8中可以换成FIRST_VALUE
 			Result("MIN(time) AS time", "SUM(value) AS value", "keys").
 			Desc("value").
@@ -317,7 +317,7 @@ func (this *MetricStatDAO) FindItemStatsWithClusterIdAndLastTime(tx *dbs.Tx, clu
 			Attr("itemId", itemId).
 			Attr("version", version).
 			Attr("time", lastTime).
-			// TODO 增加更多聚合算法，比如 AVG、MEDIAN、MIN、MAX 等
+			// TODO 增加更多聚合算法,比如 AVG,MEDIAN,MIN,MAX 等
 			// TODO 这里的 MIN(`keys`) 在MySQL8中可以换成FIRST_VALUE
 			Result("MIN(time) AS time", "SUM(value) AS value", "keys").
 			Desc("value").
@@ -383,7 +383,7 @@ func (this *MetricStatDAO) FindItemStatsWithNodeIdAndLastTime(tx *dbs.Tx, nodeId
 			Attr("itemId", itemId).
 			Attr("version", version).
 			Attr("time", lastTime).
-			// TODO 增加更多聚合算法，比如 AVG、MEDIAN、MIN、MAX 等
+			// TODO 增加更多聚合算法,比如 AVG,MEDIAN,MIN,MAX 等
 			// TODO 这里的 MIN(`keys`) 在MySQL8中可以换成FIRST_VALUE
 			Result("MIN(time) AS time", "SUM(value) AS value", "keys").
 			Desc("value").
@@ -448,7 +448,7 @@ func (this *MetricStatDAO) FindItemStatsWithServerIdAndLastTime(tx *dbs.Tx, serv
 		Attr("itemId", itemId).
 		Attr("version", version).
 		Attr("time", lastTime).
-		// TODO 增加更多聚合算法，比如 AVG、MEDIAN、MIN、MAX 等
+		// TODO 增加更多聚合算法,比如 AVG,MEDIAN,MIN,MAX 等
 		// TODO 这里的 MIN(`keys`) 在MySQL8中可以换成FIRST_VALUE
 		Result("MIN(time) AS time", "SUM(value) AS value", "keys").
 		Desc("value").
@@ -481,7 +481,7 @@ func (this *MetricStatDAO) FindLatestItemStats(tx *dbs.Tx, itemId int64, ignoreE
 			Table(table).
 			Attr("itemId", itemId).
 			Attr("version", version).
-			// TODO 增加更多聚合算法，比如 AVG、MEDIAN、MIN、MAX 等
+			// TODO 增加更多聚合算法,比如 AVG,MEDIAN,MIN,MAX 等
 			// TODO 这里的 MIN(`keys`) 在MySQL8中可以换成FIRST_VALUE
 			Result("time", "SUM(value) AS value", "MIN(`keys`) AS `keys`").
 			Desc("time").
@@ -542,7 +542,7 @@ func (this *MetricStatDAO) FindLatestItemStatsWithClusterId(tx *dbs.Tx, clusterI
 			Attr("clusterId", clusterId).
 			Attr("itemId", itemId).
 			Attr("version", version).
-			// TODO 增加更多聚合算法，比如 AVG、MEDIAN、MIN、MAX 等
+			// TODO 增加更多聚合算法,比如 AVG,MEDIAN,MIN,MAX 等
 			// TODO 这里的 MIN(`keys`) 在MySQL8中可以换成FIRST_VALUE
 			Result("time", "SUM(value) AS value", "MIN(`keys`) AS `keys`").
 			Desc("time").
@@ -602,7 +602,7 @@ func (this *MetricStatDAO) FindLatestItemStatsWithNodeId(tx *dbs.Tx, nodeId int6
 			Attr("nodeId", nodeId).
 			Attr("itemId", itemId).
 			Attr("version", version).
-			// TODO 增加更多聚合算法，比如 AVG、MEDIAN、MIN、MAX 等
+			// TODO 增加更多聚合算法,比如 AVG,MEDIAN,MIN,MAX 等
 			// TODO 这里的 MIN(`keys`) 在MySQL8中可以换成FIRST_VALUE
 			Result("time", "SUM(value) AS value", "MIN(`keys`) AS `keys`").
 			Desc("time").
@@ -656,7 +656,7 @@ func (this *MetricStatDAO) FindLatestItemStatsWithServerId(tx *dbs.Tx, serverId 
 		Attr("serverId", serverId).
 		Attr("itemId", itemId).
 		Attr("version", version).
-		// TODO 增加更多聚合算法，比如 AVG、MEDIAN、MIN、MAX 等
+		// TODO 增加更多聚合算法,比如 AVG,MEDIAN,MIN,MAX 等
 		// TODO 这里的 MIN(`keys`) 在MySQL8中可以换成FIRST_VALUE
 		Result("time", "SUM(value) AS value", "MIN(`keys`) AS `keys`").
 		Desc("time").
@@ -707,7 +707,7 @@ func (this *MetricStatDAO) Clean(tx *dbs.Tx) error {
 						Table(table).
 						Attr("itemId", item.Id).
 						Lte("createdDay", expiresDay).
-						Limit(10_000). // 一次性不要删除太多，防止阻塞其他操作
+						Limit(10_000). // 一次性不要删除太多,防止阻塞其他操作
 						Delete()
 					return err
 				})

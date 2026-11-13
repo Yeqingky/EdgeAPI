@@ -204,7 +204,7 @@ func (this *SSLCertDAO) UpdateCert(tx *dbs.Tx,
 }
 
 // ComposeCertConfig 组合配置
-// ignoreData 是否忽略证书数据，避免因为数据过大影响传输
+// ignoreData 是否忽略证书数据,避免因为数据过大影响传输
 func (this *SSLCertDAO) ComposeCertConfig(tx *dbs.Tx, certId int64, ignoreData bool, dataMap *shared.DataMap, cacheMap *utils.CacheMap) (*sslconfigs.SSLCertConfig, error) {
 	if cacheMap == nil {
 		cacheMap = utils.NewCacheMap()
@@ -472,7 +472,7 @@ func (this *SSLCertDAO) ListCertsToUpdateOCSP(tx *dbs.Tx, maxTries int, size int
 		Lt("timeBeginAt", nowTime).
 		Gt("timeEndAt", nowTime)
 
-	// TODO 需要排除没有被server使用的policy，或许可以增加一个字段记录policy最近使用时间
+	// TODO 需要排除没有被server使用的policy,或许可以增加一个字段记录policy最近使用时间
 
 	// 检查函数
 	var JSONArrayAggIsEnabled = false
@@ -519,7 +519,7 @@ func (this *SSLCertDAO) FindCertOCSPLatestVersion(tx *dbs.Tx) (int64, error) {
 		FindInt64Col(0)
 }
 
-// PrepareCertOCSPUpdating 更新OCSP更新时间，以便于准备更新，相当于锁定
+// PrepareCertOCSPUpdating 更新OCSP更新时间,以便于准备更新,相当于锁定
 func (this *SSLCertDAO) PrepareCertOCSPUpdating(tx *dbs.Tx, certId int64) error {
 	return this.Query(tx).
 		Pk(certId).
@@ -568,7 +568,7 @@ func (this *SSLCertDAO) UpdateCertOCSP(tx *dbs.Tx, certId int64, ocsp []byte, ex
 		return err
 	}
 
-	// 注意：这里不通知更新，避免频繁的更新导致服务不稳定
+	// 注意:这里不通知更新,避免频繁的更新导致服务不稳定
 	return nil
 }
 
@@ -678,7 +678,7 @@ func (this *SSLCertDAO) NotifyUpdate(tx *dbs.Tx, certId int64) error {
 		}
 	}
 
-	// TODO 通知用户节点、API节点、管理系统（将来实现选择）更新
+	// TODO 通知用户节点,API节点,管理系统(将来实现选择)更新
 
 	return nil
 }

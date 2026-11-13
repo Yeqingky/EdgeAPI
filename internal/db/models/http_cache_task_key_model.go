@@ -7,7 +7,7 @@ type HTTPCacheTaskKey struct {
 	Id        uint64   `field:"id"`        // ID
 	TaskId    uint64   `field:"taskId"`    // 任务ID
 	Key       string   `field:"key"`       // Key
-	KeyType   string   `field:"keyType"`   // Key类型：key|prefix
+	KeyType   string   `field:"keyType"`   // Key类型:key|prefix
 	Type      string   `field:"type"`      // 操作类型
 	ClusterId uint32   `field:"clusterId"` // 集群ID
 	Nodes     dbs.JSON `field:"nodes"`     // 节点
@@ -19,7 +19,7 @@ type HTTPCacheTaskKeyOperator struct {
 	Id        interface{} // ID
 	TaskId    interface{} // 任务ID
 	Key       interface{} // Key
-	KeyType   interface{} // Key类型：key|prefix
+	KeyType   interface{} // Key类型:key|prefix
 	Type      interface{} // 操作类型
 	ClusterId interface{} // 集群ID
 	Nodes     interface{} // 节点

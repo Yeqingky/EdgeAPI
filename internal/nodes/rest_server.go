@@ -210,7 +210,7 @@ func (this *RestServer) handle(writer http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	// 如果为空，表示传的数据为空
+	// 如果为空,表示传的数据为空
 	if len(body) == 0 {
 		body = []byte("{}")
 	}

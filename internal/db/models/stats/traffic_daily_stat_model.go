@@ -14,7 +14,7 @@ const (
 	TrafficDailyStatField_CountIPs            dbs.FieldName = "countIPs"            // 独立IP数
 )
 
-// TrafficDailyStat 总的流量统计（按天）
+// TrafficDailyStat 总的流量统计(按天)
 type TrafficDailyStat struct {
 	Id                  uint64 `field:"id"`                  // ID
 	Day                 string `field:"day"`                 // YYYYMMDD

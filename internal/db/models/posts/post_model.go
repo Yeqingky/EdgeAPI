@@ -5,7 +5,7 @@ import "github.com/iwind/TeaGo/dbs"
 const (
 	PostField_Id          dbs.FieldName = "id"          // ID
 	PostField_CategoryId  dbs.FieldName = "categoryId"  // 文章分类
-	PostField_Type        dbs.FieldName = "type"        // 类型：normal, url
+	PostField_Type        dbs.FieldName = "type"        // 类型:normal, url
 	PostField_Url         dbs.FieldName = "url"         // URL
 	PostField_Subject     dbs.FieldName = "subject"     // 标题
 	PostField_Body        dbs.FieldName = "body"        // 内容
@@ -20,7 +20,7 @@ const (
 type Post struct {
 	Id          uint32 `field:"id"`          // ID
 	CategoryId  uint32 `field:"categoryId"`  // 文章分类
-	Type        string `field:"type"`        // 类型：normal, url
+	Type        string `field:"type"`        // 类型:normal, url
 	Url         string `field:"url"`         // URL
 	Subject     string `field:"subject"`     // 标题
 	Body        string `field:"body"`        // 内容
@@ -34,7 +34,7 @@ type Post struct {
 type PostOperator struct {
 	Id          any // ID
 	CategoryId  any // 文章分类
-	Type        any // 类型：normal, url
+	Type        any // 类型:normal, url
 	Url         any // URL
 	Subject     any // 标题
 	Body        any // 内容

@@ -55,7 +55,7 @@ func (this *DNSDomainService) CreateDNSDomain(ctx context.Context, req *pb.Creat
 		return nil, err
 	}
 
-	// 更新数据，且不提示错误
+	// 更新数据,且不提示错误
 	goman.New(func() {
 		domainName := req.Name
 
@@ -477,7 +477,7 @@ func (this *DNSDomainService) findClusterDNSChanges(cluster *models.NodeCluster,
 		return nil, nil, nil, 0, 0, false, false, err
 	}
 	countAllNodes = int64(len(nodes))
-	var nodeRecords = []*dnstypes.Record{}                // 之所以用数组再存一遍，是因为dnsName可能会重复
+	var nodeRecords = []*dnstypes.Record{}                // 之所以用数组再存一遍,是因为dnsName可能会重复
 	var nodeRecordMapping = map[string]*dnstypes.Record{} // value_route => *Record
 	for _, record := range records {
 		if (record.Type == dnstypes.RecordTypeA || record.Type == dnstypes.RecordTypeAAAA) && record.Name == clusterDnsName {
@@ -596,7 +596,7 @@ func (this *DNSDomainService) findClusterDNSChanges(cluster *models.NodeCluster,
 		return nil, nil, nil, 0, 0, false, false, err
 	}
 	countAllServers = int64(len(servers))
-	var serverRecords = []*dnstypes.Record{}             // 之所以用数组再存一遍，是因为dnsName可能会重复
+	var serverRecords = []*dnstypes.Record{}             // 之所以用数组再存一遍,是因为dnsName可能会重复
 	var serverRecordsMap = map[string]*dnstypes.Record{} // dnsName => *Record
 	for _, record := range records {
 		if record.Type == dnstypes.RecordTypeCNAME && record.Value == clusterDomain+"." {
@@ -624,7 +624,7 @@ func (this *DNSDomainService) findClusterDNSChanges(cluster *models.NodeCluster,
 						Name:  dnsName,
 						Type:  dnstypes.RecordTypeCNAME,
 						Value: clusterDomain + ".",
-						Route: "", // 注意这里为空，需要在执行过程中获取默认值
+						Route: "", // 注意这里为空,需要在执行过程中获取默认值
 						TTL:   ttl,
 					},
 				})
@@ -636,7 +636,7 @@ func (this *DNSDomainService) findClusterDNSChanges(cluster *models.NodeCluster,
 
 	// 自动设置的CNAME
 	for _, cnameRecord := range cnameRecords {
-		// 如果记录已存在，则跳过
+		// 如果记录已存在,则跳过
 		if lists.ContainsString(serverDNSNames, cnameRecord) {
 			continue
 		}
@@ -652,7 +652,7 @@ func (this *DNSDomainService) findClusterDNSChanges(cluster *models.NodeCluster,
 					Name:  cnameRecord,
 					Type:  dnstypes.RecordTypeCNAME,
 					Value: clusterDomain + ".",
-					Route: "", // 注意这里为空，需要在执行过程中获取默认值
+					Route: "", // 注意这里为空,需要在执行过程中获取默认值
 					TTL:   ttl,
 				},
 			})
@@ -743,13 +743,13 @@ func (this *DNSDomainService) syncClusterDNS(req *pb.SyncDNSDomainDataRequest) (
 	}
 	err = manager.Auth(apiParams)
 	if err != nil {
-		return &pb.SyncDNSDomainDataResponse{IsOk: false, Error: "调用API认证失败：" + err.Error()}, nil
+		return &pb.SyncDNSDomainDataResponse{IsOk: false, Error: "调用API认证失败:" + err.Error()}, nil
 	}
 
 	// 更新线路
 	routes, err := manager.GetRoutes(domainName)
 	if err != nil {
-		return &pb.SyncDNSDomainDataResponse{IsOk: false, Error: "获取线路失败：" + err.Error()}, nil
+		return &pb.SyncDNSDomainDataResponse{IsOk: false, Error: "获取线路失败:" + err.Error()}, nil
 	}
 	routesJSON, err := json.Marshal(routes)
 	if err != nil {
@@ -774,7 +774,7 @@ func (this *DNSDomainService) syncClusterDNS(req *pb.SyncDNSDomainDataRequest) (
 	// 所有记录
 	records, err := manager.GetRecords(domainName)
 	if err != nil {
-		return &pb.SyncDNSDomainDataResponse{IsOk: false, Error: "获取域名解析记录失败：" + err.Error()}, nil
+		return &pb.SyncDNSDomainDataResponse{IsOk: false, Error: "获取域名解析记录失败:" + err.Error()}, nil
 	}
 	recordsJSON, err := json.Marshal(records)
 	if err != nil {
@@ -806,12 +806,12 @@ func (this *DNSDomainService) syncClusterDNS(req *pb.SyncDNSDomainDataRequest) (
 		case "create":
 			err = manager.AddRecord(domainName, record)
 			if err != nil {
-				return &pb.SyncDNSDomainDataResponse{IsOk: false, Error: "创建域名记录失败：" + err.Error()}, nil
+				return &pb.SyncDNSDomainDataResponse{IsOk: false, Error: "创建域名记录失败:" + err.Error()}, nil
 			}
 		case "delete":
 			err = manager.DeleteRecord(domainName, record)
 			if err != nil {
-				return &pb.SyncDNSDomainDataResponse{IsOk: false, Error: "删除域名记录失败：" + err.Error()}, nil
+				return &pb.SyncDNSDomainDataResponse{IsOk: false, Error: "删除域名记录失败:" + err.Error()}, nil
 			}
 		}
 	}
@@ -820,7 +820,7 @@ func (this *DNSDomainService) syncClusterDNS(req *pb.SyncDNSDomainDataRequest) (
 	if len(allChanges) > 0 {
 		records, err := manager.GetRecords(domainName)
 		if err != nil {
-			return &pb.SyncDNSDomainDataResponse{IsOk: false, Error: "重新获取域名解析记录失败：" + err.Error()}, nil
+			return &pb.SyncDNSDomainDataResponse{IsOk: false, Error: "重新获取域名解析记录失败:" + err.Error()}, nil
 		}
 		recordsJSON, err := json.Marshal(records)
 		if err != nil {

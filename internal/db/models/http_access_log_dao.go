@@ -43,7 +43,7 @@ var (
 	accessLogQueue          = make(chan *pb.HTTPAccessLog, 10_000)
 	accessLogQueueMaxLength = 100_000 // 队列最大长度
 	accessLogQueuePercent   = 100     // 0-100
-	accessLogCountPerSecond = 10_000  // 每秒钟写入条数，0 表示不限制
+	accessLogCountPerSecond = 10_000  // 每秒钟写入条数,0 表示不限制
 	accessLogPerTx          = 100     // 单事务写入条数
 	accessLogConfigJSON     = []byte{}
 	accessLogQueueChanged   = make(chan zero.Zero, 1)
@@ -102,13 +102,13 @@ func init() {
 					var before = time.Now()
 					hasMore, err := SharedHTTPAccessLogDAO.DumpAccessLogsFromQueue(accessLogPerLoop)
 
-					// 如果用时过长，则调整每次写入次数
+					// 如果用时过长,则调整每次写入次数
 					var costMs = time.Since(before).Milliseconds()
 					if costMs > 150 {
 						accessLogPerLoop = accessLogPerTx / 4
 					} else if costMs > 100 {
 						accessLogPerLoop = accessLogPerTx / 2
-					} // 这里不需要恢复成默认值，因为可能是写入数量比较小
+					} // 这里不需要恢复成默认值,因为可能是写入数量比较小
 					if err != nil {
 						remotelogs.Error("HTTP_ACCESS_LOG_QUEUE", "dump access logs failed: "+err.Error())
 					} else if !hasMore {
@@ -134,9 +134,9 @@ func NewHTTPAccessLogDAO() *HTTPAccessLogDAO {
 // CreateHTTPAccessLogs 创建访问日志
 func (this *HTTPAccessLogDAO) CreateHTTPAccessLogs(tx *dbs.Tx, accessLogs []*pb.HTTPAccessLog) error {
 	// 写入队列
-	var queue = accessLogQueue // 这样写非常重要，防止在写入过程中队列有切换
+	var queue = accessLogQueue // 这样写非常重要,防止在写入过程中队列有切换
 	for _, accessLog := range accessLogs {
-		if accessLog.FirewallPolicyId == 0 { // 如果是非WAF记录，则采取采样率
+		if accessLog.FirewallPolicyId == 0 { // 如果是非WAF记录,则采取采样率
 			// 采样率
 			if accessLogQueuePercent <= 0 {
 				return nil
@@ -179,7 +179,7 @@ func (this *HTTPAccessLogDAO) DumpAccessLogsFromQueue(size int) (hasMore bool, e
 		}
 	} else if dao.IsLocal {
 		// 检查本地数据库空间
-		// 我们假定本地只能安装一个数据库，访问日志中的数据库和当前API连接的数据库一致
+		// 我们假定本地只能安装一个数据库,访问日志中的数据库和当前API连接的数据库一致
 		if !dbutils.HasFreeSpace {
 			return true, errors.New("dump accesslog failed: there is no enough space left for database (" + dbutils.LocalDatabaseDataDir + ")")
 		}
@@ -194,7 +194,7 @@ func (this *HTTPAccessLogDAO) DumpAccessLogsFromQueue(size int) (hasMore bool, e
 		_ = tx.Commit()
 	}()
 
-	// 复制变量，防止中途改变
+	// 复制变量,防止中途改变
 	var oldQueue = oldAccessLogQueue
 	var newQueue = accessLogQueue
 
@@ -234,7 +234,7 @@ Loop:
 // CreateHTTPAccessLog 写入单条访问日志
 func (this *HTTPAccessLogDAO) CreateHTTPAccessLog(tx *dbs.Tx, dao *HTTPAccessLogDAO, accessLog *pb.HTTPAccessLog) error {
 	var day string
-	// 注意：如果你修改了 TimeISO8601 的逻辑，这里也需要同步修改
+	// 注意:如果你修改了 TimeISO8601 的逻辑,这里也需要同步修改
 	if len(accessLog.TimeISO8601) > 10 {
 		day = strings.ReplaceAll(accessLog.TimeISO8601[:10], "-", "")
 	} else {
@@ -336,7 +336,7 @@ func (this *HTTPAccessLogDAO) ListAccessLogs(tx *dbs.Tx,
 		return
 	}
 
-	// 限制能查询的最大条数，防止占用内存过多
+	// 限制能查询的最大条数,防止占用内存过多
 	if size > 1000 {
 		size = 1000
 	}
@@ -457,8 +457,8 @@ func (this *HTTPAccessLogDAO) listAccessLogs(tx *dbs.Tx,
 
 	var locker = sync.Mutex{}
 
-	// 这里正则表达式中的括号不能轻易变更，因为后面有引用
-	// TODO 支持多个查询条件的组合，比如 status:200 proto:HTTP/1.1
+	// 这里正则表达式中的括号不能轻易变更,因为后面有引用
+	// TODO 支持多个查询条件的组合,比如 status:200 proto:HTTP/1.1
 	var statusPrefixReg = regexp.MustCompile(`status:\s*(\d{3})\b`)
 	var statusRangeReg = regexp.MustCompile(`status:\s*(\d{3})-(\d{3})\b`)
 	var urlReg = regexp.MustCompile(`^(http|https)://`)
@@ -492,7 +492,7 @@ func (this *HTTPAccessLogDAO) listAccessLogs(tx *dbs.Tx,
 					query.Where("nodeId IN (" + strings.Join(nodeIdStrings, ",") + ")")
 					query.Reuse(false)
 				} else {
-					// 如果没有节点，则直接返回空
+					// 如果没有节点,则直接返回空
 					return
 				}
 			}

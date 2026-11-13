@@ -52,7 +52,7 @@ func init() {
 			}
 
 			if Tea.IsTesting() {
-				// 测试条件下缩短时间，以便进行观察
+				// 测试条件下缩短时间,以便进行观察
 				duration = 10 * time.Second
 			}
 			var ticker = time.NewTicker(duration)

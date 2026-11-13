@@ -1,6 +1,6 @@
 package stats
 
-// NodeTrafficHourlyStat 总的流量统计（按天）
+// NodeTrafficHourlyStat 总的流量统计(按天)
 type NodeTrafficHourlyStat struct {
 	Id                  uint64 `field:"id"`                  // ID
 	Role                string `field:"role"`                // 节点角色

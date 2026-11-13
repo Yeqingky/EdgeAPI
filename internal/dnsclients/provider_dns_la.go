@@ -572,7 +572,7 @@ func (this *DNSLaProvider) routeToId(domain string, routeCode string) (string, e
 		return "", nil
 	}
 
-	// 新的线路：id@code
+	// 新的线路:id@code
 	if strings.Contains(routeCode, "$") {
 		return strings.Split(routeCode, "$")[0], nil
 	}

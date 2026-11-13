@@ -1,6 +1,6 @@
 package stats
 
-// 浏览器统计（按月）
+// 浏览器统计(按月)
 type ServerClientBrowserMonthlyStat struct {
 	Id        uint64 `field:"id"`        // ID
 	ServerId  uint32 `field:"serverId"`  // 服务ID

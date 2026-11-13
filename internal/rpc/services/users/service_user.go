@@ -695,7 +695,7 @@ func (this *UserService) ComposeUserGlobalBoard(ctx context.Context, req *pb.Com
 	}
 	result.DailyStats = dayStats
 
-	// CPU、内存、负载
+	// CPU,内存,负载
 	cpuValues, err := models.SharedNodeValueDAO.ListValuesForUserNodes(tx, nodeconfigs.NodeValueItemCPU, "usage", nodeconfigs.NodeValueRangeMinute)
 	if err != nil {
 		return nil, err

@@ -1,6 +1,6 @@
 # 实例
 
-## 目录结构：
+## 目录结构:
 ~~~
 /opt/cache
 /usr/local/goedge/
@@ -25,13 +25,13 @@
 /usr/local/mysql
 ~~~
 
-* 其中 `->` 表示软链接。
+* 其中 `->` 表示软链接.
 * `src/` 目录下放置zip格式的待安装压缩包
 
 ## 端口
-* Admin：7788
-* API：8001
-* API HTTP：8002
+* Admin:7788
+* API:8001
+* API HTTP:8002
 * User: 7799
 * Server: 8080
 

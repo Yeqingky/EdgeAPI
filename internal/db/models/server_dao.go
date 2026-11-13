@@ -64,7 +64,7 @@ func init() {
 func (this *ServerDAO) Init() {
 	_ = this.DAOObject.Init()
 
-	// 这里不处理增删改事件，是为了避免Server修改本身的时候，也要触发别的Server变更
+	// 这里不处理增删改事件,是为了避免Server修改本身的时候,也要触发别的Server变更
 }
 
 // EnableServer 启用条目
@@ -210,7 +210,7 @@ func (this *ServerDAO) CreateServer(tx *dbs.Tx,
 		op.Udp = udpJSON
 	}
 
-	// 如果没有Web配置，则创建之
+	// 如果没有Web配置,则创建之
 	if webId <= 0 {
 		webId, err = SharedHTTPWebDAO.CreateWeb(tx, 0, userId, nil)
 		if err != nil {
@@ -325,7 +325,7 @@ func (this *ServerDAO) UpdateServerBasic(tx *dbs.Tx, serverId int64, name string
 		return err
 	}
 
-	// 因为可能有isOn的原因，所以需要修改
+	// 因为可能有isOn的原因,所以需要修改
 	err = this.NotifyDNSUpdate(tx, serverId)
 	if err != nil {
 		return err
@@ -800,9 +800,9 @@ func (this *ServerDAO) CountAllEnabledServers(tx *dbs.Tx) (int64, error) {
 }
 
 // CountAllEnabledServersMatch 计算所有可用服务数量
-// 参数：
+// 参数:
 //
-//	groupId 分组ID，如果为-1，则搜索没有分组的服务
+//	groupId 分组ID,如果为-1,则搜索没有分组的服务
 func (this *ServerDAO) CountAllEnabledServersMatch(tx *dbs.Tx, groupId int64, keyword string, userId int64, clusterId int64, auditingFlag configutils.BoolState, protocolFamilies []string, userPlanId int64) (int64, error) {
 	query := this.Query(tx).
 		State(ServerStateEnabled)
@@ -865,9 +865,9 @@ func (this *ServerDAO) CountAllEnabledServersMatch(tx *dbs.Tx, groupId int64, ke
 }
 
 // ListEnabledServersMatch 列出单页的服务
-// 参数：
+// 参数:
 //
-//	groupId 分组ID，如果为-1，则搜索没有分组的服务
+//	groupId 分组ID,如果为-1,则搜索没有分组的服务
 func (this *ServerDAO) ListEnabledServersMatch(tx *dbs.Tx, offset int64, size int64, groupId int64, keyword string, userId int64, clusterId int64, auditingFlag int32, protocolFamilies []string, order string) (result []*Server, err error) {
 	var query = this.Query(tx).
 		State(ServerStateEnabled).
@@ -1766,7 +1766,7 @@ func (this *ServerDAO) FindServerSupportCNAME(tx *dbs.Tx, serverId int64) (bool,
 	return supportCNAME == 1, nil
 }
 
-// FindStatelessServerDNS 查询服务的DNS相关信息，并且不关注状态
+// FindStatelessServerDNS 查询服务的DNS相关信息,并且不关注状态
 func (this *ServerDAO) FindStatelessServerDNS(tx *dbs.Tx, serverId int64) (*Server, error) {
 	one, err := this.Query(tx).
 		Pk(serverId).
@@ -2420,7 +2420,7 @@ func (this *ServerDAO) RenewServerTrafficLimitStatus(tx *dbs.Tx, trafficLimitCon
 			return err
 		}
 
-		// 如果已经达到限制了，而且还在有效期，那就没必要再更新
+		// 如果已经达到限制了,而且还在有效期,那就没必要再更新
 		if !isUpdatingConfig && oldStatus.IsValid() {
 			return nil
 		}
@@ -2506,7 +2506,7 @@ func (this *ServerDAO) UpdateServerTrafficLimitStatus(tx *dbs.Tx, serverId int64
 			return err
 		}
 		if len(oldStatus.UntilDay) > 0 &&
-			oldStatus.UntilDay >= day /** 如果已经限制，且比当前日期长，则无需重复 **/ &&
+			oldStatus.UntilDay >= day /** 如果已经限制,且比当前日期长,则无需重复 **/ &&
 			oldStatus.PlanId == planId {
 			// no need to change
 			return nil
@@ -3099,7 +3099,7 @@ func (this *ServerDAO) NotifyDNSUpdate(tx *dbs.Tx, serverId int64) error {
 	clusterId, err := this.Query(tx).
 		Pk(serverId).
 		Result("clusterId").
-		FindInt64Col(0) // 这里不需要加服务状态条件，因为我们即使删除也要删除对应的服务的DNS解析
+		FindInt64Col(0) // 这里不需要加服务状态条件,因为我们即使删除也要删除对应的服务的DNS解析
 	if err != nil {
 		return err
 	}

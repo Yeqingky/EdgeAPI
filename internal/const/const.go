@@ -15,7 +15,7 @@ const (
 
 	SystemdServiceName = "edge-api"
 
-	// 其他节点版本号，用来检测是否有需要升级的节点
+	// 其他节点版本号,用来检测是否有需要升级的节点
 
 	NodeVersion = "1.4.0"
 )

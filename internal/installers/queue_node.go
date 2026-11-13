@@ -87,7 +87,7 @@ func (this *NodeQueue) InstallNode(nodeId int64, installStatus *models.NodeInsta
 		return err
 	}
 	if node == nil {
-		return errors.New("can not find node, ID：'" + numberutils.FormatInt64(nodeId) + "'")
+		return errors.New("can not find node, ID:'" + numberutils.FormatInt64(nodeId) + "'")
 	}
 
 	// 登录信息
@@ -210,7 +210,7 @@ func (this *NodeQueue) InstallNode(nodeId int64, installStatus *models.NodeInsta
 			return err
 		}
 		if cluster == nil {
-			return errors.New("can not find cluster, ID：'" + fmt.Sprintf("%d", clusterId) + "'")
+			return errors.New("can not find cluster, ID:'" + fmt.Sprintf("%d", clusterId) + "'")
 		}
 		installDir = cluster.InstallDir
 		if len(installDir) == 0 {
@@ -230,7 +230,7 @@ func (this *NodeQueue) StartNode(nodeId int64) error {
 		return err
 	}
 	if node == nil {
-		return errors.New("can not find node, ID：'" + numberutils.FormatInt64(nodeId) + "'")
+		return errors.New("can not find node, ID:'" + numberutils.FormatInt64(nodeId) + "'")
 	}
 
 	// 登录信息
@@ -340,7 +340,7 @@ func (this *NodeQueue) StopNode(nodeId int64) error {
 		return err
 	}
 	if node == nil {
-		return errors.New("can not find node, ID：'" + numberutils.FormatInt64(nodeId) + "'")
+		return errors.New("can not find node, ID:'" + numberutils.FormatInt64(nodeId) + "'")
 	}
 
 	// 登录信息
@@ -450,7 +450,7 @@ func (this *NodeQueue) UninstallNode(nodeId int64) error {
 		return err
 	}
 	if node == nil {
-		return errors.New("can not find node, ID：'" + numberutils.FormatInt64(nodeId) + "'")
+		return errors.New("can not find node, ID:'" + numberutils.FormatInt64(nodeId) + "'")
 	}
 
 	// 登录信息
@@ -562,7 +562,7 @@ func (this *NodeQueue) lookupNodeExe(node *models.Node, client *SSHClient) (stri
 		return "", err
 	}
 	if cluster == nil {
-		return "", errors.New("can not find cluster, ID：'" + fmt.Sprintf("%d", clusterId) + "'")
+		return "", errors.New("can not find cluster, ID:'" + fmt.Sprintf("%d", clusterId) + "'")
 	}
 	if len(cluster.InstallDir) > 0 {
 		nodeDirs = append(nodeDirs, cluster.InstallDir)

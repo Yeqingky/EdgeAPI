@@ -6,7 +6,7 @@ import "github.com/iwind/TeaGo/dbs"
 
 // CheckUserServersEnabled 判断用户是否可用服务功能
 func (this *UserDAO) CheckUserServersEnabled(tx *dbs.Tx, userId int64) (isEnabled bool, err error) {
-	// 是否已删除、未启用、已拒绝
+	// 是否已删除,未启用,已拒绝
 	one, err := this.Query(tx).
 		Result("id", "isRejected", "state", "isOn").
 		Pk(userId).

@@ -117,7 +117,7 @@ func (this *ClientBrowserDAO) CreateBrowserIfNotExists(tx *dbs.Tx, browserName s
 		return err
 	}
 	if browserId > 0 {
-		// 加入缓存，但缓存时间不要过长，因为有别的操作在更新数据
+		// 加入缓存,但缓存时间不要过长,因为有别的操作在更新数据
 		ttlcache.SharedCache.Write(cacheKey, browserId, time.Now().Unix()+3600)
 
 		return this.Query(tx).
@@ -126,7 +126,7 @@ func (this *ClientBrowserDAO) CreateBrowserIfNotExists(tx *dbs.Tx, browserName s
 			UpdateQuickly()
 	}
 
-	// 如果不存在，则创建之
+	// 如果不存在,则创建之
 	var op = NewClientBrowserOperator()
 	op.Name = browserName
 	op.CreatedDay = timeutil.Format("Ymd")
@@ -136,7 +136,7 @@ func (this *ClientBrowserDAO) CreateBrowserIfNotExists(tx *dbs.Tx, browserName s
 		return nil
 	}
 
-	// 加入缓存，但缓存时间不要过长，因为有别的操作在更新数据
+	// 加入缓存,但缓存时间不要过长,因为有别的操作在更新数据
 	if browserId > 0 {
 		ttlcache.SharedCache.Write(cacheKey, browserId, time.Now().Unix()+3600)
 	}

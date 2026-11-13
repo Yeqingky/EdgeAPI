@@ -190,7 +190,7 @@ func upgradeV0_5_8(db *dbs.DB) error {
 	}
 
 	// 删除操作系统和浏览器相关统计
-	// 只删除当前月，避免因为数据过多阻塞
+	// 只删除当前月,避免因为数据过多阻塞
 	{
 		_, err := db.Exec("DELETE FROM edgeServerClientSystemMonthlyStats WHERE month=?", timeutil.Format("Ym"))
 		if err != nil {

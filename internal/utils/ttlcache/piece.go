@@ -100,7 +100,7 @@ func (this *Piece) GC() {
 	var min = this.lastGCTime
 	var max = currentTime
 	if min > max {
-		// 过去的时间比现在大，则从这一秒重新开始
+		// 过去的时间比现在大,则从这一秒重新开始
 		min = max
 	}
 

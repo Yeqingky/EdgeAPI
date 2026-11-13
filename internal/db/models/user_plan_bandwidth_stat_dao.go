@@ -92,7 +92,7 @@ func (this *UserPlanBandwidthStatDAO) UpdateUserPlanBandwidth(tx *dbs.Tx, userId
 			"countWebsocketConnections": countWebsocketConnections,
 		}, maps.Map{
 			"bytes":                     dbs.SQL("bytes+:bytes"),
-			"avgBytes":                  dbs.SQL("(totalBytes+:totalBytes)/300"), // 因为生成SQL语句时会自动将avgBytes排在totalBytes之前，所以这里不用担心先后顺序的问题
+			"avgBytes":                  dbs.SQL("(totalBytes+:totalBytes)/300"), // 因为生成SQL语句时会自动将avgBytes排在totalBytes之前,所以这里不用担心先后顺序的问题
 			"totalBytes":                dbs.SQL("totalBytes+:totalBytes"),
 			"cachedBytes":               dbs.SQL("cachedBytes+:cachedBytes"),
 			"attackBytes":               dbs.SQL("attackBytes+:attackBytes"),
@@ -109,7 +109,7 @@ func (this *UserPlanBandwidthStatDAO) FindMonthlyPercentile(tx *dbs.Tx, userPlan
 		percentile = 95
 	}
 
-	// 如果是100%以上，则快速返回
+	// 如果是100%以上,则快速返回
 	if percentile >= 100 {
 		result, err = this.Query(tx).
 			Table(this.partialTable(userPlanId)).

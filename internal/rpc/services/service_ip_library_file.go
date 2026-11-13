@@ -580,7 +580,7 @@ func (this *IPLibraryFileService) CheckTownsWithIPLibraryFileId(ctx context.Cont
 				return nil, err
 			}
 			if townId > 0 {
-				// 已存在，则跳过
+				// 已存在,则跳过
 				continue
 			}
 

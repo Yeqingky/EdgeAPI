@@ -25,7 +25,7 @@ const (
 	ServerField_WebId               dbs.FieldName = "webId"               // WEB配置
 	ServerField_ReverseProxy        dbs.FieldName = "reverseProxy"        // 反向代理配置
 	ServerField_GroupIds            dbs.FieldName = "groupIds"            // 分组ID列表
-	ServerField_Config              dbs.FieldName = "config"              // 服务配置，自动生成
+	ServerField_Config              dbs.FieldName = "config"              // 服务配置,自动生成
 	ServerField_ConfigMd5           dbs.FieldName = "configMd5"           // Md5
 	ServerField_ClusterId           dbs.FieldName = "clusterId"           // 集群ID
 	ServerField_IncludeNodes        dbs.FieldName = "includeNodes"        // 部署条件
@@ -47,7 +47,7 @@ const (
 	ServerField_UserPlanId          dbs.FieldName = "userPlanId"          // 所属套餐ID
 	ServerField_LastUserPlanId      dbs.FieldName = "lastUserPlanId"      // 上一次使用的套餐
 	ServerField_Uam                 dbs.FieldName = "uam"                 // UAM设置
-	ServerField_BandwidthTime       dbs.FieldName = "bandwidthTime"       // 带宽更新时间，YYYYMMDDHHII
+	ServerField_BandwidthTime       dbs.FieldName = "bandwidthTime"       // 带宽更新时间,YYYYMMDDHHII
 	ServerField_BandwidthBytes      dbs.FieldName = "bandwidthBytes"      // 最近带宽峰值
 	ServerField_CountAttackRequests dbs.FieldName = "countAttackRequests" // 最近攻击请求数
 	ServerField_CountRequests       dbs.FieldName = "countRequests"       // 最近总请求数
@@ -77,7 +77,7 @@ type Server struct {
 	WebId               uint32   `field:"webId"`               // WEB配置
 	ReverseProxy        dbs.JSON `field:"reverseProxy"`        // 反向代理配置
 	GroupIds            dbs.JSON `field:"groupIds"`            // 分组ID列表
-	Config              dbs.JSON `field:"config"`              // 服务配置，自动生成
+	Config              dbs.JSON `field:"config"`              // 服务配置,自动生成
 	ConfigMd5           string   `field:"configMd5"`           // Md5
 	ClusterId           uint32   `field:"clusterId"`           // 集群ID
 	IncludeNodes        dbs.JSON `field:"includeNodes"`        // 部署条件
@@ -99,7 +99,7 @@ type Server struct {
 	UserPlanId          uint32   `field:"userPlanId"`          // 所属套餐ID
 	LastUserPlanId      uint32   `field:"lastUserPlanId"`      // 上一次使用的套餐
 	Uam                 dbs.JSON `field:"uam"`                 // UAM设置
-	BandwidthTime       string   `field:"bandwidthTime"`       // 带宽更新时间，YYYYMMDDHHII
+	BandwidthTime       string   `field:"bandwidthTime"`       // 带宽更新时间,YYYYMMDDHHII
 	BandwidthBytes      uint64   `field:"bandwidthBytes"`      // 最近带宽峰值
 	CountAttackRequests uint64   `field:"countAttackRequests"` // 最近攻击请求数
 	CountRequests       uint64   `field:"countRequests"`       // 最近总请求数
@@ -128,7 +128,7 @@ type ServerOperator struct {
 	WebId               any // WEB配置
 	ReverseProxy        any // 反向代理配置
 	GroupIds            any // 分组ID列表
-	Config              any // 服务配置，自动生成
+	Config              any // 服务配置,自动生成
 	ConfigMd5           any // Md5
 	ClusterId           any // 集群ID
 	IncludeNodes        any // 部署条件
@@ -150,7 +150,7 @@ type ServerOperator struct {
 	UserPlanId          any // 所属套餐ID
 	LastUserPlanId      any // 上一次使用的套餐
 	Uam                 any // UAM设置
-	BandwidthTime       any // 带宽更新时间，YYYYMMDDHHII
+	BandwidthTime       any // 带宽更新时间,YYYYMMDDHHII
 	BandwidthBytes      any // 最近带宽峰值
 	CountAttackRequests any // 最近攻击请求数
 	CountRequests       any // 最近总请求数

@@ -219,7 +219,7 @@ func (this *EdgeDNSAPIProvider) GetRoutes(domain string) (routes []*dnstypes.Rou
 		var routesResp = &edgeapi.FindAllNSRoutesResponse{}
 		err = this.doAPI("/NSRouteService/FindAllAgentNSRoutes", map[string]any{}, routesResp)
 		if err != nil {
-			// 忽略错误，因为老版本的EdgeDNS没有提供这个接口
+			// 忽略错误,因为老版本的EdgeDNS没有提供这个接口
 			err = nil
 		} else {
 			for _, route := range routesResp.Data.NSRoutes {

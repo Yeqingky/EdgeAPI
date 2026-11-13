@@ -18,7 +18,7 @@ func (this *SysLockerService) SysLockerLock(ctx context.Context, req *pb.SysLock
 
 	key := req.Key
 	if userId > 0 {
-		key = "@user" // 这里不加入用户ID，防止多个用户间冲突
+		key = "@user" // 这里不加入用户ID,防止多个用户间冲突
 	}
 
 	timeout := req.TimeoutSeconds

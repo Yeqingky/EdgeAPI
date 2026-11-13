@@ -986,7 +986,7 @@ func (this *NodeDAO) ComposeNodeConfig(tx *dbs.Tx, nodeId int64, dataMap *shared
 		cacheMap = utils.NewCacheMap()
 	}
 
-	// 放入到缓存中，以便于后面继续使用
+	// 放入到缓存中,以便于后面继续使用
 	if dataMap != nil {
 		cacheMap.Put("DataMap", dataMap)
 	}
@@ -1166,7 +1166,7 @@ func (this *NodeDAO) ComposeNodeConfig(tx *dbs.Tx, nodeId int64, dataMap *shared
 			config.GlobalServerConfig = nodeCluster.DecodeGlobalServerConfig()
 		}
 
-		// 最大线程数、TCP连接数
+		// 最大线程数,TCP连接数
 		if clusterIndex == 0 {
 			config.MaxThreads = int(nodeCluster.NodeMaxThreads)
 			config.DDoSProtection = nodeCluster.DecodeDDoSProtection()
@@ -1662,7 +1662,7 @@ func (this *NodeDAO) FindEnabledNodeDNS(tx *dbs.Tx, nodeId int64) (*Node, error)
 	return one.(*Node), nil
 }
 
-// FindStatelessNodeDNS 获取单个节点的DNS信息，无论什么状态
+// FindStatelessNodeDNS 获取单个节点的DNS信息,无论什么状态
 func (this *NodeDAO) FindStatelessNodeDNS(tx *dbs.Tx, nodeId int64) (*Node, error) {
 	one, err := this.Query(tx).
 		Pk(nodeId).
@@ -1828,7 +1828,7 @@ func (this *NodeDAO) UpdateNodeUpCount(tx *dbs.Tx, nodeId int64, isUp bool, maxU
 	}
 	oldIsUp := one.(*Node).IsUp
 
-	// 如果新老状态一致，则不做任何事情
+	// 如果新老状态一致,则不做任何事情
 	if oldIsUp == isUp {
 		return false, nil
 	}
@@ -1997,7 +1997,7 @@ func (this *NodeDAO) DeleteNodeFromCluster(tx *dbs.Tx, nodeId int64, clusterId i
 		return nil
 	}
 
-	// 提前通知DNS更新，因为后面集群会有变化
+	// 提前通知DNS更新,因为后面集群会有变化
 	err = this.NotifyDNSUpdate(tx, nodeId)
 	if err != nil {
 		return err
@@ -2262,7 +2262,7 @@ func (this *NodeDAO) UpdateNodeAPIConfig(tx *dbs.Tx, nodeId int64, apiNodeAddrs 
 
 // NotifyUpdate 通知节点相关更新
 func (this *NodeDAO) NotifyUpdate(tx *dbs.Tx, nodeId int64) error {
-	// 这里只需要通知单个集群即可，因为节点是公用的，更新一个就相当于更新了所有
+	// 这里只需要通知单个集群即可,因为节点是公用的,更新一个就相当于更新了所有
 	clusterId, err := this.FindNodeClusterId(tx, nodeId)
 	if err != nil {
 		return err
@@ -2277,7 +2277,7 @@ func (this *NodeDAO) NotifyUpdate(tx *dbs.Tx, nodeId int64) error {
 
 // NotifyLevelUpdate 通知节点级别更新
 func (this *NodeDAO) NotifyLevelUpdate(tx *dbs.Tx, nodeId int64) error {
-	// 这里只需要通知单个集群即可，因为节点是公用的，更新一个就相当于更新了所有
+	// 这里只需要通知单个集群即可,因为节点是公用的,更新一个就相当于更新了所有
 	clusterIds, err := this.FindEnabledAndOnNodeClusterIds(tx, nodeId)
 	if err != nil {
 		return err

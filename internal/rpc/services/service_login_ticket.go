@@ -38,7 +38,7 @@ func (this *LoginTicketService) CreateLoginTicket(ctx context.Context, req *pb.C
 }
 
 // FindLoginTicketWithValue 查找票据
-// 查找成功后，会自动删除票据信息，所以票据信息只能查询一次
+// 查找成功后,会自动删除票据信息,所以票据信息只能查询一次
 func (this *LoginTicketService) FindLoginTicketWithValue(ctx context.Context, req *pb.FindLoginTicketWithValueRequest) (*pb.FindLoginTicketWithValueResponse, error) {
 	_, _, err := this.ValidateAdminAndUser(ctx, false)
 	if err != nil {

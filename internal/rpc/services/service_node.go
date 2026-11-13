@@ -767,7 +767,7 @@ func (this *NodeService) FindCurrentNodeConfig(ctx context.Context, req *pb.Find
 			dataMap = shared.NewDataMap()
 		}
 	} else {
-		// 如果没有使用DataMap，但是获取的缓存是有DataMap的，需要重新获取
+		// 如果没有使用DataMap,但是获取的缓存是有DataMap的,需要重新获取
 		_, ok := cacheMap.Get("DataMap")
 		if ok {
 			cacheMap = nil
@@ -801,7 +801,7 @@ func (this *NodeService) FindCurrentNodeConfig(ctx context.Context, req *pb.Find
 			data = buffer.Bytes()
 			isCompressed = true
 		} else {
-			// 如果失败，则使用最直接方法重新编码
+			// 如果失败,则使用最直接方法重新编码
 			data, err = json.Marshal(nodeConfig)
 			if err != nil {
 				return nil, err

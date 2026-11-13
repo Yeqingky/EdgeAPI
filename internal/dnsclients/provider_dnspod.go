@@ -215,7 +215,7 @@ func (this *DNSPodProvider) GetRoutes(domain string) (routes []*dnstypes.Route, 
 		if len(customLineGroupListResponse.Data.LineGroups) > 0 {
 			for _, lineGroup := range customLineGroupListResponse.Data.LineGroups {
 				routes = append(routes, &dnstypes.Route{
-					Name: "分组：" + lineGroup.Name,
+					Name: "分组:" + lineGroup.Name,
 					Code: lineGroup.Name,
 				})
 			}
@@ -238,7 +238,7 @@ func (this *DNSPodProvider) GetRoutes(domain string) (routes []*dnstypes.Route, 
 
 					for _, lineGroup := range customLineGroupListResponse.Data.LineGroups {
 						routes = append(routes, &dnstypes.Route{
-							Name: "分组：" + lineGroup.Name,
+							Name: "分组:" + lineGroup.Name,
 							Code: lineGroup.Name,
 						})
 					}

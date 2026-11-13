@@ -9,7 +9,7 @@ type NodeTask struct {
 	ServerId   uint64 `field:"serverId"`   // 服务ID
 	UserId     uint64 `field:"userId"`     // 用户ID
 	Type       string `field:"type"`       // 任务类型
-	UniqueId   string `field:"uniqueId"`   // 唯一ID：nodeId@type
+	UniqueId   string `field:"uniqueId"`   // 唯一ID:nodeId@type
 	UpdatedAt  uint64 `field:"updatedAt"`  // 修改时间
 	IsDone     bool   `field:"isDone"`     // 是否已完成
 	IsOk       bool   `field:"isOk"`       // 是否已完成
@@ -26,7 +26,7 @@ type NodeTaskOperator struct {
 	ServerId   any // 服务ID
 	UserId     any // 用户ID
 	Type       any // 任务类型
-	UniqueId   any // 唯一ID：nodeId@type
+	UniqueId   any // 唯一ID:nodeId@type
 	UpdatedAt  any // 修改时间
 	IsDone     any // 是否已完成
 	IsOk       any // 是否已完成

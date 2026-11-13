@@ -1,6 +1,6 @@
 package stats
 
-// TrafficHourlyStat 总的流量统计（按小时）
+// TrafficHourlyStat 总的流量统计(按小时)
 type TrafficHourlyStat struct {
 	Id                  uint64 `field:"id"`                  // ID
 	Hour                string `field:"hour"`                // YYYYMMDDHH

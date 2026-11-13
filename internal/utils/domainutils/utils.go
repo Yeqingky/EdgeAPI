@@ -14,7 +14,7 @@ func ValidateDomainFormat(domain string) bool {
 			strings.HasSuffix(piece, "-") ||
 			// strings.Contains(piece, "--") ||
 			len(piece) > 63 ||
-			// 支持中文、大写字母、下划线
+			// 支持中文,大写字母,下划线
 			!regexp.MustCompile(`^[\p{Han}_a-zA-Z0-9-]+$`).MatchString(piece) {
 			return false
 		}

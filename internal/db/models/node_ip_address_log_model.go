@@ -10,7 +10,7 @@ type NodeIPAddressLog struct {
 	IsUp        bool   `field:"isUp"`        // 是否在线
 	IsOn        bool   `field:"isOn"`        // 是否启用
 	CanAccess   bool   `field:"canAccess"`   // 是否可访问
-	Day         string `field:"day"`         // YYYYMMDD，用来清理
+	Day         string `field:"day"`         // YYYYMMDD,用来清理
 	BackupIP    string `field:"backupIP"`    // 备用IP
 }
 
@@ -23,7 +23,7 @@ type NodeIPAddressLogOperator struct {
 	IsUp        interface{} // 是否在线
 	IsOn        interface{} // 是否启用
 	CanAccess   interface{} // 是否可访问
-	Day         interface{} // YYYYMMDD，用来清理
+	Day         interface{} // YYYYMMDD,用来清理
 	BackupIP    interface{} // 备用IP
 }
 

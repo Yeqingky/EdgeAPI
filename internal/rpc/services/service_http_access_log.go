@@ -61,7 +61,7 @@ func (this *HTTPAccessLogService) ListHTTPAccessLogs(ctx context.Context, req *p
 	if userId > 0 {
 		req.UserId = userId
 
-		// 这里不用担心serverId <= 0 的情况，因为如果userId>0，则只会查询当前用户下的服务，不会产生安全问题
+		// 这里不用担心serverId <= 0 的情况,因为如果userId>0,则只会查询当前用户下的服务,不会产生安全问题
 		if req.ServerId > 0 {
 			err = models.SharedServerDAO.CheckUserServer(tx, userId, req.ServerId)
 			if err != nil {
@@ -125,7 +125,7 @@ func (this *HTTPAccessLogService) ListHTTPAccessLogs(ctx context.Context, req *p
 
 	return &pb.ListHTTPAccessLogsResponse{
 		HttpAccessLogs: result,
-		AccessLogs:     result, // TODO 仅仅为了兼容，当用户节点版本大于0.0.8时可以删除
+		AccessLogs:     result, // TODO 仅仅为了兼容,当用户节点版本大于0.0.8时可以删除
 		HasMore:        hasMore,
 		RequestId:      requestId,
 	}, nil

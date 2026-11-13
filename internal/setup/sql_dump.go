@@ -416,7 +416,7 @@ func (this *SQLDump) applyQueue(db *dbs.DB, newResult *SQLDumpResult, showLog bo
 			if one == nil {
 				ops = append(ops, "+ record "+newTable.Name+" "+strings.Join(valueStrings, ", "))
 				if showLog {
-					// 不记录详细日志，防止小白用户误解日志内容
+					// 不记录详细日志,防止小白用户误解日志内容
 					// this.log("+ record " + newTable.Name + " " + strings.Join(valueStrings, ", "))
 				}
 				var params = []string{}
@@ -441,7 +441,7 @@ func (this *SQLDump) applyQueue(db *dbs.DB, newResult *SQLDumpResult, showLog bo
 			} else if !record.ValuesEquals(one) {
 				ops = append(ops, "* record "+newTable.Name+" "+strings.Join(valueStrings, ", "))
 				if showLog {
-					// 不记录详细日志，防止小白用户误解日志内容
+					// 不记录详细日志,防止小白用户误解日志内容
 					// this.log("* record " + newTable.Name + " " + strings.Join(valueStrings, ", "))
 				}
 				var args = []string{}
@@ -467,7 +467,7 @@ func (this *SQLDump) applyQueue(db *dbs.DB, newResult *SQLDumpResult, showLog bo
 	}
 
 	// 减少表格
-	// 由于我们不删除任何表格，所以这里什么都不做
+	// 由于我们不删除任何表格,所以这里什么都不做
 
 	return
 }

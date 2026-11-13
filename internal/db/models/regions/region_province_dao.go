@@ -134,7 +134,7 @@ func (this *RegionProvinceDAO) findProvinceIdWithExactName(tx *dbs.Tx, countryId
 		Attr("countryId", countryId).
 		Where("(name=:provinceName OR customName=:provinceName OR JSON_CONTAINS(codes, :provinceNameJSON) OR JSON_CONTAINS(customCodes, :provinceNameJSON))").
 		Param("provinceName", provinceName).
-		Param("provinceNameJSON", strconv.Quote(provinceName)). // 查询的需要是个JSON字符串，所以这里加双引号
+		Param("provinceNameJSON", strconv.Quote(provinceName)). // 查询的需要是个JSON字符串,所以这里加双引号
 		Result(RegionProvinceField_ValueId).
 		FindInt64Col(0)
 }

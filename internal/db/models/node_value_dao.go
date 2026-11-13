@@ -229,7 +229,7 @@ func (this *NodeValueDAO) SumAllNodeValues(tx *dbs.Tx, role string, item nodecon
 	}
 
 	var query = this.Query(tx).
-		Result("SUM(JSON_EXTRACT(value, '$."+param+"')) AS sumValue", "AVG(JSON_EXTRACT(value, '$."+param+"')) AS avgValue", "MAX(JSON_EXTRACT(value, '$."+param+"')) AS maxValueResult"). // maxValue 是个MySQL Keyword，这里使用maxValueResult代替
+		Result("SUM(JSON_EXTRACT(value, '$."+param+"')) AS sumValue", "AVG(JSON_EXTRACT(value, '$."+param+"')) AS avgValue", "MAX(JSON_EXTRACT(value, '$."+param+"')) AS maxValueResult"). // maxValue 是个MySQL Keyword,这里使用maxValueResult代替
 		Attr("role", role).
 		Attr("item", item)
 
@@ -398,7 +398,7 @@ func (this *NodeValueDAO) ComposeNodeStatus(tx *dbs.Tx, role string, nodeId int6
 	return nil
 }
 
-// ComposeNodeStatusJSON 组合节点状态值，并转换为JSON数据
+// ComposeNodeStatusJSON 组合节点状态值,并转换为JSON数据
 func (this *NodeValueDAO) ComposeNodeStatusJSON(tx *dbs.Tx, role string, nodeId int64, statusJSON []byte) ([]byte, error) {
 	var statusConfig = &nodeconfigs.NodeStatus{}
 	if len(statusJSON) > 0 {

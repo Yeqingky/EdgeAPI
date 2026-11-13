@@ -14,7 +14,7 @@ import (
 	"github.com/iwind/TeaGo/lists"
 )
 
-// HTTPFirewallPolicyService HTTP防火墙（WAF）相关服务
+// HTTPFirewallPolicyService HTTP防火墙(WAF)相关服务
 type HTTPFirewallPolicyService struct {
 	BaseService
 }

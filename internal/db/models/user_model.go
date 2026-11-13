@@ -30,7 +30,7 @@ const (
 	UserField_IsVerified        dbs.FieldName = "isVerified"        // 是否验证通过
 	UserField_RequirePlans      dbs.FieldName = "requirePlans"      // 是否需要购买套餐
 	UserField_Modules           dbs.FieldName = "modules"           // 用户模块
-	UserField_PriceType         dbs.FieldName = "priceType"         // 计费类型：traffic|bandwidth
+	UserField_PriceType         dbs.FieldName = "priceType"         // 计费类型:traffic|bandwidth
 	UserField_PricePeriod       dbs.FieldName = "pricePeriod"       // 结算周期
 	UserField_ServersEnabled    dbs.FieldName = "serversEnabled"    // 是否禁用所有服务
 	UserField_Notification      dbs.FieldName = "notification"      // 通知设置
@@ -68,7 +68,7 @@ type User struct {
 	IsVerified        bool     `field:"isVerified"`        // 是否验证通过
 	RequirePlans      uint8    `field:"requirePlans"`      // 是否需要购买套餐
 	Modules           dbs.JSON `field:"modules"`           // 用户模块
-	PriceType         string   `field:"priceType"`         // 计费类型：traffic|bandwidth
+	PriceType         string   `field:"priceType"`         // 计费类型:traffic|bandwidth
 	PricePeriod       string   `field:"pricePeriod"`       // 结算周期
 	ServersEnabled    uint8    `field:"serversEnabled"`    // 是否禁用所有服务
 	Notification      dbs.JSON `field:"notification"`      // 通知设置
@@ -105,7 +105,7 @@ type UserOperator struct {
 	IsVerified        any // 是否验证通过
 	RequirePlans      any // 是否需要购买套餐
 	Modules           any // 用户模块
-	PriceType         any // 计费类型：traffic|bandwidth
+	PriceType         any // 计费类型:traffic|bandwidth
 	PricePeriod       any // 结算周期
 	ServersEnabled    any // 是否禁用所有服务
 	Notification      any // 通知设置

@@ -82,7 +82,7 @@ func (this *RegionProviderDAO) FindProviderIdWithName(tx *dbs.Tx, providerName s
 	return this.Query(tx).
 		Where("(name=:providerName OR customName=:providerName OR JSON_CONTAINS(codes, :providerNameJSON) OR JSON_CONTAINS(customCodes, :providerNameJSON))").
 		Param("providerName", providerName).
-		Param("providerNameJSON", strconv.Quote(providerName)). // 查询的需要是个JSON字符串，所以这里加双引号
+		Param("providerNameJSON", strconv.Quote(providerName)). // 查询的需要是个JSON字符串,所以这里加双引号
 		Result(RegionProviderField_ValueId).
 		FindInt64Col(0)
 }

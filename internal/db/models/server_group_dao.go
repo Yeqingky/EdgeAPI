@@ -289,7 +289,7 @@ func (this *ServerGroupDAO) ComposeGroupConfig(tx *dbs.Tx, groupId int64, forNod
 	var cacheKey = this.Table + ":config:" + types.String(groupId)
 	var cacheConfig, _ = cacheMap.Get(cacheKey)
 	if cacheConfig != nil {
-		// 克隆，防止分解后的Server配置相互受到影响
+		// 克隆,防止分解后的Server配置相互受到影响
 		configJSON, err := json.Marshal(cacheConfig)
 		if err != nil {
 			return nil, err

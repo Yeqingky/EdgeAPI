@@ -26,7 +26,7 @@ func fixVersion(version string) string {
 	var pieces = strings.Split(version, ".")
 	var lastPiece = types.Int(pieces[len(pieces)-1])
 	if lastPiece > 10 {
-		// 这个是以前使用的SQL版本号，我们给去掉
+		// 这个是以前使用的SQL版本号,我们给去掉
 		version = strings.Join(pieces[:len(pieces)-1], ".")
 	}
 	return version

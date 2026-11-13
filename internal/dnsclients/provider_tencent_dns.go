@@ -282,7 +282,7 @@ func (this *TencentDNSProvider) AddRecord(domain string, newRecord *dnstypes.Rec
 	req.SubDomain = this.stringVal(newRecord.Name)
 	req.RecordType = this.stringVal(newRecord.Type)
 	req.TTL = this.uint64Val(uint64(ttl))
-	req.RecordLine = this.stringVal(this.DefaultRouteName()) // 默认必填项，但以RecordLineId优先
+	req.RecordLine = this.stringVal(this.DefaultRouteName()) // 默认必填项,但以RecordLineId优先
 	req.RecordLineId = this.stringVal(newRecord.Route)
 	req.Value = this.stringVal(newRecord.Value)
 	resp, respErr := this.client.CreateRecord(req)
@@ -329,7 +329,7 @@ func (this *TencentDNSProvider) UpdateRecord(domain string, record *dnstypes.Rec
 	req.SubDomain = this.stringVal(newRecord.Name)
 	req.RecordType = this.stringVal(newRecord.Type)
 	req.TTL = this.uint64Val(uint64(ttl))
-	req.RecordLine = this.stringVal(this.DefaultRouteName()) // 默认必填项，但以RecordLineId优先
+	req.RecordLine = this.stringVal(this.DefaultRouteName()) // 默认必填项,但以RecordLineId优先
 	req.RecordLineId = this.stringVal(newRecord.Route)
 	req.Value = this.stringVal(newRecord.Value)
 	_, respErr := this.client.ModifyRecord(req)

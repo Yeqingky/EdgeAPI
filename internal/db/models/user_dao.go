@@ -144,7 +144,7 @@ func (this *UserDAO) FindEnabledBasicUser(tx *dbs.Tx, id int64) (*User, error) {
 	return result.(*User), err
 }
 
-// FindBasicUserWithoutState 查找用户基本信息，并忽略状态
+// FindBasicUserWithoutState 查找用户基本信息,并忽略状态
 func (this *UserDAO) FindBasicUserWithoutState(tx *dbs.Tx, id int64) (*User, error) {
 	result, err := this.Query(tx).
 		Pk(id).

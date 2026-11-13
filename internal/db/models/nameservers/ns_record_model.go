@@ -17,7 +17,7 @@ type NSRecord struct {
 	SrvPort     uint32   `field:"srvPort"`     // SRV端口
 	CaaFlag     uint8    `field:"caaFlag"`     // CAA Flag
 	CaaTag      string   `field:"caaTag"`      // CAA TAG
-	Ttl         uint32   `field:"ttl"`         // TTL（秒）
+	Ttl         uint32   `field:"ttl"`         // TTL(秒)
 	Weight      uint32   `field:"weight"`      // 权重
 	RouteIds    dbs.JSON `field:"routeIds"`    // 线路
 	HealthCheck dbs.JSON `field:"healthCheck"` // 健康检查配置
@@ -43,7 +43,7 @@ type NSRecordOperator struct {
 	SrvPort     any // SRV端口
 	CaaFlag     any // CAA Flag
 	CaaTag      any // CAA TAG
-	Ttl         any // TTL（秒）
+	Ttl         any // TTL(秒)
 	Weight      any // 权重
 	RouteIds    any // 线路
 	HealthCheck any // 健康检查配置

@@ -37,7 +37,7 @@ type CustomHTTPProvider struct {
 }
 
 // Auth 认证
-// 参数：
+// 参数:
 //   - url
 //   - secret
 func (this *CustomHTTPProvider) Auth(params maps.Map) error {
@@ -56,7 +56,7 @@ func (this *CustomHTTPProvider) Auth(params maps.Map) error {
 
 // MaskParams 对参数进行掩码
 func (this *CustomHTTPProvider) MaskParams(params maps.Map) {
-	// 这里暂时不要掩码，避免用户忘记
+	// 这里暂时不要掩码,避免用户忘记
 }
 
 // GetDomains 获取所有域名列表

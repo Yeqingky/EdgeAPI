@@ -117,7 +117,7 @@ func (this *ClientSystemDAO) CreateSystemIfNotExists(tx *dbs.Tx, systemName stri
 		return err
 	}
 	if systemId > 0 {
-		// 加入缓存，但缓存时间不要过长，因为有别的操作在更新数据
+		// 加入缓存,但缓存时间不要过长,因为有别的操作在更新数据
 		ttlcache.SharedCache.Write(cacheKey, systemId, time.Now().Unix()+3600)
 
 		return this.Query(tx).
@@ -135,7 +135,7 @@ func (this *ClientSystemDAO) CreateSystemIfNotExists(tx *dbs.Tx, systemName stri
 		return nil
 	}
 
-	// 加入缓存，但缓存时间不要过长，因为有别的操作在更新数据
+	// 加入缓存,但缓存时间不要过长,因为有别的操作在更新数据
 	if systemId > 0 {
 		ttlcache.SharedCache.Write(cacheKey, systemId, time.Now().Unix()+3600)
 	}

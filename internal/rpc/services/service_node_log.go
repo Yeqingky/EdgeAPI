@@ -67,7 +67,7 @@ func (this *NodeLogService) ListNodeLogs(ctx context.Context, req *pb.ListNodeLo
 
 	var result = []*pb.NodeLog{}
 	for _, log := range logs {
-		// 如果是需要修复的日志，我们需要去重
+		// 如果是需要修复的日志,我们需要去重
 		if req.FixedState > 0 {
 			if lists.ContainsString(hashList, log.Hash) {
 				continue
