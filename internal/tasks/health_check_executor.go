@@ -11,7 +11,6 @@ import (
 	"sync"
 	"time"
 
-	teaconst "git.ovh.im/yeqing/EdgeAPI/internal/const"
 	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
 	"git.ovh.im/yeqing/EdgeAPI/internal/errors"
 	"git.ovh.im/yeqing/EdgeCommon/pkg/configutils"
@@ -167,58 +166,56 @@ func (this *HealthCheckExecutor) runNode(healthCheckConfig *serverconfigs.Health
 	}
 
 	// 修改节点IP状态
-	if teaconst.IsPlus {
-		isChanged, err := models.SharedNodeIPAddressDAO.UpdateAddressHealthCount(nil, result.NodeAddrId, result.IsOk, healthCheckConfig.CountUp, healthCheckConfig.CountDown, healthCheckConfig.AutoDown)
-		if err != nil {
-			this.logErr("HealthCheckExecutor", err.Error())
-			return
-		}
+	isChanged, err := models.SharedNodeIPAddressDAO.UpdateAddressHealthCount(nil, result.NodeAddrId, result.IsOk, healthCheckConfig.CountUp, healthCheckConfig.CountDown, healthCheckConfig.AutoDown)
+	if err != nil {
+		this.logErr("HealthCheckExecutor", err.Error())
+		return
+	}
 
-		if isChanged {
-			// 在线状态发生变化
-			if healthCheckConfig.AutoDown {
-				// 发送消息
-				var message string
-				var messageType string
-				var messageLevel string
-				if result.IsOk {
-					message = "健康检查成功，节点\"" + result.Node.Name + "\"，IP\"" + result.NodeAddr + "\"已恢复上线"
-					messageType = models.MessageTypeHealthCheckNodeUp
-					messageLevel = models.MessageLevelSuccess
-				} else {
-					message = "健康检查失败，节点\"" + result.Node.Name + "\"，IP\"" + result.NodeAddr + "\"已自动下线"
-					messageType = models.MessageTypeHealthCheckNodeDown
-					messageLevel = models.MessageLevelError
-				}
-
-				err = models.NewMessageDAO().CreateNodeMessage(nil, nodeconfigs.NodeRoleNode, this.clusterId, int64(result.Node.Id), messageType, messageLevel, message, message, nil, false)
-				if err != nil {
-					this.logErr("HealthCheckExecutor", err.Error())
-					return
-				}
-
-				// 触发节点动作
-				if !result.IsOk {
-					err := this.fireNodeActions(int64(result.Node.Id))
-					if err != nil {
-						this.logErr("HealthCheckExecutor", err.Error())
-					}
-					return
-				}
+	if isChanged {
+		// 在线状态发生变化
+		if healthCheckConfig.AutoDown {
+			// 发送消息
+			var message string
+			var messageType string
+			var messageLevel string
+			if result.IsOk {
+				message = "健康检查成功，节点\"" + result.Node.Name + "\"，IP\"" + result.NodeAddr + "\"已恢复上线"
+				messageType = models.MessageTypeHealthCheckNodeUp
+				messageLevel = models.MessageLevelSuccess
+			} else {
+				message = "健康检查失败，节点\"" + result.Node.Name + "\"，IP\"" + result.NodeAddr + "\"已自动下线"
+				messageType = models.MessageTypeHealthCheckNodeDown
+				messageLevel = models.MessageLevelError
 			}
 
-			// 触发阈值
-			err = models.SharedNodeIPAddressDAO.FireThresholds(nil, nodeconfigs.NodeRoleNode, int64(result.Node.Id))
+			err = models.NewMessageDAO().CreateNodeMessage(nil, nodeconfigs.NodeRoleNode, this.clusterId, int64(result.Node.Id), messageType, messageLevel, message, message, nil, false)
 			if err != nil {
 				this.logErr("HealthCheckExecutor", err.Error())
 				return
 			}
+
+			// 触发节点动作
+			if !result.IsOk {
+				err := this.fireNodeActions(int64(result.Node.Id))
+				if err != nil {
+					this.logErr("HealthCheckExecutor", err.Error())
+				}
+				return
+			}
 		}
 
-		// 结束处理 ，因为我们只处理IP的上下线，不修改节点的状态
-		if healthCheckConfig.AutoDown {
+		// 触发阈值
+		err = models.SharedNodeIPAddressDAO.FireThresholds(nil, nodeconfigs.NodeRoleNode, int64(result.Node.Id))
+		if err != nil {
+			this.logErr("HealthCheckExecutor", err.Error())
 			return
 		}
+	}
+
+	// 结束处理 ，因为我们只处理IP的上下线，不修改节点的状态
+	if healthCheckConfig.AutoDown {
+		return
 	}
 
 	// 修改节点状态

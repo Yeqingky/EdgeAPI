@@ -139,11 +139,6 @@ func (this *NodeDAO) FindNodeName(tx *dbs.Tx, id int64) (string, error) {
 
 // CreateNode 创建节点
 func (this *NodeDAO) CreateNode(tx *dbs.Tx, adminId int64, name string, clusterId int64, groupId int64, regionId int64) (nodeId int64, err error) {
-	err = this.CheckNodesLimit(tx)
-	if err != nil {
-		return
-	}
-
 	uniqueId, err := this.GenUniqueId(tx)
 	if err != nil {
 		return 0, err

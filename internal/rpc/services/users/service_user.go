@@ -6,7 +6,6 @@ import (
 	"strings"
 	"time"
 
-	teaconst "git.ovh.im/yeqing/EdgeAPI/internal/const"
 	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
 	"git.ovh.im/yeqing/EdgeAPI/internal/errors"
 	"git.ovh.im/yeqing/EdgeAPI/internal/rpc/services"
@@ -300,14 +299,6 @@ func (this *UserService) LoginUser(ctx context.Context, req *pb.LoginUserRequest
 		if err != nil {
 			return nil, err
 		}
-	}
-
-	if !teaconst.IsPlus {
-		return &pb.LoginUserResponse{
-			UserId:  0,
-			IsOk:    false,
-			Message: "你正在使用的系统版本为非商业版本或已过期，请管理员续费后才能登录",
-		}, nil
 	}
 
 	if len(req.Username) == 0 || len(req.Password) == 0 {

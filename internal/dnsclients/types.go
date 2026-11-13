@@ -49,7 +49,7 @@ func FindAllProviderTypes() []maps.Map {
 		{
 			"name":        "EdgeDNS API",
 			"code":        ProviderTypeEdgeDNSAPI,
-			"description": "通过API连接GoEdge商业版系统提供的DNS服务。",
+			"description": "通过API连接EdgeDNS系统提供的DNS服务。",
 		},
 	}
 
