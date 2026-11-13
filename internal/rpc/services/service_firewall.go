@@ -8,12 +8,12 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models/regions"
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models/stats"
-	"github.com/TeaOSLab/EdgeAPI/internal/utils"
-	"github.com/TeaOSLab/EdgeCommon/pkg/nodeconfigs"
-	"github.com/TeaOSLab/EdgeCommon/pkg/rpc/pb"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models/regions"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models/stats"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/nodeconfigs"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 	"github.com/iwind/TeaGo/types"
 	timeutil "github.com/iwind/TeaGo/utils/time"
 )

@@ -5,14 +5,14 @@ import (
 	"net"
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
-	"github.com/TeaOSLab/EdgeAPI/internal/errors"
-	rpcutils "github.com/TeaOSLab/EdgeAPI/internal/rpc/utils"
-	"github.com/TeaOSLab/EdgeAPI/internal/utils"
-	"github.com/TeaOSLab/EdgeCommon/pkg/iputils"
-	"github.com/TeaOSLab/EdgeCommon/pkg/rpc/pb"
-	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/firewallconfigs"
-	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/ipconfigs"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeAPI/internal/errors"
+	rpcutils "git.ovh.im/yeqing/EdgeAPI/internal/rpc/utils"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/iputils"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/serverconfigs/firewallconfigs"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/serverconfigs/ipconfigs"
 )
 
 // IPItemService IP条目相关服务

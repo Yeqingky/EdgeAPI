@@ -6,9 +6,9 @@ import (
 	"context"
 	"errors"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
-	"github.com/TeaOSLab/EdgeCommon/pkg/iputils"
-	"github.com/TeaOSLab/EdgeCommon/pkg/rpc/pb"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/iputils"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 )
 
 // LoginTicketService 登录票据相关服务

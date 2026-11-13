@@ -1,5 +1,5 @@
 package models
 
-import "github.com/TeaOSLab/EdgeAPI/internal/errors"
+import "git.ovh.im/yeqing/EdgeAPI/internal/errors"
 
 var ErrNotFound = errors.New("resource not found")

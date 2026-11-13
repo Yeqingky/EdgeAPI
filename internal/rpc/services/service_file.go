@@ -3,8 +3,8 @@ package services
 import (
 	"context"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
-	"github.com/TeaOSLab/EdgeCommon/pkg/rpc/pb"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 )
 
 // FileService 文件相关服务

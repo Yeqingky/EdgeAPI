@@ -3,9 +3,9 @@ package tasks
 import (
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
-	"github.com/TeaOSLab/EdgeAPI/internal/goman"
-	"github.com/TeaOSLab/EdgeCommon/pkg/nodeconfigs"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeAPI/internal/goman"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/nodeconfigs"
 	"github.com/iwind/TeaGo/dbs"
 )
 

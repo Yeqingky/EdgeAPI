@@ -2,7 +2,7 @@ package models
 
 import (
 	"encoding/json"
-	"github.com/TeaOSLab/EdgeAPI/internal/remotelogs"
+	"git.ovh.im/yeqing/EdgeAPI/internal/remotelogs"
 )
 
 func (this *ReportNode) DecodeAllowIPs() []string {

@@ -3,9 +3,9 @@ package services
 import (
 	"context"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
-	rpcutils "github.com/TeaOSLab/EdgeAPI/internal/rpc/utils"
-	"github.com/TeaOSLab/EdgeCommon/pkg/rpc/pb"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	rpcutils "git.ovh.im/yeqing/EdgeAPI/internal/rpc/utils"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 	"github.com/iwind/TeaGo/lists"
 	"github.com/iwind/TeaGo/types"
 )

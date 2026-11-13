@@ -5,8 +5,8 @@ package dnsclients_test
 import (
 	"testing"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/dnsclients"
-	"github.com/TeaOSLab/EdgeAPI/internal/dnsclients/dnstypes"
+	"git.ovh.im/yeqing/EdgeAPI/internal/dnsclients"
+	"git.ovh.im/yeqing/EdgeAPI/internal/dnsclients/dnstypes"
 	"github.com/iwind/TeaGo/dbs"
 )
 

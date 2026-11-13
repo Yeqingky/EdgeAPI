@@ -5,9 +5,9 @@
 package models
 
 import (
-	"github.com/TeaOSLab/EdgeAPI/internal/utils"
-	"github.com/TeaOSLab/EdgeAPI/internal/zero"
-	"github.com/TeaOSLab/EdgeCommon/pkg/nodeconfigs"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils"
+	"git.ovh.im/yeqing/EdgeAPI/internal/zero"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/nodeconfigs"
 	"github.com/iwind/TeaGo/dbs"
 )
 

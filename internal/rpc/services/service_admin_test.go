@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	teaconst "github.com/TeaOSLab/EdgeAPI/internal/const"
-	"github.com/TeaOSLab/EdgeAPI/internal/encrypt"
-	"github.com/TeaOSLab/EdgeCommon/pkg/rpc/pb"
+	teaconst "git.ovh.im/yeqing/EdgeAPI/internal/const"
+	"git.ovh.im/yeqing/EdgeAPI/internal/encrypt"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 	"github.com/iwind/TeaGo/assert"
 	"github.com/iwind/TeaGo/maps"
 	stringutil "github.com/iwind/TeaGo/utils/string"

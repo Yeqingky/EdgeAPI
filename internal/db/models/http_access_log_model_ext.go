@@ -3,7 +3,7 @@ package models
 import (
 	"encoding/json"
 
-	"github.com/TeaOSLab/EdgeCommon/pkg/rpc/pb"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 )
 
 // ToPB 转换成PB对象

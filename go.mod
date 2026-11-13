@@ -1,11 +1,11 @@
-module github.com/TeaOSLab/EdgeAPI
+module git.ovh.im/yeqing/EdgeAPI
 
 go 1.27.4
 
-replace github.com/TeaOSLab/EdgeCommon => ../EdgeCommon
+replace git.ovh.im/yeqing/EdgeCommon => ../EdgeCommon
 
 require (
-	github.com/TeaOSLab/EdgeCommon v1.3.9
+	git.ovh.im/yeqing/EdgeCommon v1.3.9
 	github.com/aliyun/alibaba-cloud-sdk-go v1.63.107
 	github.com/andybalholm/brotli v1.3.0
 	github.com/cespare/xxhash v1.1.0

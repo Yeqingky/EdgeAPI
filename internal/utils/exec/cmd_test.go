@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	executils "github.com/TeaOSLab/EdgeAPI/internal/utils/exec"
+	executils "git.ovh.im/yeqing/EdgeAPI/internal/utils/exec"
 )
 
 func TestNewTimeoutCmd_Sleep(t *testing.T) {

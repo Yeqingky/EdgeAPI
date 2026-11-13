@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/dnsclients"
+	"git.ovh.im/yeqing/EdgeAPI/internal/dnsclients"
 	"github.com/go-acme/lego/v4/registration"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/iwind/TeaGo/bootstrap"

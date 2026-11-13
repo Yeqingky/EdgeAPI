@@ -3,10 +3,10 @@ package services
 import (
 	"context"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
-	rpcutils "github.com/TeaOSLab/EdgeAPI/internal/rpc/utils"
-	"github.com/TeaOSLab/EdgeCommon/pkg/iplibrary"
-	"github.com/TeaOSLab/EdgeCommon/pkg/rpc/pb"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	rpcutils "git.ovh.im/yeqing/EdgeAPI/internal/rpc/utils"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/iplibrary"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 )
 
 // IPLibraryService IP库服务

@@ -4,7 +4,7 @@ package models
 
 import (
 	"fmt"
-	"github.com/TeaOSLab/EdgeAPI/internal/errors"
+	"git.ovh.im/yeqing/EdgeAPI/internal/errors"
 	"github.com/iwind/TeaGo/dbs"
 	"github.com/iwind/TeaGo/lists"
 	"github.com/iwind/TeaGo/types"

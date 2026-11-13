@@ -6,7 +6,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/utils/taskutils"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils/taskutils"
 )
 
 func TestRunConcurrent(t *testing.T) {

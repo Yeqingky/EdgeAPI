@@ -6,8 +6,8 @@ import (
 	"os/exec"
 	"runtime"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/remotelogs"
-	executils "github.com/TeaOSLab/EdgeAPI/internal/utils/exec"
+	"git.ovh.im/yeqing/EdgeAPI/internal/remotelogs"
+	executils "git.ovh.im/yeqing/EdgeAPI/internal/utils/exec"
 	"github.com/iwind/TeaGo/types"
 )
 

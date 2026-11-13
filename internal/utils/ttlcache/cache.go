@@ -3,7 +3,7 @@ package ttlcache
 import (
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/utils"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils"
 )
 
 var SharedCache = NewCache()

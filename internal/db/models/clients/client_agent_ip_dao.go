@@ -1,7 +1,7 @@
 package clients
 
 import (
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/iwind/TeaGo/Tea"
 	"github.com/iwind/TeaGo/dbs"

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/dnsclients/dnstypes"
+	"git.ovh.im/yeqing/EdgeAPI/internal/dnsclients/dnstypes"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
 	"github.com/aliyun/alibaba-cloud-sdk-go/services/alidns"

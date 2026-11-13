@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
-	"github.com/TeaOSLab/EdgeAPI/internal/goman"
-	"github.com/TeaOSLab/EdgeAPI/internal/utils/numberutils"
-	"github.com/TeaOSLab/EdgeCommon/pkg/systemconfigs"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeAPI/internal/goman"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils/numberutils"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/systemconfigs"
 	"github.com/iwind/TeaGo/dbs"
 )
 

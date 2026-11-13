@@ -3,8 +3,8 @@
 package tasks
 
 import (
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
-	"github.com/TeaOSLab/EdgeAPI/internal/remotelogs"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeAPI/internal/remotelogs"
 )
 
 type BaseTask struct {

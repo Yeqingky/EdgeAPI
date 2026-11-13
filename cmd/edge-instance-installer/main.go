@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/instances"
+	"git.ovh.im/yeqing/EdgeAPI/internal/instances"
 	_ "github.com/iwind/TeaGo/bootstrap"
 	"github.com/iwind/TeaGo/lists"
 )

@@ -5,7 +5,7 @@ package setup_test
 import (
 	"testing"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/setup"
+	"git.ovh.im/yeqing/EdgeAPI/internal/setup"
 	"github.com/iwind/TeaGo/assert"
 )
 

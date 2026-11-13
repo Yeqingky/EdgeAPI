@@ -6,8 +6,8 @@ package tasks_test
 import (
 	"testing"
 
-	teaconst "github.com/TeaOSLab/EdgeAPI/internal/const"
-	"github.com/TeaOSLab/EdgeAPI/internal/tasks"
+	teaconst "git.ovh.im/yeqing/EdgeAPI/internal/const"
+	"git.ovh.im/yeqing/EdgeAPI/internal/tasks"
 	"github.com/iwind/TeaGo/dbs"
 )
 

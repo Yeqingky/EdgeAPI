@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/utils"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils"
 )
 
 func TestRangeDays(t *testing.T) {

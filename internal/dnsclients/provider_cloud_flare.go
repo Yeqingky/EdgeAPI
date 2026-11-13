@@ -15,10 +15,10 @@ import (
 	"sync"
 	"time"
 
-	teaconst "github.com/TeaOSLab/EdgeAPI/internal/const"
-	"github.com/TeaOSLab/EdgeAPI/internal/dnsclients/cloudflare"
-	"github.com/TeaOSLab/EdgeAPI/internal/dnsclients/dnstypes"
-	"github.com/TeaOSLab/EdgeAPI/internal/errors"
+	teaconst "git.ovh.im/yeqing/EdgeAPI/internal/const"
+	"git.ovh.im/yeqing/EdgeAPI/internal/dnsclients/cloudflare"
+	"git.ovh.im/yeqing/EdgeAPI/internal/dnsclients/dnstypes"
+	"git.ovh.im/yeqing/EdgeAPI/internal/errors"
 	"github.com/iwind/TeaGo/maps"
 	"github.com/iwind/TeaGo/types"
 )

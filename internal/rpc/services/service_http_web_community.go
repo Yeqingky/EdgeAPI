@@ -7,7 +7,7 @@ package services
 import (
 	"context"
 
-	"github.com/TeaOSLab/EdgeCommon/pkg/rpc/pb"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 )
 
 // UpdateHTTPWebUAM 修改UAM设置

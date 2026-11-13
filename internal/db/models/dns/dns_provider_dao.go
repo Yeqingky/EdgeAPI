@@ -3,8 +3,8 @@ package dns
 import (
 	"time"
 
-	dbutils "github.com/TeaOSLab/EdgeAPI/internal/db/utils"
-	"github.com/TeaOSLab/EdgeAPI/internal/errors"
+	dbutils "git.ovh.im/yeqing/EdgeAPI/internal/db/utils"
+	"git.ovh.im/yeqing/EdgeAPI/internal/errors"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/iwind/TeaGo/Tea"
 	"github.com/iwind/TeaGo/dbs"

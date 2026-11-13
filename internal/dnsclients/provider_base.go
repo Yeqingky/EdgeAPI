@@ -3,7 +3,7 @@ package dnsclients
 import (
 	"fmt"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/dnsclients/dnstypes"
+	"git.ovh.im/yeqing/EdgeAPI/internal/dnsclients/dnstypes"
 )
 
 type BaseProvider struct {

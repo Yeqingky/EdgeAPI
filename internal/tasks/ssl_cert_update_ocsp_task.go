@@ -13,11 +13,11 @@ import (
 	"net/http"
 	"time"
 
-	teaconst "github.com/TeaOSLab/EdgeAPI/internal/const"
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
-	"github.com/TeaOSLab/EdgeAPI/internal/goman"
-	"github.com/TeaOSLab/EdgeAPI/internal/remotelogs"
-	"github.com/TeaOSLab/EdgeAPI/internal/utils"
+	teaconst "git.ovh.im/yeqing/EdgeAPI/internal/const"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeAPI/internal/goman"
+	"git.ovh.im/yeqing/EdgeAPI/internal/remotelogs"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils"
 	"github.com/iwind/TeaGo/dbs"
 	"golang.org/x/crypto/ocsp"
 )

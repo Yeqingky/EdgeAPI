@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models/dns"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models/dns"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/iwind/TeaGo/bootstrap"
 	"github.com/iwind/TeaGo/dbs"

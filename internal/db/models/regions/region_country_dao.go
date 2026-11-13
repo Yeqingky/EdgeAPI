@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/utils"
-	"github.com/TeaOSLab/EdgeAPI/internal/utils/numberutils"
-	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/regionconfigs"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils/numberutils"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/serverconfigs/regionconfigs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/iwind/TeaGo/Tea"
 	"github.com/iwind/TeaGo/dbs"

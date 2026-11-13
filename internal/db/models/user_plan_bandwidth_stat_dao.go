@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/goman"
-	"github.com/TeaOSLab/EdgeAPI/internal/remotelogs"
-	"github.com/TeaOSLab/EdgeAPI/internal/utils/regexputils"
+	"git.ovh.im/yeqing/EdgeAPI/internal/goman"
+	"git.ovh.im/yeqing/EdgeAPI/internal/remotelogs"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils/regexputils"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/iwind/TeaGo/Tea"
 	"github.com/iwind/TeaGo/dbs"

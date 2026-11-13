@@ -6,7 +6,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/utils/numberutils"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils/numberutils"
 )
 
 func TestMax(t *testing.T) {

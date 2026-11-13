@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models/stats"
-	"github.com/TeaOSLab/EdgeCommon/pkg/rpc/pb"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models/stats"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 	"github.com/iwind/TeaGo/types"
 )
 

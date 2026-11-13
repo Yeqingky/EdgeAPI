@@ -4,8 +4,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/utils"
-	"github.com/TeaOSLab/EdgeAPI/internal/utils/expires"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils/expires"
 	"github.com/iwind/TeaGo/types"
 )
 

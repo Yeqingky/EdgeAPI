@@ -6,7 +6,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
 	"github.com/iwind/TeaGo/assert"
 	"github.com/iwind/TeaGo/dbs"
 )

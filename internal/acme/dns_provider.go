@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/dnsclients"
-	"github.com/TeaOSLab/EdgeAPI/internal/dnsclients/dnstypes"
-	"github.com/TeaOSLab/EdgeAPI/internal/errors"
+	"git.ovh.im/yeqing/EdgeAPI/internal/dnsclients"
+	"git.ovh.im/yeqing/EdgeAPI/internal/dnsclients/dnstypes"
+	"git.ovh.im/yeqing/EdgeAPI/internal/errors"
 	"github.com/go-acme/lego/v4/challenge/dns01"
 	"github.com/iwind/TeaGo/lists"
 )

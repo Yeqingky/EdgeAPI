@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/dnsclients/dnspod"
-	"github.com/TeaOSLab/EdgeAPI/internal/dnsclients/dnstypes"
-	"github.com/TeaOSLab/EdgeAPI/internal/utils/numberutils"
+	"git.ovh.im/yeqing/EdgeAPI/internal/dnsclients/dnspod"
+	"git.ovh.im/yeqing/EdgeAPI/internal/dnsclients/dnstypes"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils/numberutils"
 	"github.com/iwind/TeaGo/maps"
 	"github.com/iwind/TeaGo/types"
 )

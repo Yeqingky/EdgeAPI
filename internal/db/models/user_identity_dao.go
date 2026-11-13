@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/TeaOSLab/EdgeCommon/pkg/userconfigs"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/userconfigs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/iwind/TeaGo/Tea"
 	"github.com/iwind/TeaGo/dbs"

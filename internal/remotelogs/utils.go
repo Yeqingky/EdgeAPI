@@ -3,11 +3,11 @@ package remotelogs
 import (
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/configs"
-	teaconst "github.com/TeaOSLab/EdgeAPI/internal/const"
-	"github.com/TeaOSLab/EdgeAPI/internal/goman"
-	"github.com/TeaOSLab/EdgeCommon/pkg/nodeconfigs"
-	"github.com/TeaOSLab/EdgeCommon/pkg/rpc/pb"
+	"git.ovh.im/yeqing/EdgeAPI/internal/configs"
+	teaconst "git.ovh.im/yeqing/EdgeAPI/internal/const"
+	"git.ovh.im/yeqing/EdgeAPI/internal/goman"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/nodeconfigs"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 	"github.com/cespare/xxhash"
 	"github.com/iwind/TeaGo/logs"
 	"github.com/iwind/TeaGo/types"

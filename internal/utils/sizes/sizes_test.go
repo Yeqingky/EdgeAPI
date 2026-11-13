@@ -5,7 +5,7 @@ package sizes_test
 import (
 	"testing"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/utils/sizes"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils/sizes"
 	"github.com/iwind/TeaGo/assert"
 )
 

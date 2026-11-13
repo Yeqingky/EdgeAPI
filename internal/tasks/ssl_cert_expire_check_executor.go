@@ -6,9 +6,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models/acme"
-	"github.com/TeaOSLab/EdgeAPI/internal/goman"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models/acme"
+	"git.ovh.im/yeqing/EdgeAPI/internal/goman"
 	"github.com/iwind/TeaGo/dbs"
 	"github.com/iwind/TeaGo/maps"
 	"github.com/iwind/TeaGo/types"

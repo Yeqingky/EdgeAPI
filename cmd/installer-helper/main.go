@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/installers/helpers"
+	"git.ovh.im/yeqing/EdgeAPI/internal/installers/helpers"
 	"github.com/iwind/gosock/pkg/gosock"
 )
 

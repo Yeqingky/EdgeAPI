@@ -5,7 +5,7 @@ package setup
 import (
 	"strings"
 
-	teaconst "github.com/TeaOSLab/EdgeAPI/internal/const"
+	teaconst "git.ovh.im/yeqing/EdgeAPI/internal/const"
 	"github.com/iwind/TeaGo/types"
 	stringutil "github.com/iwind/TeaGo/utils/string"
 )

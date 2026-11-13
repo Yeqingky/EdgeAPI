@@ -3,7 +3,7 @@ package installers
 import (
 	"testing"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
 )
 
 func TestNodeInstaller_Install(t *testing.T) {

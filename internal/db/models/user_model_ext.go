@@ -3,7 +3,7 @@ package models
 import (
 	"encoding/json"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/remotelogs"
+	"git.ovh.im/yeqing/EdgeAPI/internal/remotelogs"
 )
 
 // DecodeModules 解析模块

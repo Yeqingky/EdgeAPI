@@ -5,9 +5,9 @@ package services
 import (
 	"context"
 
-	acmeutils "github.com/TeaOSLab/EdgeAPI/internal/acme"
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models/acme"
-	"github.com/TeaOSLab/EdgeCommon/pkg/rpc/pb"
+	acmeutils "git.ovh.im/yeqing/EdgeAPI/internal/acme"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models/acme"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 )
 
 // ACMEProviderAccountService ACME服务商账号服务

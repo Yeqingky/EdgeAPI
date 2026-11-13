@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/tasks"
+	"git.ovh.im/yeqing/EdgeAPI/internal/tasks"
 )
 
 func TestNewHealthCheckTask(t *testing.T) {

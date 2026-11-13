@@ -3,7 +3,7 @@ package models
 import (
 	"encoding/json"
 	"errors"
-	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/serverconfigs/shared"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/iwind/TeaGo/Tea"
 	"github.com/iwind/TeaGo/dbs"

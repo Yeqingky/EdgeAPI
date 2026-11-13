@@ -3,8 +3,8 @@ package nameservers
 import (
 	"encoding/json"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
-	"github.com/TeaOSLab/EdgeAPI/internal/remotelogs"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeAPI/internal/remotelogs"
 )
 
 func (this *NSDomain) DecodeGroupIds() []int64 {

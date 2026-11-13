@@ -5,9 +5,9 @@ package clients
 import (
 	"context"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models/clients"
-	"github.com/TeaOSLab/EdgeAPI/internal/rpc/services"
-	"github.com/TeaOSLab/EdgeCommon/pkg/rpc/pb"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models/clients"
+	"git.ovh.im/yeqing/EdgeAPI/internal/rpc/services"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 )
 
 // ClientAgentService Agent服务

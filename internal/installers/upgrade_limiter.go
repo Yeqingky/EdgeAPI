@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/utils/sizes"
-	"github.com/TeaOSLab/EdgeCommon/pkg/nodeconfigs"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils/sizes"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/nodeconfigs"
 	"github.com/iwind/TeaGo/types"
 )
 

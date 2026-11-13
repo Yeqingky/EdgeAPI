@@ -5,7 +5,7 @@ package utils_test
 import (
 	"testing"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/utils"
+	"git.ovh.im/yeqing/EdgeAPI/internal/utils"
 	"github.com/iwind/TeaGo/types"
 )
 

@@ -3,7 +3,7 @@ package expires
 import (
 	"sync"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/zero"
+	"git.ovh.im/yeqing/EdgeAPI/internal/zero"
 )
 
 type ItemMap = map[uint64]zero.Zero

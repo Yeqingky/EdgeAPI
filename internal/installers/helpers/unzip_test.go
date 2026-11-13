@@ -3,7 +3,7 @@ package helpers_test
 import (
 	"testing"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/installers/helpers"
+	"git.ovh.im/yeqing/EdgeAPI/internal/installers/helpers"
 	"github.com/iwind/TeaGo/Tea"
 	_ "github.com/iwind/TeaGo/bootstrap"
 )

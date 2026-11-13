@@ -6,7 +6,7 @@ package models
 import (
 	"errors"
 
-	teaconst "github.com/TeaOSLab/EdgeAPI/internal/const"
+	teaconst "git.ovh.im/yeqing/EdgeAPI/internal/const"
 	"github.com/iwind/TeaGo/dbs"
 	"github.com/iwind/TeaGo/types"
 )

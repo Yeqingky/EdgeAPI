@@ -3,8 +3,8 @@ package models
 import (
 	"encoding/json"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/remotelogs"
-	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
+	"git.ovh.im/yeqing/EdgeAPI/internal/remotelogs"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/serverconfigs/sslconfigs"
 )
 
 func (this *SSLPolicy) DecodeCerts() []*sslconfigs.SSLCertRef {

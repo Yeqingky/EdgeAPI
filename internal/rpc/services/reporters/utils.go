@@ -6,9 +6,9 @@ import (
 	"context"
 	"net"
 
-	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
-	"github.com/TeaOSLab/EdgeAPI/internal/errors"
-	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
+	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeAPI/internal/errors"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/dbs"
 	"google.golang.org/grpc/peer"
 )
