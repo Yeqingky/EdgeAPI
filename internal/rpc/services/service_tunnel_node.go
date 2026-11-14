@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
+	"git.ovh.im/yeqing/EdgeCommon/pkg/nodeconfigs"
 	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 	"github.com/iwind/TeaGo/rands"
 	"github.com/iwind/TeaGo/types"
@@ -188,7 +189,18 @@ func (this *TunnelNodeService) FindTunnelNodeConfigWithToken(ctx context.Context
 	if !frpConfig.IsOn {
 		return nil, errors.New("frp is not enabled for this cluster")
 	}
-	baseURL := strings.TrimRight(req.BaseURL, "/")
+	data, err := buildTunnelNodeConfig(node, frpConfig, req.BaseURL)
+	if err != nil {
+		return nil, err
+	}
+	return &pb.FindTunnelNodeConfigWithTokenResponse{
+		ConfigJSON:    data,
+		ConfigVersion: int64(node.ConfigVersion),
+	}, nil
+}
+
+func buildTunnelNodeConfig(node *models.TunnelNode, frpConfig *nodeconfigs.FRPConfig, baseURL string) ([]byte, error) {
+	baseURL = strings.TrimRight(baseURL, "/")
 	config := map[string]any{
 		"serverAddr": node.ServerAddr,
 		"serverPort": node.ServerPort,
@@ -211,14 +223,7 @@ func (this *TunnelNodeService) FindTunnelNodeConfigWithToken(ctx context.Context
 			"interval": 30,
 		},
 	}
-	data, err := json.Marshal(config)
-	if err != nil {
-		return nil, err
-	}
-	return &pb.FindTunnelNodeConfigWithTokenResponse{
-		ConfigJSON:    data,
-		ConfigVersion: int64(node.ConfigVersion),
-	}, nil
+	return json.Marshal(config)
 }
 
 func (this *TunnelNodeService) DeleteTunnelNode(ctx context.Context, req *pb.DeleteTunnelNodeRequest) (*pb.RPCSuccess, error) {
