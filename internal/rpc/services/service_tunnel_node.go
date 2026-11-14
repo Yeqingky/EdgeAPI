@@ -77,6 +77,13 @@ func (this *TunnelNodeService) CreateTunnelNode(ctx context.Context, req *pb.Cre
 		if !exist {
 			return nil, errors.New("user not found")
 		}
+		userClusterId, err := models.SharedUserDAO.FindUserClusterId(tx, userId)
+		if err != nil {
+			return nil, err
+		}
+		if userClusterId > 0 && userClusterId != req.ClusterId {
+			return nil, errors.New("cluster does not belong to the selected user")
+		}
 	}
 
 	var token string
