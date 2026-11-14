@@ -1343,9 +1343,18 @@ func upgradeV1_4_3(db *dbs.DB) error {
 	if err != nil {
 		return err
 	}
-	if types.Int64(count) > 0 {
-		return nil
+	if types.Int64(count) == 0 {
+		_, err = db.Exec("ALTER TABLE edgeNodeClusters ADD COLUMN `frp` json DEFAULT NULL COMMENT 'FRP服务端配置'")
+		if err != nil {
+			return err
+		}
 	}
-	_, err = db.Exec("ALTER TABLE edgeNodeClusters ADD COLUMN `frp` json DEFAULT NULL COMMENT 'FRP服务端配置'")
+
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS `edgeTunnelNodes` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `token` varchar(64) DEFAULT NULL COMMENT '令牌',\n  `serverAddr` varchar(255) DEFAULT NULL COMMENT 'FRPS地址',\n  `serverPort` int(11) unsigned DEFAULT '7000' COMMENT 'FRPS端口',\n  `os` varchar(32) DEFAULT NULL COMMENT '操作系统',\n  `arch` varchar(32) DEFAULT NULL COMMENT 'CPU架构',\n  `version` varchar(32) DEFAULT NULL COMMENT '版本',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `isInstalled` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已安装',\n  `configVersion` bigint(11) unsigned DEFAULT '0' COMMENT '配置版本',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `updatedAt` bigint(11) unsigned DEFAULT '0' COMMENT '修改时间',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `token` (`token`),\n  KEY `userId` (`userId`),\n  KEY `clusterId` (`clusterId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='隧道节点'")
+	if err != nil {
+		return err
+	}
+
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS `edgeTunnelLogs` (\n  `id` bigint(16) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `tunnelNodeId` int(11) unsigned DEFAULT '0' COMMENT '隧道节点ID',\n  `level` varchar(16) DEFAULT NULL COMMENT '级别',\n  `message` text COMMENT '内容',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  PRIMARY KEY (`id`),\n  KEY `tunnelNodeId` (`tunnelNodeId`),\n  KEY `createdAt` (`createdAt`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='隧道节点日志'")
 	return err
 }

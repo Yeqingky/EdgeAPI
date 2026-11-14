@@ -44,6 +44,11 @@ func (this *APINode) registerServices(server *grpc.Server) {
 		this.rest(instance)
 	}
 	{
+		var instance = this.serviceInstance(&services.TunnelNodeService{}).(*services.TunnelNodeService)
+		pb.RegisterTunnelNodeServiceServer(server, instance)
+		this.rest(instance)
+	}
+	{
 		var instance = this.serviceInstance(&services.NodeClusterService{}).(*services.NodeClusterService)
 		pb.RegisterNodeClusterServiceServer(server, instance)
 		this.rest(instance)

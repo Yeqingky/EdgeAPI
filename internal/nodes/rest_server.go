@@ -55,6 +55,11 @@ func (this *RestServer) handle(writer http.ResponseWriter, req *http.Request) {
 		shouldPretty = oldShouldPretty == "on"
 	}
 
+	// 隧道节点接口
+	if this.handleTunnel(writer, req) {
+		return
+	}
+
 	// 欢迎页
 	if path == "/" {
 		this.writeJSON(writer, maps.Map{

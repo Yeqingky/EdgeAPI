@@ -5,6 +5,10 @@
 - 集群设置新增 FRP 服务端配置, 支持启用, 监听地址, 端口和 Token, 默认关闭
 - edgeNodeClusters 新增 frp 列, 版本号升级到 1.4.3
 
+- 新增隧道节点管理: 创建/列表/删除, 绑定集群和用户, Token 鉴权, 安装脚本和配置分发
+- 新增隧道日志接收和查询接口
+- 新增 /tunnels/config, /tunnels/download, /tunnels/logs HTTP 端点
+
 ## v1.4.2-rc.1 (2026-11-13)
 
 - 新增 Gitea 工作流 mirror-to-github: 全部分支和标签强制镜像到 github.com/Yeqingky/EdgeAPI, 推送前过滤 AGENTS.md 和 .gitea, 并删除 GitHub 端多余的分支和标签
