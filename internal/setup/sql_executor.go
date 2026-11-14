@@ -17,7 +17,6 @@ import (
 	"github.com/iwind/TeaGo/maps"
 	"github.com/iwind/TeaGo/rands"
 	"github.com/iwind/TeaGo/types"
-	stringutil "github.com/iwind/TeaGo/utils/string"
 )
 
 // SQLExecutor 安装或升级SQL执行器
@@ -147,25 +146,20 @@ func (this *SQLExecutor) checkData(db *dbs.DB) error {
 	return nil
 }
 
-// 创建初始用户
+// 为没有关联用户的管理员创建关联用户 (用户名与管理员同步)
 func (this *SQLExecutor) checkUser(db *dbs.DB) error {
-	one, err := db.FindOne("SELECT id FROM edgeUsers LIMIT 1")
+	adminIdRows, _, err := db.FindOnes("SELECT id FROM edgeAdmins WHERE userId=0 AND state=1")
 	if err != nil {
 		return err
 	}
-	if len(one) > 0 {
-		return nil
+	for _, adminIdRow := range adminIdRows {
+		adminId := types.Int(adminIdRow.GetInt64("id"))
+		_, err = models.EnsureLinkedUserForAdminDB(db, int64(adminId))
+		if err != nil {
+			return fmt.Errorf("create linked user for admin %d failed: %w", adminId, err)
+		}
 	}
-
-	// 读取默认集群ID
-	// Read default cluster id
-	clusterId, err := db.FindCol(0, "SELECT id FROM edgeNodeClusters WHERE state=1 ORDER BY id ASC LIMIT 1")
-	if err != nil {
-		return err
-	}
-
-	_, err = db.Exec("INSERT INTO edgeUsers (`username`, `password`, `fullname`, `isOn`, `state`, `createdAt`, `clusterId`) VALUES (?, ?, ?, ?, ?, ?, ?)", "USER_"+rands.HexString(10), stringutil.Md5(rands.HexString(32)), "默认用户", 1, 1, time.Now().Unix(), clusterId)
-	return err
+	return nil
 }
 
 // 检查管理员平台节点

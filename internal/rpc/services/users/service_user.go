@@ -34,7 +34,7 @@ func (this *UserService) CreateUser(ctx context.Context, req *pb.CreateUserReque
 
 	var tx = this.NullTx()
 
-	userId, err := models.SharedUserDAO.CreateUser(tx, req.Username, req.Password, req.Fullname, req.Mobile, req.Tel, req.Email, req.Remark, req.Source, req.NodeClusterId, nil, "", true)
+	userId, err := models.SharedUserDAO.CreateUser(tx, req.Username, req.Password, req.Fullname, req.Email, req.Remark, req.Source, req.NodeClusterId, nil, "", true)
 	if err != nil {
 		return nil, err
 	}
@@ -71,7 +71,7 @@ func (this *UserService) UpdateUser(ctx context.Context, req *pb.UpdateUserReque
 		return nil, err
 	}
 
-	err = models.SharedUserDAO.UpdateUser(tx, req.UserId, req.Username, req.Password, req.Fullname, req.Mobile, req.Tel, req.Email, req.Remark, req.IsOn, req.NodeClusterId, req.BandwidthAlgo)
+	err = models.SharedUserDAO.UpdateUser(tx, req.UserId, req.Username, req.Password, req.Fullname, req.Email, req.Remark, req.IsOn, req.NodeClusterId, req.BandwidthAlgo)
 	if err != nil {
 		return nil, err
 	}
@@ -123,7 +123,7 @@ func (this *UserService) CountAllEnabledUsers(ctx context.Context, req *pb.Count
 
 	var tx = this.NullTx()
 
-	count, err := models.SharedUserDAO.CountAllEnabledUsers(tx, 0, req.Keyword, req.IsVerifying, req.MobileIsVerified)
+	count, err := models.SharedUserDAO.CountAllEnabledUsers(tx, 0, req.Keyword, req.IsVerifying)
 	if err != nil {
 		return nil, err
 	}
@@ -139,7 +139,7 @@ func (this *UserService) ListEnabledUsers(ctx context.Context, req *pb.ListEnabl
 
 	var tx = this.NullTx()
 
-	users, err := models.SharedUserDAO.ListEnabledUsers(tx, 0, req.Keyword, req.IsVerifying, req.MobileIsVerified, req.Offset, req.Size)
+	users, err := models.SharedUserDAO.ListEnabledUsers(tx, 0, req.Keyword, req.IsVerifying, req.Offset, req.Size)
 	if err != nil {
 		return nil, err
 	}
@@ -159,21 +159,23 @@ func (this *UserService) ListEnabledUsers(ctx context.Context, req *pb.ListEnabl
 			}
 		}
 
+		adminId, err := models.SharedAdminDAO.FindAdminIdWithUserId(tx, int64(user.Id))
+		if err != nil {
+			return nil, err
+		}
 		result = append(result, &pb.User{
-			Id:             int64(user.Id),
-			Username:       user.Username,
-			Fullname:       user.Fullname,
-			Mobile:         user.Mobile,
-			VerifiedMobile: user.VerifiedMobile,
-			Tel:            user.Tel,
-			Email:          user.Email,
-			Remark:         user.Remark,
-			IsOn:           user.IsOn,
-			RegisteredIP:   user.RegisteredIP,
-			IsVerified:     user.IsVerified,
-			IsRejected:     user.IsRejected,
-			CreatedAt:      int64(user.CreatedAt),
-			NodeCluster:    pbCluster,
+			Id:           int64(user.Id),
+			Username:     user.Username,
+			Fullname:     user.Fullname,
+			Email:        user.Email,
+			Remark:       user.Remark,
+			IsOn:         user.IsOn,
+			RegisteredIP: user.RegisteredIP,
+			IsVerified:   user.IsVerified,
+			IsRejected:   user.IsRejected,
+			CreatedAt:    int64(user.CreatedAt),
+			NodeCluster:  pbCluster,
+			AdminId:      adminId,
 		})
 	}
 
@@ -247,11 +249,8 @@ func (this *UserService) FindEnabledUser(ctx context.Context, req *pb.FindEnable
 			Id:                     int64(user.Id),
 			Username:               user.Username,
 			Fullname:               user.Fullname,
-			Mobile:                 user.Mobile,
-			Tel:                    user.Tel,
 			Email:                  user.Email,
 			VerifiedEmail:          user.VerifiedEmail,
-			VerifiedMobile:         user.VerifiedMobile,
 			Remark:                 user.Remark,
 			IsOn:                   user.IsOn,
 			CreatedAt:              int64(user.CreatedAt),
@@ -265,6 +264,7 @@ func (this *UserService) FindEnabledUser(ctx context.Context, req *pb.FindEnable
 			BandwidthAlgo:          user.BandwidthAlgo,
 			OtpLogin:               pbOtpAuth,
 			Lang:                   user.Lang,
+			AdminId:                func() int64 { adminId, _ := models.SharedAdminDAO.FindAdminIdWithUserId(tx, int64(user.Id)); return adminId }(),
 		},
 	}, nil
 }
@@ -335,29 +335,6 @@ func (this *UserService) LoginUser(ctx context.Context, req *pb.LoginUserRequest
 		}
 	}
 
-	// 手机号登录
-	if utils.IsValidMobile(req.Username) {
-		// 是否允许
-		if registerConfig == nil {
-			registerConfig, err = models.SharedSysSettingDAO.ReadUserRegisterConfig(tx)
-			if err != nil {
-				return nil, err
-			}
-		}
-		if registerConfig != nil && registerConfig.MobileVerification.CanLogin {
-			userId, err := models.SharedUserDAO.CheckUserMobilePassword(tx, req.Username, req.Password)
-			if err != nil {
-				return nil, err
-			}
-			if userId > 0 {
-				return &pb.LoginUserResponse{
-					UserId: userId,
-					IsOk:   true,
-				}, nil
-			}
-		}
-	}
-
 	// 用户名登录
 	userId, err := models.SharedUserDAO.CheckUserPassword(tx, req.Username, req.Password)
 	if err != nil {
@@ -392,7 +369,7 @@ func (this *UserService) UpdateUserInfo(ctx context.Context, req *pb.UpdateUserI
 
 	var tx = this.NullTx()
 
-	err = models.SharedUserDAO.UpdateUserInfo(tx, req.UserId, req.Fullname, req.Mobile, req.Email)
+	err = models.SharedUserDAO.UpdateUserInfo(tx, req.UserId, req.Fullname, req.Email)
 	if err != nil {
 		return nil, err
 	}
@@ -639,7 +616,7 @@ func (this *UserService) ComposeUserGlobalBoard(ctx context.Context, req *pb.Com
 
 	var result = &pb.ComposeUserGlobalBoardResponse{}
 	var tx = this.NullTx()
-	totalUsers, err := models.SharedUserDAO.CountAllEnabledUsers(tx, 0, "", false, -1)
+	totalUsers, err := models.SharedUserDAO.CountAllEnabledUsers(tx, 0, "", false)
 	if err != nil {
 		return nil, err
 	}
@@ -839,28 +816,6 @@ func (this *UserService) CheckUserEmail(ctx context.Context, req *pb.CheckUserEm
 		return &pb.CheckUserEmailResponse{Exists: true}, nil
 	}
 	return &pb.CheckUserEmailResponse{Exists: false}, nil
-}
-
-// CheckUserMobile 检查手机号码是否被使用
-func (this *UserService) CheckUserMobile(ctx context.Context, req *pb.CheckUserMobileRequest) (*pb.CheckUserMobileResponse, error) {
-	userId, err := this.ValidateUserNode(ctx, false)
-	if err != nil {
-		return nil, err
-	}
-
-	if len(req.Mobile) == 0 {
-		return nil, errors.New("'mobile' required")
-	}
-
-	var tx = this.NullTx()
-	mobileOwnerUserId, err := models.SharedUserDAO.FindUserIdWithVerifiedMobile(tx, req.Mobile)
-	if err != nil {
-		return nil, err
-	}
-	if mobileOwnerUserId > 0 && userId != mobileOwnerUserId {
-		return &pb.CheckUserMobileResponse{Exists: true}, nil
-	}
-	return &pb.CheckUserMobileResponse{Exists: false}, nil
 }
 
 // FindUserVerifiedEmailWithUsername 根据用户名查询用户绑定的邮箱

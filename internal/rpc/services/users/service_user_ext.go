@@ -72,7 +72,7 @@ func (this *UserService) RegisterUser(ctx context.Context, req *pb.RegisterUserR
 		}
 
 		// 创建用户
-		userId, err := models.SharedUserDAO.CreateUser(tx, req.Username, req.Password, req.Fullname, req.Mobile, "", req.Email, "", req.Source, registerConfig.ClusterId, registerConfig.Features, req.Ip, !registerConfig.RequireVerification)
+		userId, err := models.SharedUserDAO.CreateUser(tx, req.Username, req.Password, req.Fullname, req.Email, "", req.Source, registerConfig.ClusterId, registerConfig.Features, req.Ip, !registerConfig.RequireVerification)
 		if err != nil {
 			return err
 		}

@@ -82,6 +82,15 @@ func (this *NodeClusterDAO) FindEnabledNodeCluster(tx *dbs.Tx, id int64) (*NodeC
 
 // FindEnabledClusterIdWithUniqueId 根据UniqueId获取ID
 // TODO 增加缓存
+// FindFirstEnabledClusterId 获取第一个启用的集群ID
+func (this *NodeClusterDAO) FindFirstEnabledClusterId(tx *dbs.Tx) (int64, error) {
+	return this.Query(tx).
+		ResultPk().
+		State(NodeClusterStateEnabled).
+		AscPk().
+		FindInt64Col(0)
+}
+
 func (this *NodeClusterDAO) FindEnabledClusterIdWithUniqueId(tx *dbs.Tx, uniqueId string) (int64, error) {
 	return this.Query(tx).
 		State(NodeClusterStateEnabled).

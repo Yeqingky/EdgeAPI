@@ -134,6 +134,7 @@ func (this *AdminService) FindAdminWithUsername(ctx context.Context, req *pb.Fin
 			IsOn:     admin.IsOn,
 			IsSuper:  admin.IsSuper,
 			CanLogin: admin.CanLogin,
+			UserId:   int64(admin.UserId),
 		},
 	}, nil
 }
@@ -227,6 +228,7 @@ func (this *AdminService) FindEnabledAdmin(ctx context.Context, req *pb.FindEnab
 		OtpLogin:        pbOtpAuth,
 		CanLogin:        admin.CanLogin,
 		HasWeakPassword: isSuperAdmin && admin.HasWeakPassword(),
+		UserId:          int64(admin.UserId),
 	}
 	return &pb.FindEnabledAdminResponse{Admin: result}, nil
 }
@@ -250,9 +252,27 @@ func (this *AdminService) CreateOrUpdateAdmin(ctx context.Context, req *pb.Creat
 		if err != nil {
 			return nil, err
 		}
+
+		// 同步关联用户密码
+		linkedUserId, err := models.SharedAdminDAO.FindAdminUserId(tx, adminId)
+		if err != nil {
+			return nil, err
+		}
+		if linkedUserId > 0 {
+			err = models.SharedUserDAO.UpdateUserPassword(tx, linkedUserId, req.Password)
+			if err != nil {
+				return nil, err
+			}
+		}
 		return &pb.CreateOrUpdateAdminResponse{AdminId: adminId}, nil
 	}
 	adminId, err = models.SharedAdminDAO.CreateAdmin(tx, req.Username, true, req.Password, "管理员", true, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	// 创建关联的普通用户
+	_, err = models.EnsureLinkedUserForAdmin(tx, adminId)
 	if err != nil {
 		return nil, err
 	}
@@ -365,6 +385,12 @@ func (this *AdminService) CreateAdmin(ctx context.Context, req *pb.CreateAdminRe
 		return nil, err
 	}
 
+	// 创建关联的普通用户
+	_, err = models.EnsureLinkedUserForAdmin(tx, adminId)
+	if err != nil {
+		return nil, err
+	}
+
 	return &pb.CreateAdminResponse{AdminId: adminId}, nil
 }
 
@@ -382,6 +408,25 @@ func (this *AdminService) UpdateAdmin(ctx context.Context, req *pb.UpdateAdminRe
 	err = models.SharedAdminDAO.UpdateAdmin(tx, req.AdminId, req.Username, req.CanLogin, req.Password, req.Fullname, req.IsSuper, req.ModulesJSON, req.IsOn)
 	if err != nil {
 		return nil, err
+	}
+
+	// 同步用户名/密码/全名到关联用户
+	linkedUserId, err := models.SharedAdminDAO.FindAdminUserId(tx, req.AdminId)
+	if err != nil {
+		return nil, err
+	}
+	if linkedUserId > 0 {
+		exists, err := models.SharedUserDAO.ExistUser(tx, linkedUserId, req.Username)
+		if err != nil {
+			return nil, err
+		}
+		if exists {
+			return nil, errors.New("username '" + req.Username + "' already exists")
+		}
+		err = models.SharedUserDAO.SyncUserFromAdmin(tx, linkedUserId, req.Username, req.Password, req.Fullname)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	return this.Success()
@@ -469,6 +514,7 @@ func (this *AdminService) ListEnabledAdmins(ctx context.Context, req *pb.ListEna
 			OtpLogin:        pbOtpAuth,
 			CanLogin:        admin.CanLogin,
 			HasWeakPassword: isSuperAdmin && admin.HasWeakPassword(),
+			UserId:          int64(admin.UserId),
 		})
 	}
 
@@ -594,7 +640,7 @@ func (this *AdminService) ComposeAdminDashboard(ctx context.Context, req *pb.Com
 
 	// 用户数
 	this.BeginTag(ctx, "SharedUserDAO.CountAllEnabledUsers")
-	countUsers, err := models.SharedUserDAO.CountAllEnabledUsers(tx, 0, "", false, -1)
+	countUsers, err := models.SharedUserDAO.CountAllEnabledUsers(tx, 0, "", false)
 	this.EndTag(ctx, "SharedUserDAO.CountAllEnabledUsers")
 	if err != nil {
 		return nil, err

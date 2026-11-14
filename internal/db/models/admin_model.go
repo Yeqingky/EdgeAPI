@@ -6,6 +6,7 @@ const (
 	AdminField_Id        dbs.FieldName = "id"        // ID
 	AdminField_IsOn      dbs.FieldName = "isOn"      // 是否启用
 	AdminField_Username  dbs.FieldName = "username"  // 用户名
+	AdminField_UserId    dbs.FieldName = "userId"    // 关联用户ID
 	AdminField_Password  dbs.FieldName = "password"  // 密码
 	AdminField_Fullname  dbs.FieldName = "fullname"  // 全名
 	AdminField_IsSuper   dbs.FieldName = "isSuper"   // 是否为超级管理员
@@ -23,6 +24,7 @@ type Admin struct {
 	Id        uint32   `field:"id"`        // ID
 	IsOn      bool     `field:"isOn"`      // 是否启用
 	Username  string   `field:"username"`  // 用户名
+	UserId    uint64   `field:"userId"`    // 关联用户ID
 	Password  string   `field:"password"`  // 密码
 	Fullname  string   `field:"fullname"`  // 全名
 	IsSuper   bool     `field:"isSuper"`   // 是否为超级管理员
@@ -39,6 +41,7 @@ type AdminOperator struct {
 	Id        any // ID
 	IsOn      any // 是否启用
 	Username  any // 用户名
+	UserId    any // 关联用户ID
 	Password  any // 密码
 	Fullname  any // 全名
 	IsSuper   any // 是否为超级管理员

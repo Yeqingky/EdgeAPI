@@ -165,16 +165,14 @@ func (this *UserDAO) FindEnabledUserIdWithUsername(tx *dbs.Tx, username string) 
 		FindInt64Col(0)
 }
 
-// FindUserId 根据多个条件查找用户ID
-func (this *UserDAO) FindUserId(tx *dbs.Tx, verifiedEmail string, verifiedMobile string) (int64, error) {
+// FindUserId 根据已验证邮箱查找用户ID
+func (this *UserDAO) FindUserId(tx *dbs.Tx, verifiedEmail string) (int64, error) {
 	var query = this.Query(tx).
 		State(UserStateEnabled).
 		ResultPk()
 
 	if len(verifiedEmail) > 0 {
 		query.Attr("verifiedEmail", verifiedEmail)
-	} else if len(verifiedMobile) > 0 {
-		query.Attr("verifiedMobile", verifiedMobile)
 	} else {
 		return 0, nil
 	}
@@ -202,8 +200,6 @@ func (this *UserDAO) FindUserVerifiedEmail(tx *dbs.Tx, userId int64) (string, er
 func (this *UserDAO) CreateUser(tx *dbs.Tx, username string,
 	password string,
 	fullname string,
-	mobile string,
-	tel string,
 	email string,
 	remark string,
 	source string,
@@ -215,8 +211,6 @@ func (this *UserDAO) CreateUser(tx *dbs.Tx, username string,
 	op.Username = username
 	op.Password = stringutil.Md5(password)
 	op.Fullname = fullname
-	op.Mobile = mobile
-	op.Tel = tel
 	op.Email = email
 	op.EmailIsVerified = false
 	op.Remark = remark
@@ -247,7 +241,7 @@ func (this *UserDAO) CreateUser(tx *dbs.Tx, username string,
 }
 
 // UpdateUser 修改用户
-func (this *UserDAO) UpdateUser(tx *dbs.Tx, userId int64, username string, password string, fullname string, mobile string, tel string, email string, remark string, isOn bool, nodeClusterId int64, bandwidthAlgo systemconfigs.BandwidthAlgo) error {
+func (this *UserDAO) UpdateUser(tx *dbs.Tx, userId int64, username string, password string, fullname string, email string, remark string, isOn bool, nodeClusterId int64, bandwidthAlgo systemconfigs.BandwidthAlgo) error {
 	if userId <= 0 {
 		return errors.New("invalid userId")
 	}
@@ -259,8 +253,6 @@ func (this *UserDAO) UpdateUser(tx *dbs.Tx, userId int64, username string, passw
 		op.Password = stringutil.Md5(password)
 	}
 	op.Fullname = fullname
-	op.Mobile = mobile
-	op.Tel = tel
 	op.Email = email
 	op.Remark = remark
 	op.ClusterId = nodeClusterId
@@ -283,14 +275,13 @@ func (this *UserDAO) UpdateUser(tx *dbs.Tx, userId int64, username string, passw
 }
 
 // UpdateUserInfo 修改用户基本信息
-func (this *UserDAO) UpdateUserInfo(tx *dbs.Tx, userId int64, fullname string, mobile string, email string) error {
+func (this *UserDAO) UpdateUserInfo(tx *dbs.Tx, userId int64, fullname string, email string) error {
 	if userId <= 0 {
 		return errors.New("invalid userId")
 	}
 	var op = NewUserOperator()
 	op.Id = userId
 	op.Fullname = fullname
-	op.Mobile = mobile
 	op.Email = email
 	return this.Save(tx, op)
 }
@@ -323,26 +314,19 @@ func (this *UserDAO) UpdateUserPassword(tx *dbs.Tx, userId int64, password strin
 }
 
 // CountAllEnabledUsers 计算用户数量
-func (this *UserDAO) CountAllEnabledUsers(tx *dbs.Tx, clusterId int64, keyword string, isVerifying bool, mobileIsVerifiedFlag int32) (int64, error) {
+func (this *UserDAO) CountAllEnabledUsers(tx *dbs.Tx, clusterId int64, keyword string, isVerifying bool) (int64, error) {
 	var query = this.Query(tx)
 	query.State(UserStateEnabled)
 	if clusterId > 0 {
 		query.Attr("clusterId", clusterId)
 	}
 	if len(keyword) > 0 {
-		query.Where("(username LIKE :keyword OR fullname LIKE :keyword OR mobile LIKE :keyword OR email LIKE :keyword OR tel LIKE :keyword OR remark LIKE :keyword)").
+		query.Where("(username LIKE :keyword OR fullname LIKE :keyword OR email LIKE :keyword OR remark LIKE :keyword)").
 			Param("keyword", dbutils.QuoteLike(keyword))
 	}
 	if isVerifying {
 		query.Where("(isVerified=0 OR (id IN (SELECT userId FROM " + SharedUserIdentityDAO.Table + " WHERE status=:identityStatus AND state=1)))")
 		query.Param("identityStatus", userconfigs.UserIdentityStatusSubmitted)
-	}
-
-	// 手机号是否已验证
-	if mobileIsVerifiedFlag == 1 {
-		query.Where("LENGTH(verifiedMobile)>0")
-	} else if mobileIsVerifiedFlag == 0 {
-		query.Where("(verifiedMobile IS NULL OR LENGTH(verifiedMobile)=0)")
 	}
 
 	return query.Count()
@@ -358,26 +342,19 @@ func (this *UserDAO) CountAllVerifyingUsers(tx *dbs.Tx) (int64, error) {
 }
 
 // ListEnabledUsers 列出单页用户
-func (this *UserDAO) ListEnabledUsers(tx *dbs.Tx, clusterId int64, keyword string, isVerifying bool, mobileIsVerifiedFlag int32, offset int64, size int64) (result []*User, err error) {
+func (this *UserDAO) ListEnabledUsers(tx *dbs.Tx, clusterId int64, keyword string, isVerifying bool, offset int64, size int64) (result []*User, err error) {
 	var query = this.Query(tx)
 	query.State(UserStateEnabled)
 	if clusterId > 0 {
 		query.Attr("clusterId", clusterId)
 	}
 	if len(keyword) > 0 {
-		query.Where("(username LIKE :keyword OR fullname LIKE :keyword OR mobile LIKE :keyword OR email LIKE :keyword OR tel LIKE :keyword OR remark LIKE :keyword)").
+		query.Where("(username LIKE :keyword OR fullname LIKE :keyword OR email LIKE :keyword OR remark LIKE :keyword)").
 			Param("keyword", dbutils.QuoteLike(keyword))
 	}
 	if isVerifying {
 		query.Where("(isVerified=0 OR (id IN (SELECT userId FROM " + SharedUserIdentityDAO.Table + " WHERE status=:identityStatus AND state=1)))")
 		query.Param("identityStatus", userconfigs.UserIdentityStatusSubmitted)
-	}
-
-	// 手机号是否已验证
-	if mobileIsVerifiedFlag == 1 {
-		query.Where("LENGTH(verifiedMobile)>0")
-	} else if mobileIsVerifiedFlag == 0 {
-		query.Where("(verifiedMobile IS NULL OR LENGTH(verifiedMobile)=0)")
 	}
 
 	_, err = query.
@@ -387,6 +364,50 @@ func (this *UserDAO) ListEnabledUsers(tx *dbs.Tx, clusterId int64, keyword strin
 		Slice(&result).
 		FindAll()
 	return
+}
+
+// FindAnyUserIdWithUsername 根据用户名查找用户ID (包含各种状态)
+func (this *UserDAO) FindAnyUserIdWithUsername(tx *dbs.Tx, username string) (int64, error) {
+	return this.Query(tx).
+		ResultPk().
+		Attr("username", username).
+		AscPk().
+		FindInt64Col(0)
+}
+
+// CreateLinkedUser 创建管理员关联的用户, password为已加密的密码
+func (this *UserDAO) CreateLinkedUser(tx *dbs.Tx, username string, encodedPassword string, fullname string, clusterId int64) (int64, error) {
+	var op = NewUserOperator()
+	op.IsOn = true
+	op.Username = username
+	op.Password = encodedPassword
+	op.Fullname = fullname
+	op.Source = "admin"
+	op.ClusterId = clusterId
+	op.Day = timeutil.Format("Ymd")
+	op.IsVerified = true
+	op.Features = "[]"
+	op.State = UserStateEnabled
+	err := this.Save(tx, op)
+	if err != nil {
+		return 0, err
+	}
+	return types.Int64(op.Id), nil
+}
+
+// SyncUserFromAdmin 同步管理员的用户名/密码/全名到关联用户, password为空时不修改密码
+func (this *UserDAO) SyncUserFromAdmin(tx *dbs.Tx, userId int64, username string, password string, fullname string) error {
+	if userId <= 0 {
+		return errors.New("invalid userId")
+	}
+	var op = NewUserOperator()
+	op.Id = userId
+	op.Username = username
+	op.Fullname = fullname
+	if len(password) > 0 {
+		op.Password = stringutil.Md5(password)
+	}
+	return this.Save(tx, op)
 }
 
 // ExistUser 检查用户名是否存在
@@ -438,20 +459,6 @@ func (this *UserDAO) CheckUserEmailPassword(tx *dbs.Tx, verifiedEmail string, en
 	}
 	return this.Query(tx).
 		Attr("verifiedEmail", verifiedEmail).
-		Attr("password", encryptedPassword).
-		Attr("state", UserStateEnabled).
-		Attr("isOn", true).
-		ResultPk().
-		FindInt64Col(0)
-}
-
-// CheckUserMobilePassword 检查邮箱+密码
-func (this *UserDAO) CheckUserMobilePassword(tx *dbs.Tx, verifiedEmail string, encryptedPassword string) (int64, error) {
-	if len(verifiedEmail) == 0 || len(encryptedPassword) == 0 {
-		return 0, nil
-	}
-	return this.Query(tx).
-		Attr("verifiedMobile", verifiedEmail).
 		Attr("password", encryptedPassword).
 		Attr("state", UserStateEnabled).
 		Attr("isOn", true).
@@ -703,18 +710,6 @@ func (this *UserDAO) FindUserIdWithVerifiedEmail(tx *dbs.Tx, verifiedEmail strin
 		FindInt64Col(0)
 }
 
-// FindUserIdWithVerifiedMobile 使用验证后手机号码查找用户ID
-func (this *UserDAO) FindUserIdWithVerifiedMobile(tx *dbs.Tx, verifiedMobile string) (int64, error) {
-	if len(verifiedMobile) == 0 {
-		return 0, nil
-	}
-	return this.Query(tx).
-		ResultPk().
-		State(UserStateEnabled).
-		Attr("verifiedMobile", verifiedMobile).
-		FindInt64Col(0)
-}
-
 // UpdateUserVerifiedEmail 修改已激活邮箱
 func (this *UserDAO) UpdateUserVerifiedEmail(tx *dbs.Tx, userId int64, verifiedEmail string) error {
 	if userId <= 0 {
@@ -724,18 +719,6 @@ func (this *UserDAO) UpdateUserVerifiedEmail(tx *dbs.Tx, userId int64, verifiedE
 		Pk(userId).
 		Set("verifiedEmail", verifiedEmail).
 		Set("emailIsVerified", true).
-		UpdateQuickly()
-}
-
-// UpdateUserVerifiedMobile 修改已激活手机号码
-func (this *UserDAO) UpdateUserVerifiedMobile(tx *dbs.Tx, userId int64, verifiedMobile string) error {
-	if userId <= 0 {
-		return nil
-	}
-	return this.Query(tx).
-		Pk(userId).
-		Set("verifiedMobile", verifiedMobile).
-		Set("mobileIsVerified", true).
 		UpdateQuickly()
 }
 

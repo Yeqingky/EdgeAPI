@@ -318,6 +318,22 @@ func (this *AdminDAO) ListEnabledAdmins(tx *dbs.Tx, keyword string, hasWeakPassw
 	return
 }
 
+// FindAdminUserId 读取管理员关联的用户ID
+func (this *AdminDAO) FindAdminUserId(tx *dbs.Tx, adminId int64) (int64, error) {
+	return this.Query(tx).
+		Pk(adminId).
+		Result("userId").
+		FindInt64Col(0)
+}
+
+// UpdateAdminUserId 设置管理员关联的用户ID
+func (this *AdminDAO) UpdateAdminUserId(tx *dbs.Tx, adminId int64, userId int64) error {
+	return this.Query(tx).
+		Pk(adminId).
+		Set("userId", userId).
+		UpdateQuickly()
+}
+
 // UpdateAdminTheme 设置管理员Theme
 func (this *AdminDAO) UpdateAdminTheme(tx *dbs.Tx, adminId int64, theme string) error {
 	return this.Query(tx).

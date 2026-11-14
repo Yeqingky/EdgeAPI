@@ -17,3 +17,9 @@
 - 新增 internal/dnsclients/dnsla 桩包: 该包在开源版中被裁剪但 provider_dns_la.go 仍有引用, 仅为通过编译, DNS.LA 功能不可用
 - 将模块路径, 源码导入和文档链接中的仓库地址统一迁移到 git.ovh.im/yeqing
 - cmd/edge-api 启动时读取 EDGE_DB_HOST, EDGE_DB_PORT, EDGE_DB_USER, EDGE_DB_PASSWORD, EDGE_DB_NAME, 自动生成 configs/db.yaml 和 configs/.db.yaml
+- 管理员创建时自动创建同用户名的关联普通用户, 老库升级为每个管理员补建关联用户
+- 管理员修改用户名/密码/全名时同步到关联用户
+- 管理员创建网站默认绑定其关联用户, 未指定时自动关联
+- 初始化不再创建随机USER_xxx用户, 改为按管理员创建关联用户
+- 移除用户手机号/联系电话字段及手机验证码相关模型和服务
+- edgeUsers 去除 mobile/tel/verifiedMobile/mobileIsVerified 列, edgeAdmins 新增 userId 列, 老库自动升级

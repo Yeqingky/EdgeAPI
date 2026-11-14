@@ -102,7 +102,31 @@ func (this *ServerService) CreateServer(ctx context.Context, req *pb.CreateServe
 		if err == nil && config.GroupId > 0 && !lists.ContainsInt64(req.ServerGroupIds, config.GroupId) {
 			req.ServerGroupIds = append(req.ServerGroupIds, config.GroupId)
 		}
-	} else if req.UserId > 0 {
+	} else if adminId > 0 {
+		// 管理员创建: 默认绑定管理员的关联用户
+		if req.UserId <= 0 {
+			linkedUserId, err := models.SharedAdminDAO.FindAdminUserId(tx, adminId)
+			if err != nil {
+				return nil, err
+			}
+			if linkedUserId <= 0 {
+				linkedUserId, err = models.EnsureLinkedUserForAdmin(tx, adminId)
+				if err != nil {
+					return nil, err
+				}
+			}
+			req.UserId = linkedUserId
+		}
+
+		// 校验用户
+		existUser, err := models.SharedUserDAO.Exist(tx, req.UserId)
+		if err != nil {
+			return nil, err
+		}
+		if !existUser {
+			return nil, errors.New("user id '" + types.String(req.UserId) + "' not found")
+		}
+
 		// 集群
 		nodeClusterId, err := models.SharedUserDAO.FindUserClusterId(tx, req.UserId)
 		if err != nil {

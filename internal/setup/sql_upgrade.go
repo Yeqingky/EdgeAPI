@@ -108,6 +108,9 @@ var upgradeFuncs = []*upgradeVersion{
 	{
 		"1.3.4", upgradeV1_3_4,
 	},
+	{
+		"1.4.2", upgradeV1_4_2,
+	},
 }
 
 // UpgradeSQLData 升级SQL数据
@@ -1224,6 +1227,108 @@ func upgradeV1_3_4(db *dbs.DB) error {
 	_, err := db.Exec("DELETE FROM edgeLoginSessions WHERE adminId>0")
 	if err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// v1.4.2
+func upgradeV1_4_2(db *dbs.DB) error {
+	// 1. 为每个管理员创建或绑定关联用户 (用户名与管理员同步)
+	adminRows, _, err := db.FindOnes("SELECT id FROM edgeAdmins WHERE state=1 ORDER BY id ASC")
+	if err != nil {
+		return err
+	}
+	var firstLinkedUserId int64
+	for _, adminRow := range adminRows {
+		adminId := adminRow.GetInt64("id")
+		userId, err := models.EnsureLinkedUserForAdminDB(db, adminId)
+		if err != nil {
+			return err
+		}
+		if firstLinkedUserId <= 0 {
+			firstLinkedUserId = userId
+		}
+	}
+
+	// 没有可用管理员时跳过网站重绑
+	if firstLinkedUserId <= 0 {
+		return nil
+	}
+
+	// 2. 旧默认用户 (随机 USER_xxx) 的资源迁移到第一个管理员的关联用户, 迁移后删除旧用户
+	legacyUsers, _, err := db.FindOnes("SELECT id, username FROM edgeUsers WHERE username LIKE 'USER\\_%'")
+	if err != nil {
+		return err
+	}
+	// 只处理未被任何管理员关联的 USER_ 开头用户
+	legacyUserIds := []int64{}
+	linkedUserIds, _, err := db.FindOnes("SELECT userId FROM edgeAdmins WHERE userId>0")
+	if err != nil {
+		return err
+	}
+	linkedSet := map[int64]bool{}
+	for _, one := range linkedUserIds {
+		linkedSet[one.GetInt64("userId")] = true
+	}
+	for _, one := range legacyUsers {
+		userId := one.GetInt64("id")
+		username := one.GetString("username")
+		if linkedSet[userId] {
+			continue
+		}
+		// 用户名与管理员相同的旧用户已被采纳为关联用户, 跳过
+		var adopted bool
+		for _, adminRow := range adminRows {
+			if adminRow.GetString("username") == username {
+				adopted = true
+				break
+			}
+		}
+		if adopted {
+			continue
+		}
+		legacyUserIds = append(legacyUserIds, userId)
+	}
+
+	// 3. 重绑旧网站: userId=0 或指向旧默认用户的网站改绑第一个管理员的关联用户
+	legacyIdList := ""
+	for i, userId := range legacyUserIds {
+		if i > 0 {
+			legacyIdList += ","
+		}
+		legacyIdList += types.String(userId)
+	}
+	var rebindCondition = "userId=0"
+	if len(legacyIdList) > 0 {
+		rebindCondition = "(userId=0 OR userId IN (" + legacyIdList + "))"
+	}
+	_, err = db.Exec("UPDATE edgeServers SET userId=? WHERE " + rebindCondition + " AND state=1", firstLinkedUserId)
+	if err != nil {
+		return err
+	}
+
+	// 4. 删除无引用的旧默认用户 (被网站等资源引用的保留)
+	for _, userId := range legacyUserIds {
+		one, err := db.FindOne("SELECT id FROM edgeServers WHERE userId=? LIMIT 1", userId)
+		if err != nil {
+			return err
+		}
+		if len(one) > 0 {
+			continue
+		}
+		// 其他主要资源引用检查
+		referenced, err := db.FindOne("SELECT id FROM edgeHTTPWebs WHERE userId=? LIMIT 1", userId)
+		if err != nil {
+			return err
+		}
+		if len(referenced) > 0 {
+			continue
+		}
+		_, err = db.Exec("DELETE FROM edgeUsers WHERE id=?", userId)
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil

@@ -8,10 +8,6 @@ const (
 	UserField_Username          dbs.FieldName = "username"          // 用户名
 	UserField_Password          dbs.FieldName = "password"          // 密码
 	UserField_Fullname          dbs.FieldName = "fullname"          // 真实姓名
-	UserField_Mobile            dbs.FieldName = "mobile"            // 手机号
-	UserField_VerifiedMobile    dbs.FieldName = "verifiedMobile"    // 已验证手机号
-	UserField_MobileIsVerified  dbs.FieldName = "mobileIsVerified"  // 手机号是否已验证
-	UserField_Tel               dbs.FieldName = "tel"               // 联系电话
 	UserField_Remark            dbs.FieldName = "remark"            // 备注
 	UserField_Email             dbs.FieldName = "email"             // 邮箱地址
 	UserField_VerifiedEmail     dbs.FieldName = "verifiedEmail"     // 激活后的邮箱
@@ -46,10 +42,6 @@ type User struct {
 	Username          string   `field:"username"`          // 用户名
 	Password          string   `field:"password"`          // 密码
 	Fullname          string   `field:"fullname"`          // 真实姓名
-	Mobile            string   `field:"mobile"`            // 手机号
-	VerifiedMobile    string   `field:"verifiedMobile"`    // 已验证手机号
-	MobileIsVerified  uint8    `field:"mobileIsVerified"`  // 手机号是否已验证
-	Tel               string   `field:"tel"`               // 联系电话
 	Remark            string   `field:"remark"`            // 备注
 	Email             string   `field:"email"`             // 邮箱地址
 	VerifiedEmail     string   `field:"verifiedEmail"`     // 激活后的邮箱
@@ -83,10 +75,6 @@ type UserOperator struct {
 	Username          any // 用户名
 	Password          any // 密码
 	Fullname          any // 真实姓名
-	Mobile            any // 手机号
-	VerifiedMobile    any // 已验证手机号
-	MobileIsVerified  any // 手机号是否已验证
-	Tel               any // 联系电话
 	Remark            any // 备注
 	Email             any // 邮箱地址
 	VerifiedEmail     any // 激活后的邮箱
