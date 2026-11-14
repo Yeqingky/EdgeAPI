@@ -79,6 +79,18 @@ func (this *NodeCluster) DecodeClock() *nodeconfigs.ClockConfig {
 	return clock
 }
 
+// DecodeFRP 解析FRP服务端配置
+func (this *NodeCluster) DecodeFRP() *nodeconfigs.FRPConfig {
+	var config = nodeconfigs.NewFRPConfig()
+	if IsNotNull(this.Frp) {
+		err := json.Unmarshal(this.Frp, config)
+		if err != nil {
+			remotelogs.Error("NodeCluster.DecodeFRP()", err.Error())
+		}
+	}
+	return config
+}
+
 // DecodeGlobalServerConfig 解析全局服务配置
 func (this *NodeCluster) DecodeGlobalServerConfig() *serverconfigs.GlobalServerConfig {
 	var config = serverconfigs.NewGlobalServerConfig()

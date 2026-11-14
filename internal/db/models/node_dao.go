@@ -1166,6 +1166,11 @@ func (this *NodeDAO) ComposeNodeConfig(tx *dbs.Tx, nodeId int64, dataMap *shared
 			config.GlobalServerConfig = nodeCluster.DecodeGlobalServerConfig()
 		}
 
+		// FRP
+		if config.FRP == nil {
+			config.FRP = nodeCluster.DecodeFRP()
+		}
+
 		// 最大线程数,TCP连接数
 		if clusterIndex == 0 {
 			config.MaxThreads = int(nodeCluster.NodeMaxThreads)

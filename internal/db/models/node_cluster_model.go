@@ -86,6 +86,7 @@ type NodeCluster struct {
 	Uam                  dbs.JSON `field:"uam"`                  // UAM设置
 	Clock                dbs.JSON `field:"clock"`                // 时钟配置
 	GlobalServerConfig   dbs.JSON `field:"globalServerConfig"`   // 全局服务配置
+	Frp                  dbs.JSON `field:"frp"`                  // FRP服务端配置
 	AutoRemoteStart      bool     `field:"autoRemoteStart"`      // 自动远程启动
 	AutoInstallNftables  bool     `field:"autoInstallNftables"`  // 自动安装nftables
 	IsAD                 bool     `field:"isAD"`                 // 是否为高防集群
@@ -134,6 +135,7 @@ type NodeClusterOperator struct {
 	Uam                  any // UAM设置
 	Clock                any // 时钟配置
 	GlobalServerConfig   any // 全局服务配置
+	Frp                  any // FRP服务端配置
 	AutoRemoteStart      any // 自动远程启动
 	AutoInstallNftables  any // 自动安装nftables
 	IsAD                 any // 是否为高防集群

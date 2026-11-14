@@ -1480,6 +1480,56 @@ func (this *NodeClusterService) UpdateNodeClusterGlobalServerConfig(ctx context.
 	return this.Success()
 }
 
+// FindNodeClusterFRP 获取集群的FRP设置
+func (this *NodeClusterService) FindNodeClusterFRP(ctx context.Context, req *pb.FindNodeClusterFRPRequest) (*pb.FindNodeClusterFRPResponse, error) {
+	_, err := this.ValidateAdmin(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	var tx = this.NullTx()
+	config, err := models.SharedNodeClusterDAO.FindClusterFRP(tx, req.NodeClusterId)
+	if err != nil {
+		return nil, err
+	}
+
+	configJSON, err := json.Marshal(config)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.FindNodeClusterFRPResponse{
+		FrpJSON: configJSON,
+	}, nil
+}
+
+// UpdateNodeClusterFRP 修改集群的FRP设置
+func (this *NodeClusterService) UpdateNodeClusterFRP(ctx context.Context, req *pb.UpdateNodeClusterFRPRequest) (*pb.RPCSuccess, error) {
+	_, err := this.ValidateAdmin(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	var config = nodeconfigs.NewFRPConfig()
+	err = json.Unmarshal(req.FrpJSON, config)
+	if err != nil {
+		return nil, err
+	}
+
+	err = config.Init()
+	if err != nil {
+		return nil, errors.New("validate frp config failed: " + err.Error())
+	}
+
+	var tx = this.NullTx()
+	err = models.SharedNodeClusterDAO.UpdateClusterFRP(tx, req.NodeClusterId, config)
+	if err != nil {
+		return nil, err
+	}
+
+	return this.Success()
+}
+
 // FindNodeClusterHTTPPagesPolicy 获取集群的自定义页面设置
 func (this *NodeClusterService) FindNodeClusterHTTPPagesPolicy(ctx context.Context, req *pb.FindNodeClusterHTTPPagesPolicyRequest) (*pb.FindNodeClusterHTTPPagesPolicyResponse, error) {
 	_, err := this.ValidateAdmin(ctx)

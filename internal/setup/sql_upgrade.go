@@ -111,6 +111,9 @@ var upgradeFuncs = []*upgradeVersion{
 	{
 		"1.4.2", upgradeV1_4_2,
 	},
+	{
+		"1.4.3", upgradeV1_4_3,
+	},
 }
 
 // UpgradeSQLData 升级SQL数据
@@ -1303,7 +1306,7 @@ func upgradeV1_4_2(db *dbs.DB) error {
 	if len(legacyIdList) > 0 {
 		rebindCondition = "(userId=0 OR userId IN (" + legacyIdList + "))"
 	}
-	_, err = db.Exec("UPDATE edgeServers SET userId=? WHERE " + rebindCondition + " AND state=1", firstLinkedUserId)
+	_, err = db.Exec("UPDATE edgeServers SET userId=? WHERE "+rebindCondition+" AND state=1", firstLinkedUserId)
 	if err != nil {
 		return err
 	}
@@ -1332,4 +1335,17 @@ func upgradeV1_4_2(db *dbs.DB) error {
 	}
 
 	return nil
+}
+
+// v1.4.3
+func upgradeV1_4_3(db *dbs.DB) error {
+	count, err := db.FindCol(0, "SELECT COUNT(*) FROM information_schema.columns WHERE table_schema=DATABASE() AND table_name='edgeNodeClusters' AND column_name='frp'")
+	if err != nil {
+		return err
+	}
+	if types.Int64(count) > 0 {
+		return nil
+	}
+	_, err = db.Exec("ALTER TABLE edgeNodeClusters ADD COLUMN `frp` json DEFAULT NULL COMMENT 'FRP服务端配置'")
+	return err
 }

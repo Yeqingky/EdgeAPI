@@ -1522,6 +1522,52 @@ func (this *NodeClusterDAO) UpdateClusterGlobalServerConfig(tx *dbs.Tx, clusterI
 	return SharedNodeTaskDAO.CreateClusterTask(tx, nodeconfigs.NodeRoleNode, clusterId, 0, 0, NodeTaskTypeGlobalServerConfigChanged)
 }
 
+// FindClusterFRP 查询FRP服务端配置
+func (this *NodeClusterDAO) FindClusterFRP(tx *dbs.Tx, clusterId int64) (*nodeconfigs.FRPConfig, error) {
+	configJSON, err := this.Query(tx).
+		Pk(clusterId).
+		Result("frp").
+		FindJSONCol()
+	if err != nil {
+		return nil, err
+	}
+
+	var config = nodeconfigs.NewFRPConfig()
+	if IsNull(configJSON) {
+		return config, nil
+	}
+
+	err = json.Unmarshal(configJSON, config)
+	if err != nil {
+		return nil, err
+	}
+
+	return config, nil
+}
+
+// UpdateClusterFRP 修改FRP服务端配置
+func (this *NodeClusterDAO) UpdateClusterFRP(tx *dbs.Tx, clusterId int64, config *nodeconfigs.FRPConfig) error {
+	if config == nil {
+		config = nodeconfigs.NewFRPConfig()
+	}
+	if err := config.Init(); err != nil {
+		return err
+	}
+	configJSON, err := json.Marshal(config)
+	if err != nil {
+		return err
+	}
+	err = this.Query(tx).
+		Pk(clusterId).
+		Set("frp", configJSON).
+		UpdateQuickly()
+	if err != nil {
+		return err
+	}
+
+	return this.NotifyUpdate(tx, clusterId)
+}
+
 // NotifyUpdate 通知更新
 func (this *NodeClusterDAO) NotifyUpdate(tx *dbs.Tx, clusterId int64) error {
 	return SharedNodeTaskDAO.CreateClusterTask(tx, nodeconfigs.NodeRoleNode, clusterId, 0, 0, NodeTaskTypeConfigChanged)
