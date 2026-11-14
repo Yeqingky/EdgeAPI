@@ -9,7 +9,7 @@
 - 新增隧道日志接收和查询接口
 - 新增 /tunnels/config, /tunnels/download, /tunnels/logs HTTP 端点
 - 隧道配置分发集群中所有可用地址, 使用加密 STCP 并校验源站的用户及集群归属
-- 新增网站创建与隧道选择的 Gitea 端到端工作流
+- 网站创建和源站配置集成 E2E 纳入 Admin 总工作流
 
 ## v1.4.2-rc.1 (2026-11-13)
 
