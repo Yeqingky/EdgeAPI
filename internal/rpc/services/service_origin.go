@@ -10,6 +10,7 @@ import (
 	"git.ovh.im/yeqing/EdgeCommon/pkg/serverconfigs/ossconfigs"
 	"git.ovh.im/yeqing/EdgeCommon/pkg/serverconfigs/shared"
 	"git.ovh.im/yeqing/EdgeCommon/pkg/serverconfigs/sslconfigs"
+	"github.com/iwind/TeaGo/dbs"
 	"github.com/iwind/TeaGo/maps"
 )
 
@@ -30,9 +31,10 @@ func (this *OriginService) CreateOrigin(ctx context.Context, req *pb.CreateOrigi
 		return nil, errors.New("'addr' can not be nil")
 	}
 	var addrMap = maps.Map{
-		"protocol":  req.Addr.Protocol,
-		"portRange": req.Addr.PortRange,
-		"host":      req.Addr.Host,
+		"protocol":     req.Addr.Protocol,
+		"portRange":    req.Addr.PortRange,
+		"host":         req.Addr.Host,
+		"tunnelNodeId": req.Addr.TunnelNodeId,
 	}
 
 	// OSS设置
@@ -46,6 +48,9 @@ func (this *OriginService) CreateOrigin(ctx context.Context, req *pb.CreateOrigi
 	}
 
 	var tx = this.NullTx()
+	if err := validateOriginTunnel(tx, userId, req.Addr); err != nil {
+		return nil, err
+	}
 
 	// 校验参数
 	var connTimeout = &shared.TimeDuration{}
@@ -113,10 +118,14 @@ func (this *OriginService) UpdateOrigin(ctx context.Context, req *pb.UpdateOrigi
 	if req.Addr == nil {
 		return nil, errors.New("'addr' can not be nil")
 	}
+	if err := validateOriginTunnel(tx, userId, req.Addr); err != nil {
+		return nil, err
+	}
 	var addrMap = maps.Map{
-		"protocol":  req.Addr.Protocol,
-		"portRange": req.Addr.PortRange,
-		"host":      req.Addr.Host,
+		"protocol":     req.Addr.Protocol,
+		"portRange":    req.Addr.PortRange,
+		"host":         req.Addr.Host,
+		"tunnelNodeId": req.Addr.TunnelNodeId,
 	}
 
 	// OSS设置
@@ -210,9 +219,10 @@ func (this *OriginService) FindEnabledOrigin(ctx context.Context, req *pb.FindEn
 		IsOn: origin.IsOn,
 		Name: origin.Name,
 		Addr: &pb.NetworkAddress{
-			Protocol:  addr.Protocol.String(),
-			Host:      addr.Host,
-			PortRange: addr.PortRange,
+			Protocol:     addr.Protocol.String(),
+			Host:         addr.Host,
+			PortRange:    addr.PortRange,
+			TunnelNodeId: addr.TunnelNodeId,
 		},
 		Description:  origin.Description,
 		Domains:      origin.DecodeDomains(),
@@ -272,4 +282,21 @@ func (this *OriginService) UpdateOriginIsOn(ctx context.Context, req *pb.UpdateO
 	}
 
 	return this.Success()
+}
+
+func validateOriginTunnel(tx *dbs.Tx, userId int64, addr *pb.NetworkAddress) error {
+	if addr.TunnelNodeId == 0 {
+		return nil
+	}
+	if addr.TunnelNodeId < 0 || (addr.Protocol != "http" && addr.Protocol != "https") || addr.Host == "" || addr.PortRange == "" {
+		return errors.New("invalid tunnel origin")
+	}
+	tunnel, err := models.SharedTunnelNodeDAO.FindEnabledTunnelNode(tx, addr.TunnelNodeId)
+	if err != nil {
+		return err
+	}
+	if tunnel == nil || !tunnel.IsOn || (userId > 0 && int64(tunnel.UserId) != userId) {
+		return errors.New("tunnel node not found or unavailable")
+	}
+	return nil
 }

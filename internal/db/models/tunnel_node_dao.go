@@ -57,6 +57,9 @@ func (this *TunnelNodeDAO) CreateTunnelNode(tx *dbs.Tx, adminId int64, userId in
 	if err != nil {
 		return 0, err
 	}
+	if err := SharedNodeClusterDAO.NotifyUpdate(tx, clusterId); err != nil {
+		return 0, err
+	}
 	return types.Int64(op.Id), nil
 }
 
@@ -80,6 +83,18 @@ func (this *TunnelNodeDAO) FindTunnelNodeWithToken(tx *dbs.Tx, token string) (*T
 		return nil, err
 	}
 	return one.(*TunnelNode), nil
+}
+
+func (this *TunnelNodeDAO) findActiveTunnelNodes(tx *dbs.Tx, clusterId int64) ([]*TunnelNode, error) {
+	var result []*TunnelNode
+	_, err := this.Query(tx).
+		State(TunnelNodeStateEnabled).
+		Attr("clusterId", clusterId).
+		Attr("isOn", true).
+		AscPk().
+		Slice(&result).
+		FindAll()
+	return result, err
 }
 
 func (this *TunnelNodeDAO) ListTunnelNodes(tx *dbs.Tx, userId int64, clusterId int64, keyword string, offset int64, size int64) ([]*TunnelNode, error) {
@@ -113,11 +128,18 @@ func (this *TunnelNodeDAO) CountTunnelNodes(tx *dbs.Tx, userId int64, clusterId 
 }
 
 func (this *TunnelNodeDAO) DeleteTunnelNode(tx *dbs.Tx, id int64) error {
-	_, err := this.Query(tx).
+	node, err := this.FindEnabledTunnelNode(tx, id)
+	if err != nil || node == nil {
+		return err
+	}
+	_, err = this.Query(tx).
 		Pk(id).
 		Set("state", TunnelNodeStateDisabled).
 		Update()
-	return err
+	if err != nil {
+		return err
+	}
+	return SharedNodeClusterDAO.NotifyUpdate(tx, int64(node.ClusterId))
 }
 
 func (this *TunnelNodeDAO) UpdateTunnelNodeIsInstalled(tx *dbs.Tx, id int64, isInstalled bool) error {
@@ -130,6 +152,10 @@ func (this *TunnelNodeDAO) UpdateTunnelNodeIsInstalled(tx *dbs.Tx, id int64, isI
 }
 
 func (this *TunnelNodeDAO) UpdateTunnelNode(tx *dbs.Tx, id int64, name string, serverAddr string, serverPort int, isOn bool) error {
+	node, err := this.FindEnabledTunnelNode(tx, id)
+	if err != nil || node == nil {
+		return err
+	}
 	var op = NewTunnelNodeOperator()
 	op.Id = id
 	op.Name = name
@@ -138,5 +164,8 @@ func (this *TunnelNodeDAO) UpdateTunnelNode(tx *dbs.Tx, id int64, name string, s
 	op.IsOn = isOn
 	op.UpdatedAt = time.Now().Unix()
 	op.ConfigVersion = time.Now().Unix()
-	return this.Save(tx, op)
+	if err := this.Save(tx, op); err != nil {
+		return err
+	}
+	return SharedNodeClusterDAO.NotifyUpdate(tx, int64(node.ClusterId))
 }

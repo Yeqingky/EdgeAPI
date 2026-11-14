@@ -1169,6 +1169,26 @@ func (this *NodeDAO) ComposeNodeConfig(tx *dbs.Tx, nodeId int64, dataMap *shared
 		// FRP
 		if config.FRP == nil {
 			config.FRP = nodeCluster.DecodeFRP()
+			config.FRP.Tunnels = nil
+			config.FRP.ServerAddrs = nil
+			if config.FRP.IsOn {
+				addresses, err := FindTunnelServerAddrs(tx, clusterId, config.FRP.BindPort)
+				if err != nil {
+					return nil, err
+				}
+				for _, address := range addresses {
+					config.FRP.ServerAddrs = append(config.FRP.ServerAddrs, nodeconfigs.FRPServerAddr{Addr: address.Addr, Port: address.Port})
+				}
+				tunnels, err := SharedTunnelNodeDAO.findActiveTunnelNodes(tx, clusterId)
+				if err != nil {
+					return nil, err
+				}
+				for _, tunnel := range tunnels {
+					config.FRP.Tunnels = append(config.FRP.Tunnels, nodeconfigs.FRPTunnelConfig{
+						ID: int64(tunnel.Id), Secret: tunnel.Token,
+					})
+				}
+			}
 		}
 
 		// 最大线程数,TCP连接数

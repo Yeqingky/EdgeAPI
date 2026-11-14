@@ -675,6 +675,15 @@ func (this *NodeIPAddressDAO) NotifyUpdate(tx *dbs.Tx, addressId int64) error {
 		if err != nil {
 			return err
 		}
+		clusterId, err := SharedNodeDAO.FindNodeClusterId(tx, nodeId)
+		if err != nil {
+			return err
+		}
+		if clusterId > 0 {
+			if err := SharedNodeClusterDAO.NotifyUpdate(tx, clusterId); err != nil {
+				return err
+			}
+		}
 
 		// 检查是否为L2以上级别
 		level, err := SharedNodeDAO.FindNodeLevel(tx, nodeId)

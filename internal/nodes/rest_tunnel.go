@@ -111,7 +111,12 @@ func (this *RestServer) handleTunnelConfig(writer http.ResponseWriter, req *http
 	}
 
 	baseURL := this.requestBaseURL(req)
-	data, err := node.BuildFRPCConfig(frpConfig, baseURL)
+	serverAddrs, err := models.FindTunnelServerAddrs(nil, int64(node.ClusterId), frpConfig.BindPort)
+	if err != nil {
+		http.Error(writer, "read server addresses failed", http.StatusInternalServerError)
+		return
+	}
+	data, err := node.BuildFRPCConfig(frpConfig, baseURL, serverAddrs)
 	if err != nil {
 		http.Error(writer, "encode config failed", http.StatusInternalServerError)
 		return

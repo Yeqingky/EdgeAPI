@@ -423,6 +423,15 @@ func (this *OriginDAO) ComposeOriginConfig(tx *dbs.Tx, originId int64, dataMap *
 		if err != nil {
 			return nil, err
 		}
+		if addr.TunnelNodeId > 0 {
+			tunnelNode, err := SharedTunnelNodeDAO.FindEnabledTunnelNode(tx, addr.TunnelNodeId)
+			if err != nil {
+				return nil, err
+			}
+			if tunnelNode == nil || !tunnelNode.IsOn {
+				config.IsOn = false
+			}
+		}
 		config.Addr = addr
 		isOSS = ossconfigs.IsOSSProtocol(string(addr.Protocol))
 	}

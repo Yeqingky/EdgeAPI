@@ -3,7 +3,6 @@ package services
 import (
 	"context"
 	"errors"
-	"net"
 	"strings"
 
 	"git.ovh.im/yeqing/EdgeAPI/internal/db/models"
@@ -11,6 +10,8 @@ import (
 	"git.ovh.im/yeqing/EdgeCommon/pkg/rpc/pb"
 	"github.com/iwind/TeaGo/rands"
 	"github.com/iwind/TeaGo/types"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 type TunnelNodeService struct {
@@ -27,12 +28,6 @@ func (this *TunnelNodeService) CreateTunnelNode(ctx context.Context, req *pb.Cre
 	}
 	if req.ClusterId <= 0 {
 		return nil, errors.New("clusterId should not be empty")
-	}
-	if req.ServerPort <= 0 || req.ServerPort > 65535 {
-		return nil, errors.New("invalid serverPort")
-	}
-	if net.ParseIP(req.ServerAddr) == nil && len(strings.TrimSpace(req.ServerAddr)) == 0 {
-		return nil, errors.New("serverAddr should not be empty")
 	}
 	if req.Os != "linux" && req.Os != "windows" {
 		return nil, errors.New("unsupported os")
@@ -104,7 +99,7 @@ func (this *TunnelNodeService) CreateTunnelNode(ctx context.Context, req *pb.Cre
 
 	tunnelNodeId, err := models.SharedTunnelNodeDAO.CreateTunnelNode(tx,
 		adminId, userId, req.ClusterId, strings.TrimSpace(req.Name), token,
-		strings.TrimSpace(req.ServerAddr), int(req.ServerPort), req.Os, req.Arch)
+		frpConfig.BindAddr, frpConfig.BindPort, req.Os, req.Arch)
 	if err != nil {
 		return nil, err
 	}
@@ -179,16 +174,20 @@ func (this *TunnelNodeService) FindTunnelNodeConfigWithToken(ctx context.Context
 		return nil, err
 	}
 	if node == nil || !node.IsOn {
-		return nil, errors.New("invalid tunnel token")
+		return nil, status.Error(codes.Unauthenticated, "invalid tunnel token")
 	}
 	frpConfig, err := models.SharedNodeClusterDAO.FindClusterFRP(tx, int64(node.ClusterId))
 	if err != nil {
 		return nil, err
 	}
 	if !frpConfig.IsOn {
-		return nil, errors.New("frp is not enabled for this cluster")
+		return nil, status.Error(codes.FailedPrecondition, "frp is not enabled for this cluster")
 	}
-	data, err := buildTunnelNodeConfig(node, frpConfig, req.BaseURL)
+	serverAddrs, err := models.FindTunnelServerAddrs(tx, int64(node.ClusterId), frpConfig.BindPort)
+	if err != nil {
+		return nil, err
+	}
+	data, err := buildTunnelNodeConfig(node, frpConfig, req.BaseURL, serverAddrs)
 	if err != nil {
 		return nil, err
 	}
@@ -198,8 +197,8 @@ func (this *TunnelNodeService) FindTunnelNodeConfigWithToken(ctx context.Context
 	}, nil
 }
 
-func buildTunnelNodeConfig(node *models.TunnelNode, frpConfig *nodeconfigs.FRPConfig, baseURL string) ([]byte, error) {
-	return node.BuildFRPCConfig(frpConfig, baseURL)
+func buildTunnelNodeConfig(node *models.TunnelNode, frpConfig *nodeconfigs.FRPConfig, baseURL string, serverAddrs []models.TunnelServerAddr) ([]byte, error) {
+	return node.BuildFRPCConfig(frpConfig, baseURL, serverAddrs)
 }
 
 func (this *TunnelNodeService) DeleteTunnelNode(ctx context.Context, req *pb.DeleteTunnelNodeRequest) (*pb.RPCSuccess, error) {

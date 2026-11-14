@@ -259706,7 +259706,7 @@
       "name": "edgeTunnelNodes",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeTunnelNodes` (\n  `id` int(11) unsigned AUTO_INCREMENT COMMENT 'ID',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `token` varchar(64) DEFAULT NULL COMMENT '令牌',\n  `serverAddr` varchar(255) DEFAULT NULL COMMENT 'FRPS地址',\n  `serverPort` int(11) unsigned DEFAULT '7000' COMMENT 'FRPS端口',\n  `os` varchar(32) DEFAULT NULL COMMENT '操作系统',\n  `arch` varchar(32) DEFAULT NULL COMMENT 'CPU架构',\n  `version` varchar(32) DEFAULT NULL COMMENT '版本',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `isInstalled` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已安装',\n  `configVersion` bigint(11) unsigned DEFAULT '0' COMMENT '配置版本',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `updatedAt` bigint(11) unsigned DEFAULT '0' COMMENT '修改时间',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `token` (`token`),\n  KEY `userId` (`userId`),\n  KEY `clusterId` (`clusterId`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='edgeTunnelNodes'",
+      "definition": "CREATE TABLE `edgeTunnelNodes` (\n  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `adminId` int(11) unsigned DEFAULT '0' COMMENT '管理员ID',\n  `userId` int(11) unsigned DEFAULT '0' COMMENT '用户ID',\n  `clusterId` int(11) unsigned DEFAULT '0' COMMENT '集群ID',\n  `name` varchar(255) DEFAULT NULL COMMENT '名称',\n  `token` varchar(64) DEFAULT NULL COMMENT '令牌',\n  `serverAddr` varchar(255) DEFAULT NULL COMMENT 'FRPS地址',\n  `serverPort` int(11) unsigned DEFAULT '7000' COMMENT 'FRPS端口',\n  `os` varchar(32) DEFAULT NULL COMMENT '操作系统',\n  `arch` varchar(32) DEFAULT NULL COMMENT 'CPU架构',\n  `version` varchar(32) DEFAULT NULL COMMENT '版本',\n  `isOn` tinyint(1) unsigned DEFAULT '1' COMMENT '是否启用',\n  `isInstalled` tinyint(1) unsigned DEFAULT '0' COMMENT '是否已安装',\n  `configVersion` bigint(11) unsigned DEFAULT '0' COMMENT '配置版本',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  `updatedAt` bigint(11) unsigned DEFAULT '0' COMMENT '修改时间',\n  `state` tinyint(1) unsigned DEFAULT '1' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `token` (`token`) USING BTREE,\n  KEY `userId` (`userId`) USING BTREE,\n  KEY `clusterId` (`clusterId`) USING BTREE\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='edgeTunnelNodes'",
       "fields": [
         {
           "name": "id",
@@ -259780,19 +259780,19 @@
       "indexes": [
         {
           "name": "PRIMARY",
-          "definition": "PRIMARY KEY (`id`)"
+          "definition": "UNIQUE KEY `PRIMARY` (`id`) USING BTREE"
         },
         {
           "name": "token",
-          "definition": "UNIQUE KEY `token` (`token`)"
+          "definition": "UNIQUE KEY `token` (`token`) USING BTREE"
         },
         {
           "name": "userId",
-          "definition": "KEY `userId` (`userId`)"
+          "definition": "KEY `userId` (`userId`) USING BTREE"
         },
         {
           "name": "clusterId",
-          "definition": "KEY `clusterId` (`clusterId`)"
+          "definition": "KEY `clusterId` (`clusterId`) USING BTREE"
         }
       ],
       "records": []
@@ -259801,7 +259801,7 @@
       "name": "edgeTunnelLogs",
       "engine": "InnoDB",
       "charset": "utf8mb4_general_ci",
-      "definition": "CREATE TABLE `edgeTunnelLogs` (\n  `id` bigint(16) unsigned AUTO_INCREMENT COMMENT 'ID',\n  `tunnelNodeId` int(11) unsigned DEFAULT '0' COMMENT '隧道节点ID',\n  `level` varchar(16) DEFAULT NULL COMMENT '级别',\n  `message` text COMMENT '内容',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  PRIMARY KEY (`id`),\n  KEY `tunnelNodeId` (`tunnelNodeId`),\n  KEY `createdAt` (`createdAt`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='edgeTunnelLogs'",
+      "definition": "CREATE TABLE `edgeTunnelLogs` (\n  `id` bigint(16) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',\n  `tunnelNodeId` int(11) unsigned DEFAULT '0' COMMENT '隧道节点ID',\n  `level` varchar(16) DEFAULT NULL COMMENT '级别',\n  `message` text COMMENT '内容',\n  `createdAt` bigint(11) unsigned DEFAULT '0' COMMENT '创建时间',\n  PRIMARY KEY (`id`),\n  KEY `tunnelNodeId` (`tunnelNodeId`) USING BTREE,\n  KEY `createdAt` (`createdAt`) USING BTREE\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='edgeTunnelLogs'",
       "fields": [
         {
           "name": "id",
@@ -259827,15 +259827,15 @@
       "indexes": [
         {
           "name": "PRIMARY",
-          "definition": "PRIMARY KEY (`id`)"
+          "definition": "UNIQUE KEY `PRIMARY` (`id`) USING BTREE"
         },
         {
           "name": "tunnelNodeId",
-          "definition": "KEY `tunnelNodeId` (`tunnelNodeId`)"
+          "definition": "KEY `tunnelNodeId` (`tunnelNodeId`) USING BTREE"
         },
         {
           "name": "createdAt",
-          "definition": "KEY `createdAt` (`createdAt`)"
+          "definition": "KEY `createdAt` (`createdAt`) USING BTREE"
         }
       ],
       "records": []
