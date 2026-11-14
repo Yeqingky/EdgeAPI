@@ -2,7 +2,6 @@ package services
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"net"
 	"strings"
@@ -200,30 +199,7 @@ func (this *TunnelNodeService) FindTunnelNodeConfigWithToken(ctx context.Context
 }
 
 func buildTunnelNodeConfig(node *models.TunnelNode, frpConfig *nodeconfigs.FRPConfig, baseURL string) ([]byte, error) {
-	baseURL = strings.TrimRight(baseURL, "/")
-	config := map[string]any{
-		"serverAddr": node.ServerAddr,
-		"serverPort": node.ServerPort,
-		"auth": map[string]any{
-			"method": "token",
-			"token":  frpConfig.Token,
-		},
-		"log": map[string]any{
-			"to":                "console",
-			"level":             "info",
-			"disablePrintColor": true,
-			"report": map[string]any{
-				"url":   baseURL + "/tunnels/logs",
-				"token": node.Token,
-			},
-		},
-		"remoteConfig": map[string]any{
-			"url":      baseURL + "/tunnels/config",
-			"token":    node.Token,
-			"interval": 30,
-		},
-	}
-	return json.Marshal(config)
+	return node.BuildFRPCConfig(frpConfig, baseURL)
 }
 
 func (this *TunnelNodeService) DeleteTunnelNode(ctx context.Context, req *pb.DeleteTunnelNodeRequest) (*pb.RPCSuccess, error) {

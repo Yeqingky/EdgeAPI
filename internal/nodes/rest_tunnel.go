@@ -111,29 +111,7 @@ func (this *RestServer) handleTunnelConfig(writer http.ResponseWriter, req *http
 	}
 
 	baseURL := this.requestBaseURL(req)
-	config := map[string]any{
-		"serverAddr": node.ServerAddr,
-		"serverPort": node.ServerPort,
-		"auth": map[string]any{
-			"method": "token",
-			"token":  frpConfig.Token,
-		},
-		"log": map[string]any{
-			"to":                "console",
-			"level":             "info",
-			"disablePrintColor": true,
-			"report": map[string]any{
-				"url":   baseURL + "/tunnels/logs",
-				"token": node.Token,
-			},
-		},
-		"remoteConfig": map[string]any{
-			"url":      baseURL + "/tunnels/config",
-			"token":    node.Token,
-			"interval": 30,
-		},
-	}
-	data, err := json.Marshal(config)
+	data, err := node.BuildFRPCConfig(frpConfig, baseURL)
 	if err != nil {
 		http.Error(writer, "encode config failed", http.StatusInternalServerError)
 		return
