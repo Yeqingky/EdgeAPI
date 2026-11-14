@@ -2,6 +2,7 @@
 
 ## v1.4.2-rc.1 (2026-11-13)
 
+- 新增 Gitea 工作流 mirror-to-github: 全部分支和标签强制镜像到 github.com/Yeqingky/EdgeAPI, 同步删除 GitHub 端多余的分支和标签
 - 全局标点符号统一为英文半角
 - 集群DNS支持所有网站共用一个CNAME, 开启后不再生成网站独立CNAME记录
 - 允许通过CNAME访问网站默认关闭, 共用CNAME时强制关闭
